@@ -4,17 +4,39 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Image;
+use Illuminate\Support\Facades\Auth;
+
 
 class ImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+
+        // $this->middleware(function ($request, $next) {
+        //     $id = $request->route()->parameter('image');
+        //     $id = (!is_null($id)){
+        //         $imagesAdminId = Image::findOrFail($id)->admin->id;
+        //             $imageId = (int)$imagesAdminId;
+        //             if($imageId !== Auth::id()){
+        //                 abort(404);
+        //             }
+        //     }
+        //     dd($request);
+
+        //     return $next($request);
+        // });
+    }
+
+
     public function index()
     {
-        //
+        $images = Image::where('owner_id', Auth::id())
+        ->orderBy('updated_at', 'desc')
+        ->paginate(20);
+
+        return view ('admin.image.index' , compact('images'));
     }
 
     /**
@@ -57,7 +79,7 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
