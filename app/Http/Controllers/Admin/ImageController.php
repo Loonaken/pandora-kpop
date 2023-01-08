@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
 
 
 class ImageController extends Controller
@@ -84,11 +86,19 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         $imageFile = $request->image;
         if(!is_null($imageFile) && $imageFile->isValid() ){
-            Storage::putFile('public/images' , $imageFile);
+            // Storage::putFile('public/images' , $imageFile);
+            $fileName = uniqid(rand().'_');
+            $extension = $imageFile->extension();
+            $fileNameToStore = $fileName. '.' . $extension;
+            $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
+            // dd($imageFile, $resizedImage);
+
+            Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+
         }
 
         return redirect()->route('admin.images.index');

@@ -18,7 +18,7 @@
                     @if (empty($image->filename))
                     <img src="{{ asset('images/no_image.jpg')}}">
                     @else
-                    <img src="{{ asset('storage/groups/' . $shop->filename)}}" >
+                    <img src="{{ asset('storage/images/' . $shop->filename)}}" >
                     @endif
                   </div>
                   <div class="text-xl">{{$image->title}}</div>
