@@ -36,9 +36,8 @@ class ImageController extends Controller
     public function index()
     {
         $images = Image::where('admin_id', Auth::id())
-        ->get();
-        // ->orderBy('updated_at', 'desc');
-        // ->paginate(20);
+        ->orderBy('updated_at', 'desc')
+        ->paginate(20);
 
         // dd($images);
         return view ('admin.images.index' , compact('images'));
@@ -51,7 +50,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return view ('admin.images.create');
     }
 
     /**
@@ -60,9 +59,9 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UploadImageRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -88,12 +87,26 @@ class ImageController extends Controller
      */
     public function update(UploadImageRequest $request, $id)
     {
+            $request ->validate([
+                'title'=>'string|max:30'
+            ]);
+
         $imageFile = $request->image;
-        if(!is_null($imageFile) && $imageFile->isValid() ){
-            $fileNameToStore = ImageService::upload($imageFile, 'images');
+        if(!is_null($imageFile) && $imageFile->isValid() )
+        {
+            $fileNameToStore = ImageService::upload($imageFile, 'songs');
             // 第二引数に画像を格納したいフォルダ名を選択する
             // ImageServiceファイルにファイル名やリサイズメソッドを記載している
         }
+
+        $image = Image::findOrFail($id);
+        $image->title = $request->title;
+        if(!is_null($imageFile) && $imageFile->isValid() ){
+            $image->filename = $fileNameToStore;
+        }
+
+        $image->save();
+
 
         return redirect()->route('admin.images.index');
     }

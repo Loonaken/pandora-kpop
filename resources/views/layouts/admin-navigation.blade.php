@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.images.index')" :active="request()->routeIs('admin.images.index')">
+                        画像管理
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -70,6 +73,9 @@
             <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-nav-link :href="route('admin.images.index')" :active="request()->routeIs('admin.images.index')">
+                画像管理
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
