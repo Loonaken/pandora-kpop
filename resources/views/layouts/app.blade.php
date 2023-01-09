@@ -23,8 +23,8 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <header class="">
+                    <div class=" tracking-wider w-32 lg:w-40 mt-8 mx-auto text-center py-2 px-2 -mb-8 border-4 border-gray-400 ">
                         {{ $header }}
                     </div>
                 </header>

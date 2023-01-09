@@ -102,7 +102,7 @@ class ImageController extends Controller
     public function update(UploadImageRequest $request, $id)
     {
             $request ->validate([
-                'title'=>'string|max:30'
+                'title'=>'string|max:19'
             ]);
 
         $image = Image::findOrFail($id);
