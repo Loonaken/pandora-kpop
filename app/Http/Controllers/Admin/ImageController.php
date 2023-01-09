@@ -61,7 +61,21 @@ class ImageController extends Controller
      */
     public function store(UploadImageRequest $request)
     {
-        dd($request);
+        $imageFiles = $request->file('files');
+        if(!is_null($imageFiles)){
+            foreach($imageFiles as $imageFile){
+            $fileNameToStore = ImageService::upload($imageFile, 'songs');
+            // 第二引数に画像を格納したいフォルダ名を選択する
+            // ImageServiceファイルにファイル名やリサイズメソッドを記載している
+                Image::create([
+                    'admin_id' => Auth::id(),
+                    'filename' => $fileNameToStore
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.images.index');
+
     }
 
     /**
@@ -90,21 +104,9 @@ class ImageController extends Controller
             $request ->validate([
                 'title'=>'string|max:30'
             ]);
-
-        $imageFile = $request->image;
-        if(!is_null($imageFile) && $imageFile->isValid() )
-        {
-            $fileNameToStore = ImageService::upload($imageFile, 'songs');
-            // 第二引数に画像を格納したいフォルダ名を選択する
-            // ImageServiceファイルにファイル名やリサイズメソッドを記載している
-        }
-
+            
         $image = Image::findOrFail($id);
         $image->title = $request->title;
-        if(!is_null($imageFile) && $imageFile->isValid() ){
-            $image->filename = $fileNameToStore;
-        }
-
         $image->save();
 
 
