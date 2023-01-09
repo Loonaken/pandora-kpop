@@ -104,7 +104,7 @@ class ImageController extends Controller
             $request ->validate([
                 'title'=>'string|max:30'
             ]);
-            
+
         $image = Image::findOrFail($id);
         $image->title = $request->title;
         $image->save();
@@ -113,14 +113,18 @@ class ImageController extends Controller
         return redirect()->route('admin.images.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        $filePath = 'public/songs/' . $image->filename;
+
+        if(Storage::exists($filePath)){
+            Storage::delete($filePath);
+        }
+
+        Image::findOrFail($id)->delete();
+
+        return redirect()->route('admin.images.index');
+
     }
 }

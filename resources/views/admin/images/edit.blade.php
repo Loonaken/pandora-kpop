@@ -31,8 +31,24 @@
                         <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">更新</button>
                     </div>
                 </form>
+                <form id="delete_{{$image->id}}" method="POST" action="{{route('admin.images.destroy', ['image' => $image->id])}}">
+                @csrf
+                @method('delete')
+                <div class="flex justify-center mt-8 p-4 w-full">
+                  <a href="#" data-id="{{ $image->id }}" onclick="deletePost(this)" class=" text-white bg-red-500 border-0 py-2 px-8   focus:outline-none hover:bg-red-600 rounded text-base">削除</a>
+                </div>
+                </form>
               </div>
           </div>
       </div>
   </div>
+  <script>
+    function deletePost(e) {
+    'use strict';
+    if (confirm('本当に削除してもいいですか?')) {
+    document.getElementById('delete_' + e.dataset.id).submit();
+    }
+    }
+    </script>
+
 </x-app-layout>
