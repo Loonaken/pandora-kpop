@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
+use InterventionImage;
+use App\Http\Requests\UploadImageRequest;
+use App\Services\ImageService;
 
 class ImageController extends Controller
 {
@@ -32,11 +35,12 @@ class ImageController extends Controller
 
     public function index()
     {
-        $images = Image::where('owner_id', Auth::id())
+        $images = Image::where('admin_id', Auth::id())
         ->orderBy('updated_at', 'desc')
         ->paginate(20);
 
-        return view ('admin.image.index' , compact('images'));
+        // dd($images);
+        return view ('admin.images.index' , compact('images'));
     }
 
     /**
@@ -46,7 +50,7 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        return view ('admin.images.create');
     }
 
     /**
@@ -55,20 +59,23 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UploadImageRequest $request)
     {
-        //
-    }
+        $imageFiles = $request->file('files');
+        if(!is_null($imageFiles)){
+            foreach($imageFiles as $imageFile){
+            $fileNameToStore = ImageService::upload($imageFile, 'songs');
+            // 第二引数に画像を格納したいフォルダ名を選択する
+            // ImageServiceファイルにファイル名やリサイズメソッドを記載している
+                Image::create([
+                    'admin_id' => Auth::id(),
+                    'filename' => $fileNameToStore
+                ]);
+            }
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('admin.images.index');
+
     }
 
     /**
@@ -79,6 +86,9 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
+        $image = Image::findOrFail($id);
+
+        return view('admin.images.edit', compact('image'));
 
     }
 
@@ -89,19 +99,32 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
-        //
+            $request ->validate([
+                'title'=>'string|max:30'
+            ]);
+
+        $image = Image::findOrFail($id);
+        $image->title = $request->title;
+        $image->save();
+
+
+        return redirect()->route('admin.images.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $image = Image::findOrFail($id);
+        $filePath = 'public/songs/' . $image->filename;
+
+        if(Storage::exists($filePath)){
+            Storage::delete($filePath);
+        }
+
+        Image::findOrFail($id)->delete();
+
+        return redirect()->route('admin.images.index');
+
     }
 }
