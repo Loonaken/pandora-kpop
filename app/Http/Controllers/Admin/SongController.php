@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Song;
+use App\Models\Image;
+use App\Models\Emotion;
+use App\Models\Period;
+use App\Models\Group;
 
 
 class SongController extends Controller
@@ -17,10 +21,9 @@ class SongController extends Controller
 
     public function index()
     {
-        $songs = Song::orderByDesc('updated_at')
-        ->paginate(8);
+        $songs = Song::with('image')->orderByDesc('updated_at')->get();
 
-        return view ('admin.songs.index');
+        return view ('admin.songs.index', compact('songs'));
     }
 
     /**

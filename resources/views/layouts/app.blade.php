@@ -24,7 +24,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="">
-                    <div class=" tracking-wider w-32 lg:w-40 mt-8 mx-auto text-center py-2 px-2 -mb-8 border-4 border-gray-400 ">
+                    <div class=" tracking-wider w-48 lg:w-452 mt-8 mx-auto text-center py-2 px-2 -mb-8 border-4 border-gray-400 ">
                         {{ $header }}
                     </div>
                 </header>
