@@ -16,7 +16,7 @@ class PeriodSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('emotions')->insert([
+        DB::table('periods')->insert([
             [
                 'term'=> '2023',
                 'sort_order'=> '1'
