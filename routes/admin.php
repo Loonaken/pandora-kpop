@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\EmotionController;
+use App\Http\Controllers\Admin\PeriodController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\SongController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +38,18 @@ Route::get('/dashboard', function () {
 
 Route::resource('images', ImageController::class)
     ->middleware('auth:admin')->except(['show']);
+
+Route::resource('emotions', EmotionController::class)
+    ->middleware('auth:admin');
+
+Route::resource('periods', PeriodController::class)
+    ->middleware('auth:admin');
+
+Route::resource('groups', GroupController::class)
+    ->middleware('auth:admin');
+
+Route::resource('songs', SongController::class)
+    ->middleware('auth:admin');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
