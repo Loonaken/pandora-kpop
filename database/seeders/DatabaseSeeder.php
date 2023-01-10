@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ImageSeeder::class,
             EmotionSeeder::class,
+            PeriodSeeder::class,
         ]);
 
 
