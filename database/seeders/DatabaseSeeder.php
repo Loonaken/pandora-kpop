@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             EmotionSeeder::class,
             PeriodSeeder::class,
             GroupSeeder::class,
+            SongSeeder::class,
         ]);
 
 
