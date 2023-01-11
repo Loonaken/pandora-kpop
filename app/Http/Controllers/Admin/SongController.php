@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Song;
 use App\Models\Image;
 use App\Models\Emotion;
@@ -54,7 +55,34 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+
+        $request ->validate([
+            'name'=>'required|string|max:30',
+            'information'=>'required|string|max:100',
+            'youtube_link'=>'required',
+            'emotion'=>'required|exists:emotions,id',
+            'period'=>'required|exists:periods,id',
+            'group'=>'required|exists:groups,id',
+            'images'=>'required|exists:images,id'
+        ]);
+
+        Song::create([
+            'name'=> $request->name,
+            'information'=> $request->information,
+            'youtube_link'=> $request->youtube_link,
+            'emotion_id'=> $request->emotion,
+            'period_id'=> $request->period,
+            'group_id'=> $request->group,
+            'image_id'=> $request->images
+        ]);
+        // （左辺＝キー名）＝MG（マイグレーション）ファイルで定めたカラムを挿入
+        // （右辺＝値）＝上のページのValidationで定めたカラム名を挿入する
+
+
+
+        return redirect()->route('admin.songs.index');
+
+
     }
 
     /**
