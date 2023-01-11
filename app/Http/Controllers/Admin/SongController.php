@@ -33,7 +33,17 @@ class SongController extends Controller
      */
     public function create()
     {
-        //
+        $songs = Song::select('id', 'name')->get();
+
+        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+
+        $emotions = Emotion::with('song')->get();
+
+        $periods = Period::with('song')->get();
+
+        $groups = Group::with('song')->get();
+
+        return view ('admin.songs.create', compact('songs', 'images', 'emotions', 'periods', 'groups'));
     }
 
     /**
