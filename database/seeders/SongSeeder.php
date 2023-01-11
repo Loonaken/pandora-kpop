@@ -19,7 +19,7 @@ class SongSeeder extends Seeder
         DB::table('songs')->insert([
             [
                 'youtube_link'=> 'https://www.youtube.com/watch?v=SPYX2y4NzTU',
-                'image_id'=> '1',
+                'image_id'=> '4',
                 'group_id'=> '1',
                 'name'=> 'Flip That',
                 'information'=> '完全体でのカムバックとしては最後の楽しい曲である',
@@ -28,7 +28,7 @@ class SongSeeder extends Seeder
             ],
             [
                 'youtube_link'=> 'https://www.youtube.com/watch?v=9yDmyndI0_k',
-                'image_id'=> '2',
+                'image_id'=> '3',
                 'group_id'=> '2',
                 'name'=> 'Slow Journey',
                 'information'=> '完全体でのカムバックとしては最後の楽しい曲である',

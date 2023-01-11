@@ -26,18 +26,18 @@ class Song extends Model
 
     public function image()
     {
-        return $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class, 'image_id');
     }
     public function emotion()
     {
-        return $this->belongsTo(Emotion::class);
+        return $this->belongsTo(Emotion::class, 'emotion_id');
     }
     public function period()
     {
-        return $this->belongsTo(Period::class);
+        return $this->belongsTo(Period::class, 'period_id');
     }
     public function group()
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Group::class, 'group_id');
     }
 }

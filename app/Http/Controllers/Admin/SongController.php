@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Song;
+use App\Models\Image;
+use App\Models\Emotion;
+use App\Models\Period;
+use App\Models\Group;
 
 
 class SongController extends Controller
@@ -17,10 +21,9 @@ class SongController extends Controller
 
     public function index()
     {
-        $songs = Song::orderByDesc('updated_at')
-        ->paginate(8);
+        $songs = Song::with('image')->orderByDesc('updated_at')->get();
 
-        return view ('admin.songs.index');
+        return view ('admin.songs.index', compact('songs'));
     }
 
     /**
@@ -30,7 +33,17 @@ class SongController extends Controller
      */
     public function create()
     {
-        //
+        $songs = Song::select('id', 'name')->get();
+
+        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+
+        $emotions = Emotion::with('song')->get();
+
+        $periods = Period::with('song')->get();
+
+        $groups = Group::with('song')->get();
+
+        return view ('admin.songs.create', compact('songs', 'images', 'emotions', 'periods', 'groups'));
     }
 
     /**
@@ -41,7 +54,7 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
