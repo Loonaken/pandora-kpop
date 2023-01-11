@@ -12,7 +12,7 @@
                 {{-- Contents --}}
                 <form method="POST" action="{{route('admin.songs.update', ['song'=>$song->id ])}}" >
                   @csrf
-
+                  @method('put')
                   <div class="my-4">
                     {{-- 曲名の入力 --}}
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />

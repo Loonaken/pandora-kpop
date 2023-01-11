@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\Emotion;
 use App\Models\Period;
 use App\Models\Group;
+use App\Http\Requests\SongRequest;
 
 
 class SongController extends Controller
@@ -53,18 +54,9 @@ class SongController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SongRequest $request)
     {
 
-        $request ->validate([
-            'name'=>'required|string|max:30',
-            'information'=>'required|string|max:100',
-            'youtube_link'=>'required',
-            'emotion'=>'required|exists:emotions,id',
-            'period'=>'required|exists:periods,id',
-            'group'=>'required|exists:groups,id',
-            'images'=>'required|exists:images,id'
-        ]);
 
         Song::create([
             'name'=> $request->name,
@@ -117,24 +109,26 @@ class SongController extends Controller
         return view('admin.songs.edit', compact('song', 'images' ,'emotions','periods','groups'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(SongRequest $request, $id)
+    // Requestはvalidation項目が多いので、別でSongRequestファイルにまとめてある
     {
 
+        $song = Song::findOrFail($id);
+
+        $song->name = $request->name;
+        $song->information = $request->information;
+        $song->youtube_link = $request->youtube_link;
+        $song->emotion_id = $request->emotion;
+        $song->period_id = $request->period;
+        $song->group_id = $request->group;
+        $song->image_id = $request->images;
+
+        $song->save();
+
+
+        return redirect()->route('admin.songs.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
