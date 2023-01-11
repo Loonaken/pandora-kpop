@@ -1,3 +1,8 @@
+@php
+$cImage = $currentImage ?? '' ;
+$cId = $currentId ?? '' ;
+@endphp
+
 
 <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
   <div class="modal__overlay z-50" tabindex="-1" data-micromodal-close>
@@ -59,10 +64,10 @@
 <div class="flex justify-around items-center mb-4">
   <a data-micromodal-trigger="modal-1" href="javascript:;" class="modal__btn">画像を選択してください</a>
   <div class="w-1/4">
-  <img id="{{$name}}_thumbnail"  @if(!is_null($image->filename)) src="{{ asset('storage/songs/' . $song->image->filename)}}" @endif>
+  <img id="{{$name}}_thumbnail"  @if(!is_null($cImage)) src="{{ asset('storage/songs/' . $cImage)}}" @else src="" @endif>
   </div>
 </div>
-<input type="hidden" id="{{$name}}_hidden" name="{{$name}}" value="{{ $song->image_id }}">
+<input type="hidden" id="{{$name}}_hidden" name="{{$name}}" value="{{ $cId }}">
 {{-- このinputタグにおけるvalueでは画像の$song->image_idにデータを格納することになる --}}
 {{-- valueは$songに画像のidを渡せば良いので、$song->image->id でも$song->image_idでもどちらでも可能である --}}
 

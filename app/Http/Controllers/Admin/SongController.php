@@ -131,6 +131,8 @@ class SongController extends Controller
 
     public function destroy($id)
     {
-        //
+        Song::findOrFail($id)->delete();
+
+        return redirect->route('admin.songs.index');
     }
 }
