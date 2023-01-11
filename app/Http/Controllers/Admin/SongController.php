@@ -76,7 +76,7 @@ class SongController extends Controller
             'image_id'=> $request->images
         ]);
         // （左辺＝キー名）＝MG（マイグレーション）ファイルで定めたカラムを挿入
-        // （右辺＝値）＝上のページのValidationで定めたカラム名を挿入する
+         // （右辺＝値）＝上のページのValidationで定めたカラム名を挿入する
 
 
 
@@ -104,7 +104,17 @@ class SongController extends Controller
      */
     public function edit($id)
     {
-        //
+        $song = Song::findOrFail($id);
+
+        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+
+        $emotions = Emotion::with('song')->get();
+
+        $periods = Period::with('song')->get();
+
+        $groups = Group::with('song')->get();
+
+        return view('admin.songs.edit', compact('song', 'images' ,'emotions','periods','groups'));
     }
 
     /**
@@ -116,7 +126,7 @@ class SongController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**
