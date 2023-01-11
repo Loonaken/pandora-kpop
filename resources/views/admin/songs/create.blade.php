@@ -10,12 +10,12 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
                 {{-- Contents --}}
-
                 <form method="POST" action="{{route('admin.songs.store')}}" >
-                    @csrf
+                  @csrf
 
-                    <div class="my-4">
-                      {{-- 曲名の入力 --}}
+                  <div class="my-4">
+                    {{-- 曲名の入力 --}}
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <label for="name" class="leading-7 text-sm text-gray-600">曲名 *必須</label>
@@ -25,6 +25,7 @@
                       {{-- fin 曲名の入力 --}}
 
                       {{-- 曲情報の入力 --}}
+                    <x-input-error :messages="$errors->get('information')" class="mt-2" />
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <label for="information" class="leading-7 text-sm text-gray-600">曲について</label>
@@ -34,6 +35,8 @@
                       {{-- fin 曲情報の入力 --}}
 
                       {{-- youtube_linkの入力 --}}
+                    <x-input-error :messages="$errors->get('youtube_link')" class="mt-2" />
+
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <label for="youtube_link" class="leading-7 text-sm text-gray-600">Youtube_link *必須</label>
@@ -89,6 +92,7 @@
 
                       {{-- 画像選択 --}}
                       <x-select-image :images="$images" name="images" />
+                      <x-input-error :messages="$errors->get('images')" class="mt-2" />
                       {{-- fin 画像選択 --}}
 
                     </div>
