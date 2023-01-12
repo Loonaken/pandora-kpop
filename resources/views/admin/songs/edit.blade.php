@@ -91,7 +91,7 @@
                       {{-- fin groupタグ選択 --}}
 
                       {{-- 画像選択 --}}
-                      <x-select-image :images="$images" currentId="{{$song->image_id}}" currentImage="{{$song->image->filename}}" name="images" />
+                      <x-select-image_edit :images="$images" currentId="{{$song->image_id}}" currentImage="{{$song->image->filename}}" name="images" />
                         {{-- currentIdの値はMGファイルのカラム名であり、
                         currentImageの値はModelファイルのメソッド名である --}}
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />

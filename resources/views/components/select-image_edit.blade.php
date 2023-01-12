@@ -64,7 +64,10 @@ $cId = $currentId ?? '' ;
 <div class="flex justify-around items-center mb-4">
   <a data-micromodal-trigger="modal-1" href="javascript:;" class="modal__btn">画像を選択してください</a>
   <div class="w-1/4">
-  <img id="{{$name}}_thumbnail"  @if(!is_null($cImage)) src="{{ asset('storage/songs/' . $cImage)}}" @else src="" @endif>
+    @if(!is_null($cImage))
+  <img id="{{$name}}_thumbnail" src="{{ asset('storage/songs/' . $cImage)}}" >
+    @elseif(is_null($cImage))
+  @endif
   </div>
 </div>
 <input type="hidden" id="{{$name}}_hidden" name="{{$name}}" value="{{ $cId }}">
