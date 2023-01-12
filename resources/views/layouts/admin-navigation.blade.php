@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
                         曲の管理
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.emotions.index')" :active="request()->routeIs('admin.emotions.index')">
+                        気分タグ
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -81,6 +84,9 @@
             </x-nav-link>
             <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
                 曲の管理
+            </x-nav-link>
+            <x-nav-link :href="route('admin.emotions.index')" :active="request()->routeIs('admin.emotions.index')">
+                気分タグ
             </x-nav-link>
         </div>
 

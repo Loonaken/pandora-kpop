@@ -17,7 +17,9 @@ class EmotionController extends Controller
 
     public function index()
     {
-        
+        $emotions = Emotion::orderByDesc('updated_at')->get();
+
+        return view ('admin.emotions.index', compact('emotions'));
     }
 
     /**
@@ -27,7 +29,10 @@ class EmotionController extends Controller
      */
     public function create()
     {
-        //
+        $emotions = Emotion::select('id', 'name')->get();
+
+        return view ('admin.emotions.create', compact('emotions'));
+
     }
 
     /**
