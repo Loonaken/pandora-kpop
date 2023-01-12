@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Image;
+use App\Models\Song;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
@@ -117,14 +118,26 @@ class ImageController extends Controller
     {
         $image = Image::findOrFail($id);
         $filePath = 'public/songs/' . $image->filename;
+        $song = Song::findOrFail($id);
 
-        if(Storage::exists($filePath)){
-            Storage::delete($filePath);
+        $imageInSong = Song::where('image_id', $image->id)->get();
+        dd($imageInSong);
+
+        if ($image == $imageInSong){
+            return redirect()
+            ->route('admin.songs.index')
+            ->with(['message'=>'登録されている曲の画像ファイルを再選択したのちにこの画像を削除してください。' , 'status'=>'error']);
+        // }else{
+
+        // if(Storage::exists($filePath)){
+        //     Storage::delete($filePath);
+        // }
+
+        // Image::findOrFail($id)->delete();
+
+        // return redirect()
+        // ->route('admin.images.index')
+        // ->with(['message'=>'商品を削除しました。' , 'status'=>'info']);
         }
-
-        Image::findOrFail($id)->delete();
-
-        return redirect()->route('admin.images.index');
-
     }
 }

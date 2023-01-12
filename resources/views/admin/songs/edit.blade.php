@@ -91,7 +91,7 @@
                       {{-- fin groupタグ選択 --}}
 
                       {{-- 画像選択 --}}
-                      <x-select-image :images="$images" :song="$song" name="images" />
+                      <x-select-image :images="$images" currentId="{{$song->image_id}}" currentImage="{{$song->image->filename}}" name="images" />
                         {{-- currentIdの値はMGファイルのカラム名であり、
                         currentImageの値はModelファイルのメソッド名である --}}
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />
@@ -103,6 +103,14 @@
                         <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">登録</button>
                     </div>
                 </form>
+
+                <form id="delete_{{$song->id}}" method="post" action="{{route('admin.songs.destroy', ['song'=>$song->id])}}">
+                  @csrf
+                  @method('delete')
+                  <div class="flex justify-center mt-16 p-4 w-full">
+                  <a href='#' data-id="{{$song->id}}" onclick="deletePost(this)" type="submit" class=" text-white bg-red-500 border-0 py-2 px-2 focus:outline-none hover:bg-red-600 rounded text-base">削除する</a>
+                </div>
+              </form>
 
                 {{-- fin contents --}}
 
@@ -128,6 +136,14 @@
         MicroModal.close(modal); //モーダルを閉じる
       })
     })
+
+    function deletePost(e) {
+  'use strict';
+  if (confirm('本当に削除してもいいですか?')) {
+  document.getElementById('delete_' + e.dataset.id).submit();
+  }
+  }
+
   </script>
 
 </x-app-layout>

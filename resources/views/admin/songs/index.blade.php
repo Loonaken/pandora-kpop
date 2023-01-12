@@ -13,7 +13,7 @@
                   <button onclick="location.href='{{route('admin.songs.create')}}'" class="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">新規登録</button>
                 </div>
                 {{-- Contents --}}
-
+                <x-flash-message status="info" />
                 <div class="flex flex-wrap">
                   @foreach ($songs as $song)
                       <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">

@@ -89,12 +89,14 @@
                         </div>
                       </div>
                       {{-- fin groupタグ選択 --}}
+                      @foreach ($songs as $song)
 
                       {{-- 画像選択 --}}
                       <x-select-image :images="$images" name="images" />
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />
                       {{-- fin 画像選択 --}}
 
+                      @endforeach
                     </div>
                     <div class="flex p-2 w-full">
                         <button type="button" onclick="location.href='{{route('admin.songs.index')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
