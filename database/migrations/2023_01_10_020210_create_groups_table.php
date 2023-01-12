@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('type');
             $table->text('information');
-            $table->integer('sort_order');
+            $table->integer('sort_order')->nullable();
             $table->timestamps();
         });
     }

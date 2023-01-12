@@ -43,15 +43,24 @@ class EmotionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'string|max:15',
+            'sort_order' => 'nullable|integer',
+        ]);
+
+        Emotion::create([
+            'name' => $request->name,
+            'sort_order' => $request->sort_order,
+        ]);
+
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
