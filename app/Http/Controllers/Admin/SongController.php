@@ -72,7 +72,9 @@ class SongController extends Controller
 
 
 
-        return redirect()->route('admin.songs.index');
+        return redirect()
+        ->route('admin.songs.index')
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
 
 
     }
@@ -126,13 +128,19 @@ class SongController extends Controller
         $song->save();
 
 
-        return redirect()->route('admin.songs.index');
+        return redirect()
+        ->route('admin.songs.index')
+        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+
     }
 
     public function destroy($id)
     {
         Song::findOrFail($id)->delete();
 
-        return redirect->route('admin.songs.index');
+        return redirect
+        ->route('admin.songs.index')
+        ->with(['message'=> '削除が完了しました。' , 'status'=>'error']);
+
     }
 }
