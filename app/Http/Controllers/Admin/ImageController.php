@@ -75,7 +75,9 @@ class ImageController extends Controller
             }
         }
 
-        return redirect()->route('admin.images.index');
+        return redirect()
+        ->route('admin.images.index')
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
 
     }
 
@@ -111,33 +113,48 @@ class ImageController extends Controller
         $image->save();
 
 
-        return redirect()->route('admin.images.index');
+        return redirect()
+        ->route('admin.images.index')
+        ->with(['message'=> '更新が完了しました。' , 'status'=>'info']);
+
     }
 
     public function destroy($id)
     {
         $image = Image::findOrFail($id);
         $filePath = 'public/songs/' . $image->filename;
-        $song = Song::findOrFail($id);
+        $imageInSongs = Song::where('image_id', $image->id)->get();
 
-        $imageInSong = Song::where('image_id', $image->id)->get();
-        dd($imageInSong);
-
-        if ($image == $imageInSong){
-            return redirect()
-            ->route('admin.songs.index')
-            ->with(['message'=>'登録されている曲の画像ファイルを再選択したのちにこの画像を削除してください。' , 'status'=>'error']);
-        // }else{
-
-        // if(Storage::exists($filePath)){
-        //     Storage::delete($filePath);
-        // }
-
-        // Image::findOrFail($id)->delete();
-
-        // return redirect()
-        // ->route('admin.images.index')
-        // ->with(['message'=>'商品を削除しました。' , 'status'=>'info']);
+        if($imageInSongs){
+            $imageInSongs->each(function($song) use($image){
+                if($song->image_id === $image->id){
+                    return redirect()->route('admin.images.index');
+                    // ->with(['message'=>'登録されている曲の画像ファイルを再選択したのちにこの画像を削除してください。' , 'status'=>'error']);
+                }
+            });
         }
-    }
+
+        if(Storage::exists($filePath)){
+            Storage::delete($filePath);
+                }
+
+            Image::findOrFail($id)->delete();
+
+            return redirect()
+            ->route('admin.images.index');
+            // ->with(['message'=>'画像を削除しました。' , 'status'=>'info']);
+
+        }
+
+
 }
+            // foreach($imageInSongs as $imageInSong){
+            //     $imageInSong_id = $imageInSong->image_id;
+
+
+            //     if ($image->id === $imageInSong_id){
+            //         return redirect()
+            //         ->route('admin.images.index');
+            //     }else{
+            //         $imageInSong_id = null;
+            //         if (is_null($imageInSong_id) !== $image->id){
