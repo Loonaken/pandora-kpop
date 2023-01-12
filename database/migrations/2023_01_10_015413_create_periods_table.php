@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('periods', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('term');
-            $table->integer('sort_order');
+            $table->integer('sort_order')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,9 @@ class EmotionController extends Controller
 
     public function index()
     {
-        
+        $emotions = Emotion::orderByDesc('updated_at')->get();
+
+        return view ('admin.emotions.index', compact('emotions'));
     }
 
     /**
@@ -27,7 +29,10 @@ class EmotionController extends Controller
      */
     public function create()
     {
-        //
+        $emotions = Emotion::select('id', 'name')->get();
+
+        return view ('admin.emotions.create', compact('emotions'));
+
     }
 
     /**
@@ -38,15 +43,22 @@ class EmotionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'addMoreInputFields.*.name' => 'required|string|max:15',
+            'addMoreInputFields.*.sort_order' => 'nullable|integer',
+        ]);
+
+        foreach($request->addMoreInputFields as $key =>$value){
+            Emotion::create($value);
+        }
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //

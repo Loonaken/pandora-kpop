@@ -11,6 +11,11 @@ class Emotion extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'sort_order'
+    ];
+
     public function song()
     {
         return $this->hasMany(Song::class);
