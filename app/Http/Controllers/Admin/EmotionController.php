@@ -45,15 +45,13 @@ class EmotionController extends Controller
     {
 
         $request->validate([
-            'name' => 'string|max:15',
-            'sort_order' => 'nullable|integer',
+            'addMoreInputFields.*.name' => 'required|string|max:15',
+            'addMoreInputFields.*.sort_order' => 'nullable|integer',
         ]);
 
-        Emotion::create([
-            'name' => $request->name,
-            'sort_order' => $request->sort_order,
-        ]);
-
+        foreach($request->addMoreInputFields as $key =>$value){
+            Emotion::create($value);
+        }
 
         return redirect()
         ->route('admin.emotions.index')
