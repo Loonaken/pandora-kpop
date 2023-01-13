@@ -19,13 +19,13 @@ class ImageSeeder extends Seeder
         DB::table('images')->insert([
             [
                 'admin_id'=>1,
-                'filename'=> '',
+                'filename'=> '2123503029_63bbb44a2d12c.jpg',
                 'title'=> 'Loona',
 
             ],
             [
                 'admin_id'=>1,
-                'filename'=>'',
+                'filename'=>'1034554667_63be8f1bc7d5d.jpg',
                 'title'=> 'Iz*one'
 
             ],
