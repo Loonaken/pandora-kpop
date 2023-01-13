@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Emotion;
+use App\Models\Song;
 use Illuminate\Http\Request;
+
 use App\Http\Requests\EmotionRequest;
 
 
@@ -45,7 +47,6 @@ class EmotionController extends Controller
      */
     public function store(EmotionRequest $request)
     {
-
         foreach($request->addMoreInputFields as $key =>$value){
             Emotion::create($value);
         }
@@ -53,7 +54,6 @@ class EmotionController extends Controller
         return redirect()
         ->route('admin.emotions.index')
         ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
-
     }
 
     public function show($id)
@@ -67,21 +67,30 @@ class EmotionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function emotion_name_edit($id)
     {
-        //
+        $emotion = Emotion::findOrFail($id);
+
+        $songs = Song::where('emotion_id', $emotion->id)->get();
+
+
+        // dd(empty($songs->toArray()));
+
+        return view ('admin.emotions.name_edit', compact('emotion', 'songs'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function emotion_name_update(EmotionRequest $request, $id)
     {
-        //
+        $emotion = Emotion::findOrFail($id);
+
+        $emotion->name = $request->name;
+        $emotion->sort_order = $request->sort_order;
+
+        $emotion->save();
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
     /**
