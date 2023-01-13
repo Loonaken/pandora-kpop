@@ -40,7 +40,20 @@ Route::resource('images', ImageController::class)
     ->middleware('auth:admin')->except(['show']);
 
 Route::resource('emotions', EmotionController::class)
+    ->except(['edit' , 'update'])
     ->middleware('auth:admin');
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('emotions/{emotion_name}/edit', [EmotionController::class, 'emotion_name_edit'])
+    ->name('emotion_name.edit');
+    Route::put('emotions/{emotion_name}', [EmotionController::class, 'emotion_name_update'])
+    ->name('emotion_name.update');
+    Route::get('emotions/{emotion_registered_song}/edit', [EmotionController::class, 'emotion_registered_song_edit'])
+    ->name('emotion_registered_song.edit');
+    Route::put('emotions/{emotion_registered_song}', [EmotionController::class, 'emotion_registered_song_update'])
+    ->name('emotion_registered_song.update');
+
+});
 
 Route::resource('periods', PeriodController::class)
     ->middleware('auth:admin');
