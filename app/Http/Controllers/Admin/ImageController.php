@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Image;
 use App\Models\Song;
+use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use InterventionImage;
@@ -124,28 +125,28 @@ class ImageController extends Controller
         $image = Image::findOrFail($id);
         $filePath = 'public/songs/' . $image->filename;
         $imageInSongs = Song::where('image_id', $image->id)->get();
+        $imageInGroups = Group::where('image_id', $image->id)->get();
 
-        if($imageInSongs){
-            $imageInSongs->each(function($song) use($image){
-                if($song->image_id === $image->id){
-                    return redirect()->route('admin.images.index');
-                    // ->with(['message'=>'登録されている曲の画像ファイルを再選択したのちにこの画像を削除してください。' , 'status'=>'error']);
-                }
-            });
+        if(!empty($imageInSongs->toArray() || $imageInGroups->toArray())){
+            return redirect()->route('admin.images.index')
+            ->with(['message'=>'登録されている曲の画像ファイル、またはグループの画像ファイルを再選択したのちにこの画像を削除してください。' , 'status'=>'error']);
         }
-
-        if(Storage::exists($filePath)){
-            Storage::delete($filePath);
-                }
+        if(empty($imageInSongs->toArray() || $imageInGroups->toArray())){
 
             Image::findOrFail($id)->delete();
 
-            return redirect()
-            ->route('admin.images.index');
-            // ->with(['message'=>'画像を削除しました。' , 'status'=>'info']);
+            if(Storage::exists($filePath)){
+                Storage::delete($filePath);
+            }
 
-        }
 
+                return redirect()
+                ->route('admin.images.index')
+                ->with(['message'=>'画像を削除しました。' , 'status'=>'info']);
+
+
+    }
+    }
 
 }
             // foreach($imageInSongs as $imageInSong){

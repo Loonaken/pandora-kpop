@@ -93,12 +93,34 @@ class EmotionController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function emotion_registered_song_edit($id)
+    {
+        $emotion = Emotion::findOrFail($id);
+
+        $songs = Song::where('emotion_id', $emotion->id)->select('name')->get();
+
+
+        // dd(empty($songs->toArray()));
+
+        return view ('admin.emotions.song_edit', compact('emotion', 'songs'));
+    }
+
+    public function emotion_registered_song_update(EmotionRequest $request, $id)
+    {
+        $emotion = Emotion::findOrFail($id);
+
+        $emotion->name = $request->name;
+        $emotion->sort_order = $request->sort_order;
+
+        $emotion->save();
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+    }
+
+
+
     public function destroy($id)
     {
         //
