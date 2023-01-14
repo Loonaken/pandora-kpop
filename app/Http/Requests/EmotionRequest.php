@@ -24,9 +24,9 @@ class EmotionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:15',
-            'sort_order' =>  'nullable|integer',
-            'addMoreInputFields.*.name' => 'required|string|max:15',
+            // 'name' => 'required|string|max:15',
+            // 'sort_order' =>  'nullable|integer',
+            'addMoreInputFields.*.name' => 'required|string|max:15|',
             'addMoreInputFields.*.sort_order' => 'nullable|integer',
         ];
     }
@@ -34,8 +34,8 @@ class EmotionRequest extends FormRequest
     public function messages()
     {
         return[
-            'name'=>'名前は必ず入力してください。',
-            'sort_order'=>'数字を入力してください。',
+            // 'name'=>'名前は必ず入力してください。',
+            // 'sort_order'=>'数字を入力してください。',
             'addMoreInputFields.*.name'=>'名前は必ず入力してください。',
             'addMoreInputFields.*.sort_order'=>'数字を入力してください。',
         ];

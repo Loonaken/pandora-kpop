@@ -45,8 +45,13 @@ class EmotionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(EmotionRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:15',
+            'sort_order' =>  'nullable|integer',
+        ]);
+
         foreach($request->addMoreInputFields as $key =>$value){
             Emotion::create($value);
         }
