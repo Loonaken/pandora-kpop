@@ -88,7 +88,7 @@ class EmotionController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|string|max:15|unique',
+            'name' => 'required|string|max:15|unique:emotions,name',
             'sort_order' =>  'nullable|integer',
         ]);
 
