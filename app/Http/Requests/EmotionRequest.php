@@ -26,7 +26,7 @@ class EmotionRequest extends FormRequest
         return [
             // 'name' => 'required|string|max:15',
             // 'sort_order' =>  'nullable|integer',
-            'addMoreInputFields.*.name' => 'required|string|max:15|',
+            'addMoreInputFields.*.name' => 'required|string|max:15|unique:emotions,name',
             'addMoreInputFields.*.sort_order' => 'nullable|integer',
         ];
     }
@@ -36,7 +36,7 @@ class EmotionRequest extends FormRequest
         return[
             // 'name'=>'名前は必ず入力してください。',
             // 'sort_order'=>'数字を入力してください。',
-            'addMoreInputFields.*.name'=>'名前は必ず入力してください。',
+            'addMoreInputFields.*.name'=>'名前は必ず入力してください。もしくは名前が重複している可能性があります。',
             'addMoreInputFields.*.sort_order'=>'数字を入力してください。',
         ];
     }

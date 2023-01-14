@@ -45,13 +45,8 @@ class EmotionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmotionRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:15',
-            'sort_order' =>  'nullable|integer',
-        ]);
-
         foreach($request->addMoreInputFields as $key =>$value){
             Emotion::create($value);
         }
@@ -89,8 +84,14 @@ class EmotionController extends Controller
         return view ('admin.emotions.name_edit', compact('emotion', 'songs'));
     }
 
-    public function emotion_name_update(EmotionRequest $request, $id)
+    public function emotion_name_update(Request $request, $id)
     {
+
+        $request->validate([
+            'name' => 'required|string|max:15|unique',
+            'sort_order' =>  'nullable|integer',
+        ]);
+
         $emotion = Emotion::findOrFail($id);
 
         $emotion->name = $request->name;
