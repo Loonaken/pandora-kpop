@@ -20,8 +20,8 @@ return new class extends Migration
             $table->foreignId('group_id')->constrained();
             $table->string('name');
             $table->text('information');
-            $table->foreignId('emotion_id')->constrained();
-            $table->foreignId('period_id')->constrained();
+            $table->foreignId('emotion_id')->nullable()->constrained();
+            $table->foreignId('period_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

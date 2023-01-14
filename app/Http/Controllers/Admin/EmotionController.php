@@ -58,7 +58,12 @@ class EmotionController extends Controller
 
     public function show($id)
     {
-        //
+        $emotion = Emotion::findOrFail($id);
+
+        $songs = Song::where('emotion_id', $emotion->id)->get();
+
+        return view ('admin.emotions.show', compact('emotion', 'songs'));
+
     }
 
     /**
@@ -121,7 +126,9 @@ class EmotionController extends Controller
 
 
 
-    public function destroy($id)
+
+
+    public function emotion_registered_song_destroy($id)
     {
         //
     }

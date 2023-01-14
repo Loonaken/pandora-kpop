@@ -139,7 +139,6 @@ class ImageController extends Controller
                 Storage::delete($filePath);
             }
 
-
                 return redirect()
                 ->route('admin.images.index')
                 ->with(['message'=>'画像を削除しました。' , 'status'=>'info']);
