@@ -30,7 +30,7 @@
                               </a>
                               {{-- fin 登録曲一覧ボタン --}}
                               {{--  タイトル編集ボタン --}}
-                              <a class="text-white bg-white/25 border-2 border-white-400 p-2 focus:outline-none hover:bg-green-400/60 rounded text-lg  " href="{{route('admin.emotion_name.edit' , ['emotion_name'=>$emotion->id] )}}">
+                              <a class="text-white bg-white/25 border-2 border-white-400 p-2 focus:outline-none hover:bg-green-400/60 rounded text-lg  " href="{{route('admin.emotions.name.edit' , ['name'=>$emotion->id] )}}">
                                 <div class="flex">
                                   <p class="mr-1">名前</p>
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

@@ -40,18 +40,18 @@ Route::resource('images', ImageController::class)
     ->middleware('auth:admin')->except(['show']);
 
 Route::resource('emotions', EmotionController::class)
-    ->except(['edit' , 'update' , 'destroy'])
+    ->except(['edit' , 'update' ])
     ->middleware('auth:admin');
 
 Route::middleware('auth:admin')->group(function () {
-    Route::get('emotions/{emotion_name}/edit', [EmotionController::class, 'emotion_name_edit'])
-    ->name('emotion_name.edit');
-    Route::put('emotions/{emotion_name}', [EmotionController::class, 'emotion_name_update'])
-    ->name('emotion_name.update');
-    Route::put('emotions/{emotion_registered_song}/reRegister', [EmotionController::class, 'emotion_registered_song_reRegister'])
-    ->name('emotion_registered_song.reRegister');
-    Route::delete('emotions/{emotion_registered_song}', [EmotionController::class, 'emotion_registered_song_destroy'])
-    ->name('emotion_registered_song.destroy');
+    Route::get('emotions/{name}/name/edit', [EmotionController::class, 'name_edit'])
+    ->name('emotions.name.edit');
+    Route::put('emotions/{name}', [EmotionController::class, 'name_update'])
+    ->name('emotions.name.update');
+    Route::get('emotions/{song}/song/edit', [EmotionController::class, 'song_edit'])
+    ->name('emotions.song.edit');
+    Route::put('emotions/{song}', [EmotionController::class, 'song_update'])
+    ->name('emotions.song.update');
 
 });
 

@@ -13,7 +13,7 @@
                 <x-flash-message status="session('status')" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 <x-input-error :messages="$errors->get('sort_order')" class="mt-2" />
-                <form method="POST" action="{{route('admin.emotion_name.update', ['emotion_name'=>$emotion->id ])}}" >
+                <form method="POST" action="{{route('admin.emotions.name.update', ['name'=>$emotion->id ])}}" >
                   @csrf
                   @method('put')
                   <div class="C">

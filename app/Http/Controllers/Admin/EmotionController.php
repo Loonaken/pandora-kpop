@@ -66,13 +66,7 @@ class EmotionController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function emotion_name_edit($id)
+    public function name_edit($id)
     {
         $emotion = Emotion::findOrFail($id);
 
@@ -84,7 +78,7 @@ class EmotionController extends Controller
         return view ('admin.emotions.name_edit', compact('emotion', 'songs'));
     }
 
-    public function emotion_name_update(Request $request, $id)
+    public function name_update(Request $request, $id)
     {
 
         $request->validate([
@@ -104,7 +98,7 @@ class EmotionController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
-    public function emotion_registered_song_edit($id)
+    public function song_edit($id)
     {
         $emotion = Emotion::findOrFail($id);
 
@@ -116,7 +110,7 @@ class EmotionController extends Controller
         return view ('admin.emotions.song_edit', compact('emotion', 'songs'));
     }
 
-    public function emotion_registered_song_update(EmotionRequest $request, $id)
+    public function song_update(Request $request, $id)
     {
         $emotion = Emotion::findOrFail($id);
 
@@ -134,7 +128,7 @@ class EmotionController extends Controller
 
 
 
-    public function emotion_registered_song_destroy($id)
+    public function destroy($id)
     {
         //
     }
