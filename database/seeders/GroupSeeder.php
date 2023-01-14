@@ -32,17 +32,24 @@ class GroupSeeder extends Seeder
                 'sort_order'=> '1',
             ],
             [
+                'name'=> 'Twice',
+                'type'=> '2',
+                'information'=> 'グループ結成から7年以上であるレジェンドグループ。',
+                'image_id'=> '3',
+                'sort_order'=> '1',
+            ],
+            [
                 'name'=> 'BTS',
                 'type'=> '1',
                 'information'=> '世界的に広く活躍されているK-popの枠組みを超えたグループである。',
-                'image_id'=> '2',
+                'image_id'=> '4',
                 'sort_order'=> '2',
             ],
             [
-                'name'=> 'Bigbang',
+                'name'=> 'The_Boyz',
                 'type'=> '1',
                 'information'=> '初期のK-popを牽引した5人組のグループである。',
-                'image_id'=> '1',
+                'image_id'=> '5',
                 'sort_order'=> '1',
             ],
         ]);

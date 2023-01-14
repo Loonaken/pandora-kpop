@@ -102,7 +102,7 @@ class EmotionController extends Controller
     {
         $emotion = Emotion::findOrFail($id);
 
-        $songs = Song::where('emotion_id', $emotion->id)->select('name')->get();
+        $songs = Song::orderByDesc('updated_at')->get();
 
 
         // dd(empty($songs->toArray()));

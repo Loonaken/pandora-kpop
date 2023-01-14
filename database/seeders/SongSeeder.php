@@ -35,6 +35,33 @@ class SongSeeder extends Seeder
                 'emotion_id'=> '4',
                 'period_id'=> '4',
             ],
+            [
+                'youtube_link'=> 'https://www.youtube.com/watch?v=ePpPVE-GGJw',
+                'image_id'=> '3',
+                'group_id'=> '3',
+                'name'=> 'TT',
+                'information'=> 'TTダンスがブームとなった。',
+                'emotion_id'=> '4',
+                'period_id'=> '4',
+            ],
+            [
+                'youtube_link'=> 'https://www.youtube.com/watch?v=WMweEpGlu_U',
+                'image_id'=> '4',
+                'group_id'=> '4',
+                'name'=> 'Butter',
+                'information'=> '大衆ウケする英語の曲',
+                'emotion_id'=> '4',
+                'period_id'=> '4',
+            ],
+            [
+                'youtube_link'=> 'https://www.youtube.com/watch?v=pYRSY1Kv3YY',
+                'image_id'=> '5',
+                'group_id'=> '5',
+                'name'=> 'Whisper',
+                'information'=> '中毒性がある楽しい曲',
+                'emotion_id'=> '4',
+                'period_id'=> '4',
+            ],
         ]);
     }
 }
