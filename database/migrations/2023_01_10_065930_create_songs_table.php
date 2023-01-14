@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('youtube_link');
             $table->foreignId('image_id')->constrained();
             $table->foreignId('group_id')->constrained();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('information');
             $table->foreignId('emotion_id')->nullable()->constrained();
             $table->foreignId('period_id')->nullable()->constrained();

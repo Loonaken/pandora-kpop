@@ -84,8 +84,14 @@ class EmotionController extends Controller
         return view ('admin.emotions.name_edit', compact('emotion', 'songs'));
     }
 
-    public function emotion_name_update(EmotionRequest $request, $id)
+    public function emotion_name_update(Request $request, $id)
     {
+
+        $request->validate([
+            'name' => 'required|string|max:15|unique',
+            'sort_order' =>  'nullable|integer',
+        ]);
+
         $emotion = Emotion::findOrFail($id);
 
         $emotion->name = $request->name;
