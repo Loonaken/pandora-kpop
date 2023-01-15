@@ -38,11 +38,11 @@ class GroupController extends Controller
     public function store(GroupRequest $request)
     {
         Group::create([
-            'image_id'=> $request->images,
             'name'=> $request->name,
-            'type'=> $request->type,
             'information'=> $request->information,
+            'type'=> $request->type,
             'sort_order'=> $request->sort_order,
+            'image_id'=> $request->images,
         ]);
 
         return redirect()
@@ -56,27 +56,31 @@ class GroupController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+
+        return view('admin.groups.edit', compact('group', 'images'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(GroupRequest $request, $id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        $group->name = $request->name;
+        $group->information = $request->information;
+        $group->type = $request->type;
+        $group->sort_order = $request->sort_order;
+        $group->image_id = $request->images;
+
+        $group->save();
+
+
+        return redirect()
+        ->route('admin.groups.index')
+        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
     /**
