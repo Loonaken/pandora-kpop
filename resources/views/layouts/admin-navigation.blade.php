@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('admin.emotions.index')" :active="request()->routeIs('admin.emotions.index')">
                         気分タグ
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.periods.index')" :active="request()->routeIs('admin.periods.index')">
+                        年代タグ
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -87,6 +90,9 @@
             </x-nav-link>
             <x-nav-link :href="route('admin.emotions.index')" :active="request()->routeIs('admin.emotions.index')">
                 気分タグ
+            </x-nav-link>
+            <x-nav-link :href="route('admin.periods.index')" :active="request()->routeIs('admin.periods.index')">
+                年代タグ
             </x-nav-link>
         </div>
 

@@ -66,13 +66,7 @@ class EmotionController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function emotion_name_edit($id)
+    public function name_edit($id)
     {
         $emotion = Emotion::findOrFail($id);
 
@@ -84,7 +78,7 @@ class EmotionController extends Controller
         return view ('admin.emotions.name_edit', compact('emotion', 'songs'));
     }
 
-    public function emotion_name_update(Request $request, $id)
+    public function name_update(Request $request, $id)
     {
 
         $request->validate([
@@ -100,15 +94,15 @@ class EmotionController extends Controller
         $emotion->save();
 
         return redirect()
-        ->route('admin.emotions.index')
+        ->route('admin.periods.index')
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
-    public function emotion_registered_song_edit($id)
+    public function song_edit($id)
     {
         $emotion = Emotion::findOrFail($id);
 
-        $songs = Song::where('emotion_id', $emotion->id)->select('name')->get();
+        $songs = Song::with('emotion')->get();
 
 
         // dd(empty($songs->toArray()));
@@ -116,25 +110,38 @@ class EmotionController extends Controller
         return view ('admin.emotions.song_edit', compact('emotion', 'songs'));
     }
 
-    public function emotion_registered_song_update(EmotionRequest $request, $id)
+    public function song_update(Request $request, $id)
     {
         $emotion = Emotion::findOrFail($id);
 
-        $emotion->name = $request->name;
-        $emotion->sort_order = $request->sort_order;
+        $songs = Song::all();
 
-        $emotion->save();
+        foreach($songs as $song){
+            $song_emotion_id = $song->emotion_id;
+            if ($song_emotion_id === $request->song_emotion){
+                $song->emotion_id = $emotion->id;
 
-        return redirect()
-        ->route('admin.emotions.index')
-        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+            }
+            $song->save();
+            // dump($song);
+        }
+        // die;
+
+            // if($song->emotion_id === $request->emotion){
+            //     $song->emotion_id = $emotion->id;
+            //     $song->save();
+            // }
+            return redirect()
+            ->route('admin.emotions.index')
+            ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+
     }
 
 
 
 
 
-    public function emotion_registered_song_destroy($id)
+    public function destroy($id)
     {
         //
     }

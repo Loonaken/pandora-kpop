@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('term')->unique();
             $table->integer('sort_order')->nullable();
+            // 上半期か下半期かどうかを区別できるようControllerで条件分岐する
             $table->timestamps();
         });
     }

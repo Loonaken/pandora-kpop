@@ -11,6 +11,11 @@ class Period extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'term',
+        'sort_order'
+    ];
+
     public function song()
     {
         return $this->hasMany(Song::class);

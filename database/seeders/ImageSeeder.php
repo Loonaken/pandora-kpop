@@ -29,6 +29,24 @@ class ImageSeeder extends Seeder
                 'title'=> 'Iz*one'
 
             ],
+            [
+                'admin_id'=>1,
+                'filename'=>'292293327_63c26b98dd0b6.jpg',
+                'title'=> 'Twice'
+
+            ],
+            [
+                'admin_id'=>1,
+                'filename'=>'1015608228_63c26b503e727.jpg',
+                'title'=> 'BTS'
+
+            ],
+            [
+                'admin_id'=>1,
+                'filename'=>'1093696959_63c26b3f02390.png',
+                'title'=> 'The_Boyz'
+
+            ],
         ]);
     }
 }
