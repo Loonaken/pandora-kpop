@@ -46,11 +46,11 @@ Route::resource('emotions', EmotionController::class)
 Route::middleware('auth:admin')->group(function () {
     Route::get('emotions/{name}/name/edit', [EmotionController::class, 'name_edit'])
     ->name('emotions.name.edit');
-    Route::put('emotions/{name}', [EmotionController::class, 'name_update'])
+    Route::put('emotions/{name}/name', [EmotionController::class, 'name_update'])
     ->name('emotions.name.update');
     Route::get('emotions/{song}/song/edit', [EmotionController::class, 'song_edit'])
     ->name('emotions.song.edit');
-    Route::put('emotions/{song}', [EmotionController::class, 'song_update'])
+    Route::put('emotions/{song}/song', [EmotionController::class, 'song_update'])
     ->name('emotions.song.update');
 
 });

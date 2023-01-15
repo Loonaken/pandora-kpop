@@ -29,26 +29,25 @@
                         @method('put')
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
-                          <label for="emotion_registered_song" class="leading-7 text-sm text-gray-600">曲の選択</label><br>
-                          <select name="emotion_registered_song" multiple="multiple">
+                          <label for="song_emotion" class="leading-7 text-sm text-gray-600">曲の選択</label><br>
+                          <select name="song_emotion" multiple="multiple">
                             @foreach ($songs as $song)
-                              <option value="{{$song->image->id}}">
+                              <option value="{{$song->emotion->id}}">
                                 {{$song->name}}
                               </option>
                             @endforeach
                           </select>
                         </div>
                       </div>
-                    </form>
 
                       {{-- fin 気分タグで使用されている曲一覧 --}}
 
 
-                    </div>
                     <div class="flex p-2 w-full">
-                        <button type="button" onclick="location.href='{{route('admin.emotions.show', ['emotion'=>$emotion->id])}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                        <button type="submit" class="flex mx-auto text-black bg-green-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">更新</button>
+                      <button type="button" onclick="location.href='{{route('admin.emotions.show', ['emotion'=>$emotion->id])}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
+                      <button type="submit" class="flex mx-auto text-black bg-green-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">更新</button>
                     </div>
+                  </form>
 
                 {{-- fin contents --}}
 

@@ -74,7 +74,7 @@ class SongController extends Controller
 
         return redirect()
         ->route('admin.songs.index')
-        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
+        ->with(['message'=> '在庫数が変更されています。再度確認してください。' , 'status'=>'info']);
 
 
     }

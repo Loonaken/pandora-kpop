@@ -102,7 +102,7 @@ class EmotionController extends Controller
     {
         $emotion = Emotion::findOrFail($id);
 
-        $songs = Song::orderByDesc('updated_at')->get();
+        $songs = Song::with('emotion')->get();
 
 
         // dd(empty($songs->toArray()));
@@ -114,14 +114,27 @@ class EmotionController extends Controller
     {
         $emotion = Emotion::findOrFail($id);
 
-        $emotion->name = $request->name;
-        $emotion->sort_order = $request->sort_order;
+        $songs = Song::all();
 
-        $emotion->save();
+        foreach($songs as $song){
+            $song_emotion_id = $song->emotion_id;
+            if ($song_emotion_id === $request->song_emotion){
+                $song->emotion_id = $emotion->id;
 
-        return redirect()
-        ->route('admin.emotions.index')
-        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+            }
+            $song->save();
+            // dump($song);
+        }
+        // die;
+
+            // if($song->emotion_id === $request->emotion){
+            //     $song->emotion_id = $emotion->id;
+            //     $song->save();
+            // }
+            return redirect()
+            ->route('admin.emotions.index')
+            ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+
     }
 
 
