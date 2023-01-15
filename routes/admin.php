@@ -56,7 +56,21 @@ Route::middleware('auth:admin')->group(function () {
 });
 
 Route::resource('periods', PeriodController::class)
+    ->except(['edit' , 'update' ])
     ->middleware('auth:admin');
+
+
+Route::middleware('auth:admin')->group(function () {
+    Route::get('periods/{term}/term/edit', [PeriodController::class, 'term_edit'])
+    ->name('periods.term.edit');
+    Route::put('periods/{term}/term', [PeriodController::class, 'term_update'])
+    ->name('periods.term.update');
+    Route::get('periods/{song}/song/edit', [PeriodController::class, 'song_edit'])
+    ->name('periods.song.edit');
+    Route::put('periods/{song}/song', [PeriodController::class, 'song_update'])
+    ->name('periods.song.update');
+
+});
 
 Route::resource('groups', GroupController::class)
     ->middleware('auth:admin');

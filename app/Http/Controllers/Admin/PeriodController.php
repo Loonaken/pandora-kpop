@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Song;
 use App\Models\Period;
-
+use App\Http\Requests\PeriodRequest;
+use Ramsey\Uuid\Type\Integer;
 
 class PeriodController extends Controller
 {
@@ -17,63 +19,68 @@ class PeriodController extends Controller
 
     public function index()
     {
-        //
+        $periods = Period::orderByDesc('term')->get();
+
+        return view ('admin.periods.index', compact('periods'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $periods = Period::select('id', 'term')->get();
+
+        return view ('admin.periods.create', compact('periods'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(PeriodRequest $request)
     {
-        //
+        foreach($request->addMoreInputFields as $key =>$value){
+            Period::create($value);
+        }
+
+        return redirect()
+        ->route('admin.periods.index')
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $period = Period::findOrFail($id);
+
+        $songs = Song::where('period_id', $period->id)->get();
+
+        return view ('admin.periods.show', compact('period', 'songs'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function term_edit($id)
     {
-        //
+        $period = Period::findOrFail($id);
+
+        $songs = Song::where('period_id', $period->id)->get();
+
+        return view ('admin.periods.term_edit', compact('period', 'songs'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function term_update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'term' => 'required|unique:periods,term|integer',
+            'sort_order' =>  'nullable|integer',
+        ]);
+
+        $period = Period::findOrFail($id);
+
+        $period->term = $request->term;
+        $period->sort_order = $request->sort_order;
+
+        $period->save();
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
+
 
     /**
      * Remove the specified resource from storage.

@@ -94,7 +94,7 @@ class EmotionController extends Controller
         $emotion->save();
 
         return redirect()
-        ->route('admin.emotions.index')
+        ->route('admin.periods.index')
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
