@@ -13,6 +13,14 @@ class Group extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'information',
+        'type',
+        'sort_order',
+        'image_id',
+    ];
+
     public function image()
     {
         return $this->belongsTo(Image::class);

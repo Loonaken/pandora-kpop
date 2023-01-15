@@ -28,11 +28,6 @@ class SongController extends Controller
         return view ('admin.songs.index', compact('songs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $songs = Song::select('id', 'name')->get();
@@ -48,12 +43,6 @@ class SongController extends Controller
         return view ('admin.songs.create', compact('songs', 'images', 'emotions', 'periods', 'groups'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(SongRequest $request)
     {
 
@@ -74,28 +63,16 @@ class SongController extends Controller
 
         return redirect()
         ->route('admin.songs.index')
-        ->with(['message'=> '在庫数が変更されています。再度確認してください。' , 'status'=>'info']);
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
 
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $song = Song::findOrFail($id);
