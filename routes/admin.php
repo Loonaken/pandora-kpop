@@ -75,6 +75,18 @@ Route::middleware('auth:admin')->group(function () {
 Route::resource('groups', GroupController::class)
     ->middleware('auth:admin');
 
+Route::middleware('auth:admin')->group(function () {
+    Route::get('groups/{name}/name/edit', [GroupController::class, 'name_edit'])
+    ->name('groups.name.edit');
+    Route::put('groups/{name}/name', [GroupController::class, 'name_update'])
+    ->name('groups.name.update');
+    Route::get('groups/{song}/song/edit', [GroupController::class, 'song_edit'])
+    ->name('groups.song.edit');
+    Route::put('groups/{song}/song', [GroupController::class, 'song_update'])
+    ->name('groups.song.update');
+
+});
+
 Route::resource('songs', SongController::class)
     ->middleware('auth:admin');
 

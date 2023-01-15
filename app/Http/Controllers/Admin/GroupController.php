@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\Image;
+use App\Http\Requests\GroupRequest;
+
 
 
 class GroupController extends Controller
@@ -15,39 +17,40 @@ class GroupController extends Controller
         $this->middleware('auth:admin');
 
     }
-    
+
     public function index()
     {
-        //
+        $groups = Group::orderByDesc('updated_at')->get();
+
+        return view ('admin.groups.index', compact('groups'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        //
+        $groups = Group::select('id', 'type', 'sort_order', 'name')->get();
+
+        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+
+        return view ('admin.groups.create', compact('groups', 'images' ));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     {
-        //
+        Group::create([
+            'image_id'=> $request->images,
+            'name'=> $request->name,
+            'type'=> $request->type,
+            'information'=> $request->information,
+            'sort_order'=> $request->sort_order,
+        ]);
+
+        return redirect()
+        ->route('admin.groups.index')
+        ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
