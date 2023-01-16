@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Group;
+use App\Models\Song;
 use App\Models\Image;
 use App\Http\Requests\GroupRequest;
 
@@ -55,9 +56,11 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
 
+        $songs = Song::where('group_id', $group->id)->get();
+
         $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
 
-        return view('admin.groups.show', compact('group', 'images'));
+        return view('admin.groups.show', compact('group', 'images', 'songs'));
 
     }
 
