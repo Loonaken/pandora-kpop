@@ -112,6 +112,7 @@ class EmotionController extends Controller
 
     public function song_update(Request $request, $id)
     {
+        // dd($request);
         $emotion = Emotion::findOrFail($id);
 
         $songs = Song::all();
@@ -120,9 +121,9 @@ class EmotionController extends Controller
             $song_emotion_id = $song->emotion_id;
             if ($song_emotion_id === $request->song_emotion){
                 $song->emotion_id = $emotion->id;
+                $song->save();
 
             }
-            $song->save();
             // dump($song);
         }
         // die;
