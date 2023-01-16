@@ -53,7 +53,12 @@ class GroupController extends Controller
 
     public function show($id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+
+        return view('admin.groups.show', compact('group', 'images'));
+
     }
 
     public function edit($id)
