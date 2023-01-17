@@ -1,5 +1,3 @@
-{{-- ⭐️チェックしてほしい箇所⭐️ --}}
-
 <x-app-layout>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -33,9 +31,9 @@
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <label for="emotion_id" class="leading-7 text-sm text-gray-600">曲の選択</label><br>
-                          <select name="emotion_ids[]" multiple="multiple">
+                          <select name="song_ids[]" multiple="multiple">
                             @foreach ($songs as $song)
-                            <option value="{{$song->emotion->id}}">
+                            <option value="{{$song->id}}">
                               {{-- $songs 全ての曲の情報 --}}
                                 {{$song->name}}
                               </option>
