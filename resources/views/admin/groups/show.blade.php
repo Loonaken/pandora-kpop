@@ -55,8 +55,13 @@
                         </div>
                         @endif
                       </div>
-                      <div class="text-center">
-                        <button onclick="location.href='{{route('admin.groups.edit' , ['group'=>$group->id])}}'"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mr-2 ">更新</button>
+                      <div class="text-center flex justify-center">
+                        <form action="{{route('admin.groups.group.destroy' , ['group'=>$group->id])}}" method="post">
+                          @csrf
+                          @method('delete')
+                            <button type='submit' class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">削除</button>
+                        </form>
+                        <button onclick="location.href='{{route('admin.groups.edit' , ['group'=>$group->id])}}'"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">更新</button>
                       </div>
 
                     </div>
