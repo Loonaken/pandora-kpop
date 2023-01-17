@@ -91,21 +91,39 @@ class GroupController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
-    public function destroy($id)
+    public function group_destroy($id)
+    // グループ情報を削除する
     {
         $group = Group::findOrFail($id);
+        $songsInGroup = Song::where('group_id', $group->id)->get();
 
-        Song::findOrFail($id)->delete();
+        // dd($songsInGroup);
+        // 該当する曲がグループに登録されている場合は削除ストップ
+        // →$songsInGroupの中にデータが入っている時
+        // リダイレクトをして削除できない仕様にし、
+        // 曲の削除を先に促すようグループのshowページにてフラッシュメッセージを出す
+        if(!empty($songsInGroup->toArray())){
+            return redirect()->route('admin.groups.show' , ['group'=>$group->id])
+            ->with(['message'=>'登録されている曲を削除したのちにグループ情報を削除してください。' , 'status'=>'error']);
+        }
 
-        return redirect()
-        ->route('admin.groups.show', ['group'=>$group->id])
-        ->with(['message'=> '曲を削除しました。' , 'status'=>'error']);
 
+        //該当する曲がグループに全く登録されていない場合は削除を実行
+        // →$songsInGroupの中にデータが入っていない時
+        if(empty($songsInGroup->toArray())){
+
+            Group::findOrFail($id)->delete();
+
+                return redirect()
+                ->route('admin.groups.index')
+                ->with(['message'=>'グループ情報を削除しました。' , 'status'=>'info']);
+        }
     }
 
     public function song_destroy($id)
+    // グループに登録されている曲を1つずつ削除する
     {
-        $group = Group::findOrFail($id);
+        // $group = Group::findOrFail($id);
 
         Song::findOrFail($id)->delete();
 

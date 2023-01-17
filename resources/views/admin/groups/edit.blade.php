@@ -81,7 +81,7 @@
                     </div>
                 </form>
 
-                <form id="delete_{{$group->id}}" method="post" action="{{route('admin.groups.destroy', ['group'=>$group->id])}}">
+                <form id="delete_{{$group->id}}" method="post" action="{{route('admin.groups.group.destroy', ['group'=>$group->id])}}">
                   @csrf
                   @method('delete')
                   <div class="flex justify-center mt-16 p-4 w-full">
