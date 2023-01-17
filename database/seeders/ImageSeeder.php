@@ -47,6 +47,12 @@ class ImageSeeder extends Seeder
                 'title'=> 'The_Boyz'
 
             ],
+            [
+                'admin_id'=>1,
+                'filename'=>'68081296_63c3dbbe157a6.jpg',
+                'title'=> 'Fromis_9'
+
+            ],
         ]);
     }
 }

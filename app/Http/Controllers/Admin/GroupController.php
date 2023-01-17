@@ -91,14 +91,27 @@ class GroupController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $group = Group::findOrFail($id);
+
+        Song::findOrFail($id)->delete();
+
+        return redirect()
+        ->route('admin.groups.show', ['group'=>$group->id])
+        ->with(['message'=> '曲を削除しました。' , 'status'=>'error']);
+
+    }
+
+    public function song_destroy($id)
+    {
+        $group = Group::findOrFail($id);
+
+        Song::findOrFail($id)->delete();
+
+
+        return redirect()
+        ->route('admin.groups.index')
+        ->with(['message'=> '曲を削除しました。' , 'status'=>'error']);
     }
 }

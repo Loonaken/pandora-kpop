@@ -10,7 +10,7 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 {{-- Group Column --}}
-                <x-flash-message status="session('status')" />
+                <x-flash-message status="session('status')"  />
                 <div class="flex justify-end mb-4 border-b-2 border-gray-500">
                   <button onclick="location.href='{{route('admin.groups.create')}}'" class="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">新規登録</button>
                   </div>

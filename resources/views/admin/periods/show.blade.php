@@ -24,7 +24,7 @@
                       {{-- fin  年代タグの名前編集 --}}
 
                       {{-- 年代タグで使用されている曲一覧 --}}
-                      <div class="p-2 my-4 w-full lg:w-3/4 mx-auto bg-blue-300/25">
+                      <div class="p-2 my-4 w-full mx-auto bg-blue-300/25">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
                         <div class="flex justify-end mb-4 border-b-2 border-gray-500">
                           <button onclick="location.href='{{route('admin.periods.destroy' , ['period'=>$period->id])}}'" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 mr-8 ">削除</button>

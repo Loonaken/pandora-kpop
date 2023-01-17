@@ -77,6 +77,12 @@ Route::middleware('auth:admin')->group(function () {
 Route::resource('groups', GroupController::class)
     ->middleware('auth:admin');
 
+Route::middleware('auth:admin')
+    ->delete('admin/groups/{song}', [GroupController::class, 'song_destroy'])
+    ->name('groups.song.destroy');
+
+
+
 Route::resource('songs', SongController::class)
     ->middleware('auth:admin');
 
