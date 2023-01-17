@@ -52,6 +52,14 @@ class GroupSeeder extends Seeder
                 'image_id'=> '5',
                 'sort_order'=> '1',
             ],
+            [
+                'name'=> 'Fromis_9',
+                'type'=> '2',
+                'information'=> 'アイドル学校というサバイバル番組から生まれた数々のヒット曲を生み出した人気グループです。
+                　旧メンバーにはギュリがいます。',
+                'image_id'=> '6',
+                'sort_order'=> '1',
+            ],
         ]);
     }
 }
