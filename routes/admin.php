@@ -52,6 +52,8 @@ Route::middleware('auth:admin')->group(function () {
     ->name('emotions.song.edit');
     Route::put('emotions/{song}/song', [EmotionController::class, 'song_update'])
     ->name('emotions.song.update');
+        // ⭐️チェックしてほしい箇所⭐️
+
 
 });
 

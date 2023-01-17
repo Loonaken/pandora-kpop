@@ -112,26 +112,7 @@ class EmotionController extends Controller
 
     public function song_update(Request $request, $id)
     {
-        // dd($request);
-        $emotion = Emotion::findOrFail($id);
-
-        $songs = Song::all();
-
-        foreach($songs as $song){
-            $song_emotion_id = $song->emotion_id;
-            if ($song_emotion_id === $request->song_emotion){
-                $song->emotion_id = $emotion->id;
-                $song->save();
-
-            }
-            // dump($song);
-        }
-        // die;
-
-            // if($song->emotion_id === $request->emotion){
-            //     $song->emotion_id = $emotion->id;
-            //     $song->save();
-            // }
+        // ⭐️チェックしてほしい箇所⭐️
             return redirect()
             ->route('admin.emotions.index')
             ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
