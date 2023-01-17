@@ -16,7 +16,7 @@ class Emotion extends Model
         'sort_order'
     ];
 
-    public function song()
+    public function songs()
     {
         return $this->hasMany(Song::class);
     }

@@ -112,11 +112,31 @@ class EmotionController extends Controller
 
     public function song_update(Request $request, $id)
     {
-        // ⭐️チェックしてほしい箇所⭐️
-            return redirect()
+        //ステップは２つ
+        //１．現在選択中のemotionにひとがsongsのemotion_idをnullにする
+        //２．選択した曲のid配列を取得し、それにひとがsongsのemotion_idを現在選択中のemotionのidにする
+
+        //現在選択中のemotionのidを取得
+        $emotion = Emotion::findOrFail($id);
+        //それにひとがsongsのemotion_idをnullにする
+        $songs = Song::where('emotion_id', $emotion->id)->get();
+        foreach ($songs as $song) {
+            $song->emotion_id = null;
+            $song->save();
+        }
+
+        //選択した曲のid配列を取得
+        $song_ids = $request->song_ids;
+        foreach ($song_ids as $song_id) {
+            $song = Song::findOrFail($song_id);
+            $song->emotion_id = $id;//$idは現在選択中のemotionのid
+            $song->save();
+            //参考(saveとupdateの使い分け):https://qiita.com/gomaaa/items/91e5cbd319279a2db6ec
+        }
+
+        return redirect()
             ->route('admin.emotions.index')
             ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
-
     }
 
 
