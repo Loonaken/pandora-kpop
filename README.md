@@ -1,12 +1,3 @@
-## Gitのワークフロー
-
-- 基本的にdevelopで開発を進めていく。
-- デプロイ時、mainにマージする
-- 新規機能開発の時にローカルの- - - developを最新にしてからfeatureブランチを切って開発を進める
-- featureブランチの規則はfeature/issue番号
-- バグの修正の時はdevelopからhotfixブランチを切って開発を進める
-- hotfixブランチの規則はhotfix/issue番号
-
 
 ## インストール方法
 ```
@@ -48,6 +39,14 @@ sail up -d
 sail artisan key:generate
 ```
 
+## データベースのマイグレーション(試用)
+データベースと連携できるか確認する
+
+```
+sail artisan migrate
+```
+
+
 ## 画像のインストール
 
 - storage/public/ のフォルダの配下に
@@ -65,15 +64,13 @@ songs
 ## Seeder操作
 
 - app/database/seeders/ 内における、GroupSeeder,SongSeeder,PeriodSeeder,EmotionSeederをそれぞれ登録する
-（GroupSeeder,SongSeederは前の工程で登録した、）
+（GroupSeeder,SongSeederは前の工程で登録した、Imageのランダムidを指定する）
 
 
--
 
-## データベースのマイグレーション
+## データベースの再マイグレーション
 ```
-sail artisan migrate
-sail artisan migrate:fresh --seed
+sail artisan migrate:refresh --seed
 
 ```
 
