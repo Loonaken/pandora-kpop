@@ -56,6 +56,7 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
 
+
         $songs = Song::where('group_id', $group->id)->get();
 
         $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
