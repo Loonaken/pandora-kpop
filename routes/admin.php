@@ -52,7 +52,6 @@ Route::middleware('auth:admin')->group(function () {
     ->name('emotions.song.edit');
     Route::put('emotions/{song}/song', [EmotionController::class, 'song_update'])
     ->name('emotions.song.update');
-        // ⭐️チェックしてほしい箇所⭐️
 
 
 });
@@ -67,10 +66,12 @@ Route::middleware('auth:admin')->group(function () {
     ->name('periods.term.edit');
     Route::put('periods/{term}/term', [PeriodController::class, 'term_update'])
     ->name('periods.term.update');
-    Route::get('periods/{song}/song/edit', [PeriodController::class, 'song_edit'])
-    ->name('periods.song.edit');
-    Route::put('periods/{song}/song', [PeriodController::class, 'song_update'])
-    ->name('periods.song.update');
+    Route::get('periods/{song}/song/add', [PeriodController::class, 'song_add'])
+    ->name('periods.song.add');
+    Route::put('periods/{song}/song', [PeriodController::class, 'song_store'])
+    ->name('periods.song.store');
+    Route::delete('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
+    ->name('periods.song.destroy');
 
 });
 
