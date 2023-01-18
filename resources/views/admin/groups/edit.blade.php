@@ -41,12 +41,25 @@
                         <x-input-error :messages="$errors->get('type')" class="mt-2" />
                           <div class="relative ">
                             <div>
-                            <label for="type" class="leading-7 text-sm text-gray-600">アーティスト属性 *必須</label>
+                              <label for="sort_order" class="leading-7 text-sm text-gray-600">アーティスト属性</label>
                             </div>
                             <div>
-                            <input type="text" placeholder="1 or 2" id="type" name="type" value="{{$group->type}}" required class=" bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                              <select name="type">
+                                <option value="{{\Constant::GROUP_LIST['male']}}"
+                                {{-- アーティスト属性を示す"type = 1" は男性アーティストを指し、
+                                "type = 1"を定数に置き換えた結果 "option value = 1" ではなく、
+                                <option value="{{\Constant::GROUP_LIST['male']}}"となっている --}}
+                                  @if ($group->type == \Constant::GROUP_LIST['male']) selected @endif>
+                                  1, 男性アーティスト
+                                </option>
+                                <option value="{{\Constant::GROUP_LIST['female']}}"
+                                {{-- 女性アーティストも上記と同様に定数化し、
+                                "type = 2"ではなく、<option value="{{\Constant::GROUP_LIST['female']}}" --}}
+                                  @if ($group->type == \Constant::GROUP_LIST['female']) selected @endif>
+                                  2, 女性アーティスト
+                                </option>
+                              </select>
                             </div>
-                            <p class="text-sm text-red-400">※ 1=男性アーティスト　2=女性アーティスト</p>
                           </div>
                         </div>
                       {{-- fin Typeの入力 --}}

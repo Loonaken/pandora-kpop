@@ -19,9 +19,11 @@ class GroupController extends Controller
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $groups = Group::orderByDesc('updated_at')->get();
+        $groups = Group::AvailableGroupTypes($request->type)
+        ->orderByDesc('updated_at')
+        ->get();
 
         return view ('admin.groups.index', compact('groups'));
     }
@@ -55,6 +57,7 @@ class GroupController extends Controller
     public function show($id)
     {
         $group = Group::findOrFail($id);
+
 
         $songs = Song::where('group_id', $group->id)->get();
 

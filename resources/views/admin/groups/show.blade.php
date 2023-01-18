@@ -35,7 +35,11 @@
                         </div>
                         <div class="w-5/6 md:text-lg lg:text-xl ml-2 lg:-ml-8 lg:-mr-4 ">
                           <div>・グループ名：{{$group->name}}</div>
-                          <div>・アーティスト属性：{{$group->type}}</div>
+                          @if ($group->type == \Constant::GROUP_LIST['male'])
+                          <div>・アーティスト属性：男性アーティスト</div>
+                          @elseif ($group->type == \Constant::GROUP_LIST['female'])
+                          <div>・アーティスト属性：女性アーティスト</div>
+                          @endif
                           <div>・表示順：{{$group->sort_order}}</div>
                         </div>
                       </div>

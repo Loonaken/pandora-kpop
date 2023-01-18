@@ -11,8 +11,20 @@
             <div class="p-6 bg-white border-b border-gray-200">
                 {{-- Group Column --}}
                 <x-flash-message status="session('status')"  />
-                <div class="flex justify-end mb-4 border-b-2 border-gray-500">
+                <div class="flex justify-end border-b-2 border-gray-500">
                   <button onclick="location.href='{{route('admin.groups.create')}}'" class="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">新規登録</button>
+                  </div>
+                  <div>
+                    <form method="get" action="{{route('admin.groups.index')}}" >
+                      <div class="flex justify-center  mb-2">
+                        <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
+                        <label for="male" class="grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                          男性アーティスト</label>
+                        <input type="radio" name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
+                        <label for="female" class="grow text-center border-2 py-3  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                          女性アーティスト</label>
+                      </div>
+                    </form>
                   </div>
                   <div class="flex flex-wrap justify-around sm:gap-y-4 md:gap-x-4">
                   @foreach ($groups as $group)
@@ -20,7 +32,7 @@
                           <div class="text-white text-center rounded text-lg mb-4">タグ名:{{$group->name}}</div>
                             <div class="flex flex-col  ">
                               {{-- 登録曲一覧ボタン --}}
-                              <a class="text-white mb-2 bg-white/25 py-2 px-4 focus:outline-none hover:bg-green-400/60 border-2 border-white-400 rounded text-lg  " href="{{route('admin.groups.show', ['group'=>$group->id])}}">
+                              <a class="text-white mb-2 bg-white/25 py-2 px-4 focus:outline-none hover:bg-green-400/60 border-2 py-3  border-white-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer  text-lg  " href="{{route('admin.groups.show', ['group'=>$group->id])}}">
                                 <div class="flex justify-center">
                                   <p class="mr-1">曲</p>
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -30,7 +42,7 @@
                               </a>
                               {{-- fin 登録曲一覧ボタン --}}
                               {{--  タイトル編集ボタン --}}
-                              <a class="text-white bg-white/25 border-2 border-white-400 p-2 focus:outline-none hover:bg-green-400/60 rounded text-lg  " href="{{route('admin.groups.edit' , ['group'=>$group->id] )}}">
+                              <a class="text-white bg-white/25 border-2 py-3  border-white-400 p-2 focus:outline-none hover:bg-green-400/60 rounded text-lg  " href="{{route('admin.groups.edit' , ['group'=>$group->id] )}}">
                                 <div class="flex justify-center">
                                   <p class="mr-1">グループ情報</p>
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -49,4 +61,20 @@
           </div>
       </div>
   </div>
+  <script>
+    const select_male = document.getElementById('male')
+    select_male.addEventListener('click' , function(){
+      this.form.submit();
+      classList.add('checked:bg-blue-400/50');
+
+    })
+
+    const select_female = document.getElementById('female')
+    select_female.addEventListener('click' , function(){
+      this.form.submit();
+      classList.add('checked:bg-blue-400/50');
+
+    })
+
+  </script>
 </x-app-layout>
