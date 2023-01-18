@@ -77,19 +77,54 @@ class PeriodController extends Controller
         $period->save();
 
         return redirect()
-        ->route('admin.emotions.index')
+        ->route('admin.periods.index')
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
+    public function song_add($id)
+    {
+        $period = Period::findOrFail($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        $songs = Song::whereNotIn('period_id' , [$period->id])->get();
+
+        return view('admin.periods.song_add', compact('period', 'songs'));
+    }
+
+
+    public function song_store(Request $request, $id)
+    {
+        $song_ids = $request->song_ids;
+
+        foreach ($song_ids as $song_id) {
+            $song = Song::findOrFail($song_id);
+            $song->period_id = $id;//$idは現在選択中のperiodのid
+            $song->save();
+        }
+
+        return redirect()
+        ->route('admin.periods.show', ['period'=>$id])
+        ->with(['message'=> '曲を追加しました。' , 'status'=>'info']);
+
+    }
+
+
+
     public function destroy($id)
+    // 年代タグに登録されている全ての曲の年代タグをnullにする
     {
         //
+    }
+
+    public function song_destroy($id)
+    // 選択された曲の年代タグを1つずつnullにする
+    {
+        // $group = Group::findOrFail($id);
+
+        Song::findOrFail($id)->delete();
+
+
+        return redirect()
+        ->route('admin.groups.index')
+        ->with(['message'=> '曲を削除しました。' , 'status'=>'error']);
     }
 }

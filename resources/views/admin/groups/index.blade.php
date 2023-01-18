@@ -32,7 +32,7 @@
                           <div class="text-white text-center rounded text-lg mb-4">タグ名:{{$group->name}}</div>
                             <div class="flex flex-col  ">
                               {{-- 登録曲一覧ボタン --}}
-                              <a class="text-white mb-2 bg-white/25 py-2 px-4 focus:outline-none hover:bg-green-400/60 border-2 py-3  border-white-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer  text-lg  " href="{{route('admin.groups.show', ['group'=>$group->id])}}">
+                              <a class="text-white mb-2 bg-white/25 py-2 px-4 focus:outline-none  border-2 border-white-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer  text-lg  " href="{{route('admin.groups.show', ['group'=>$group->id])}}">
                                 <div class="flex justify-center">
                                   <p class="mr-1">曲</p>
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -62,17 +62,18 @@
       </div>
   </div>
   <script>
-    const select_male = document.getElementById('male')
-    select_male.addEventListener('click' , function(){
+    const selectMale = document.getElementById('male')
+    console.log(selectMale,'最初のSELECTMALE');
+    selectMale.addEventListener('click' , function(){
+      console.log(this);
+      this.classList.add(':bg-blue-400/50');
       this.form.submit();
-      classList.add('checked:bg-blue-400/50');
 
     })
 
-    const select_female = document.getElementById('female')
-    select_female.addEventListener('click' , function(){
+    const selectFemale = document.getElementById('female')
+    selectFemale.addEventListener('click' , function(){
       this.form.submit();
-      classList.add('checked:bg-blue-400/50');
 
     })
 

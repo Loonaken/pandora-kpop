@@ -21,37 +21,21 @@
                     </div>
 
 
+
                       {{-- fin  年代タグの名前編集 --}}
 
-                      {{-- 年代タグで使用されている曲一覧 --}}
+                      {{-- 登録曲追加 --}}
                       <div class="p-2 my-4 w-full mx-auto bg-blue-300/25">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
                         <div class="flex justify-end mb-4 border-b-2 border-gray-500">
-                          <button onclick="location.href='{{route('admin.periods.destroy' , ['period'=>$period->id])}}'" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 mr-8 ">削除</button>
-                          <button onclick="location.href='{{route('admin.periods.song.edit', ['song'=>$period->id])}}'" class="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">編集</button>
+                          <button onclick="location.href='{{route('admin.periods.song.add', ['song'=>$period->id])}}'" class="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">追加</button>
                         </div>
-                        <div class="flex flex-wrap">
-                          @if(!empty($songs->toArray()))
-                          @foreach ($songs as $song)
-                              <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-                                <div class=" rounded-md p-4">
-                                  <x-thumbnail :filename="$song->image->filename" type="songs" />
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲ID{{$song->id}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">グループ名{{$song->group->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲名{{$song->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#{{$song->emotion->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#{{$song->period->term}}</div>
-                                </div>
-                              </div>
-                          @endforeach
-                          @endif
+                      {{-- fin 登録曲追加 --}}
 
-                          @if(empty($songs->toArray()))
-                            <div class="m-8 mx-auto ">
-                              <p class="text-lg text-gray-400">このタグに登録されている曲は現在ありません。</p>
-                          @endif
+                      {{-- 登録曲一覧 --}}
+                        <x-registered_song_show :songs="$songs" />
+                      {{-- fin 登録曲一覧 --}}
 
-                        </div>
                   </div>
                       {{-- fin 年代タグで使用されている曲一覧 --}}
 

@@ -65,6 +65,12 @@
                     </div>
                 </form>
 
+                <form action="">
+                  <div class="text-center">
+                    <button type="button" onclick="location.href='{{route('admin.periods.destroy' , ['period'=>$period->id])}}'" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 ">削除</button>
+                  </div>
+                </form>
+
 
 
                 {{-- fin contents --}}
