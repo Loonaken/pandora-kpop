@@ -125,7 +125,7 @@ class PeriodController extends Controller
         $song->save();
 
         return redirect()
-        ->route('admin.periods.show' , ['period'=> $song->id])
+        ->route('admin.periods.index')
         ->with(['message'=> '曲の年代タグを削除しました。' , 'status'=>'error']);
     }
 

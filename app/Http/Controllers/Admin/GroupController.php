@@ -17,15 +17,19 @@ class GroupController extends Controller
     {
         $this->middleware('auth:admin');
 
+
     }
 
     public function index(Request $request)
     {
+
         $groups = Group::AvailableGroupTypes($request->type)
         ->orderByDesc('updated_at')
         ->get();
 
-        return view ('admin.groups.index', compact('groups'));
+        $request_type = $request->type;
+
+        return view ('admin.groups.index', compact('groups', 'request_type'));
     }
 
 
@@ -57,7 +61,6 @@ class GroupController extends Controller
     public function show($id)
     {
         $group = Group::findOrFail($id);
-
 
         $songs = Song::where('group_id', $group->id)->get();
 

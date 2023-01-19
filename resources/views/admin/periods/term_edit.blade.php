@@ -37,16 +37,9 @@
                         <div class="flex flex-wrap">
                           @if(!empty($songs->toArray()))
                           @foreach ($songs as $song)
-                              <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-                                <div class=" rounded-md p-4">
-                                  <x-thumbnail :filename="$song->image->filename" type="songs" />
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲ID{{$song->id}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">グループ名{{$song->group->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲名{{$song->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#{{$song->emotion->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#{{$song->period->term}}</div>
-                                </div>
-                              </div>
+                            <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
+                          <x-simple_show :song="$song" />
+                            </div>
                           @endforeach
                           @endif
 
@@ -65,9 +58,11 @@
                     </div>
                 </form>
 
-                <form action="">
+                <form method="POST" action="{{route('admin.periods.destroy' , ['period'=>$period->id])}}'">
+                  @csrf
+                  @method('delete')
                   <div class="text-center">
-                    <button type="button" onclick="location.href='{{route('admin.periods.destroy' , ['period'=>$period->id])}}'" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 ">削除</button>
+                    <button type="submit" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 ">削除</button>
                   </div>
                 </form>
 

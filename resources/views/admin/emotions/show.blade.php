@@ -42,46 +42,16 @@
                         <div class="flex flex-wrap">
                           @if(!empty($songs->toArray()))
                           @foreach ($songs as $song)
-                              <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-                                <div class=" rounded-md p-4">
-                                  <form method="POST" action="{{route('admin.emotions.song.destroy', ['song'=>$song->id])}}">
-                                    @csrf
-                                    <div class="flex justify-end -mb-6">
-                                      <button type="submit" class=" text-white z-10 bg-red-500 border-0 focus:outline-none hover:bg-red-600 rounded-full text-base">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 ">
-                                          <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                      </a>
-                                    </div>
-                                  </form>
-                                  <x-thumbnail :filename="$song->image->filename" type="songs" />
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲ID{{$song->id}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">グループ名{{$song->group->name}}</div>
-                                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲名{{$song->name}}</div>
-                                  @if ($song->emotion === null)
-                                    <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#登録なし</div>
-                                  @elseif($song->emotion !== null)
-                                    <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#{{$song->emotion->name}}</div>
-                                  @endif
-                                  @if ($song->period === null)
-                                    <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#登録なし</div>
-                                  @elseif ($song->period !== null)
-                                    <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">#{{$song->period->term}}</div>
-                                  @endif
-                                </div>
-                              </div>
+                          <x-registered_song_show action="{{route('admin.emotions.song.destroy', ['song'=>$song->id])}}" :song="$song" />
                           @endforeach
                           @endif
-
                           @if(empty($songs->toArray()))
                             <div class="m-8 mx-auto ">
                               <p class="text-lg text-gray-400">このグループに登録されている曲は現在ありません。</p>
                           @endif
-
                         </div>
                         {{-- fin 登録曲一覧 --}}
-
-                  </div>
+                      </div>
                       {{-- fin 気分タグで使用されている曲一覧 --}}
 
 

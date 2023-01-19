@@ -14,17 +14,44 @@
                 <div class="flex justify-end border-b-2 border-gray-500">
                   <button onclick="location.href='{{route('admin.groups.create')}}'" class="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">新規登録</button>
                   </div>
+
                   <div>
-                    <form method="get" action="{{route('admin.groups.index')}}" >
+                    <form method="get" action="{{route('admin.groups.index' )}}" >
+                      {{-- @if ($request_type === null) --}}
+                        <div class="flex justify-center mb-2">
+                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
+                          <label for="male" class=" grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                            男性アーティスト</label>
+                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
+                          <label for="female" class="grow text-center border-2 py-3  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                            女性アーティスト</label>
+                        </div>
+
+
+                    {{-- @elseif($request_type === 1)
                       <div class="flex justify-center  mb-2">
                         <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
-                        <label for="male" class="grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                        <label for="male" class="bg-blue-300 grow text-center border-2 py-3 transition duration-300 ease-in-out cursor-pointer ">
                           男性アーティスト</label>
                         <input type="radio" name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
                         <label for="female" class="grow text-center border-2 py-3  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
                           女性アーティスト</label>
                       </div>
-                    </form>
+
+
+                    @elseif($request_type === 2)
+                        <div class="flex justify-center  mb-2">
+                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
+                          <label for="male" class="grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                            男性アーティスト</label>
+                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
+                          <label for="female" class="bg-blue-300 grow text-center border-2 py-3  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                            女性アーティスト</label>
+                        </div>
+                        @endif --}}
+                      </form>
+
+
                   </div>
                   <div class="flex flex-wrap justify-around sm:gap-y-4 md:gap-x-4">
                   @foreach ($groups as $group)
@@ -63,10 +90,7 @@
   </div>
   <script>
     const selectMale = document.getElementById('male')
-    console.log(selectMale,'最初のSELECTMALE');
     selectMale.addEventListener('click' , function(){
-      console.log(this);
-      this.classList.add(':bg-blue-400/50');
       this.form.submit();
 
     })

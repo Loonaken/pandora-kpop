@@ -113,7 +113,7 @@ class SongController extends Controller
     {
         Song::findOrFail($id)->delete();
 
-        return redirect
+        return redirect()
         ->route('admin.songs.index')
         ->with(['message'=> '削除が完了しました。' , 'status'=>'error']);
 
