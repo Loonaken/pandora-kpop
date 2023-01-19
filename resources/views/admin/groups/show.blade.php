@@ -132,7 +132,7 @@
 
     function deletePost(e) {
   'use strict';
-  if (confirm('本当に削除してもいいですか?')) {
+  if (confirm('曲の「全ての情報」が削除されます。本当に削除してもいいですか?')) {
   document.getElementById('delete_' + e.dataset.id).submit();
   }
   }

@@ -124,7 +124,7 @@ class GroupController extends Controller
     }
 
     public function song_destroy($id)
-    // グループに登録されている曲を1つずつ削除する
+    // グループに登録されている曲の「全ての情報」を1つずつ削除する
     {
         // $group = Group::findOrFail($id);
 
@@ -132,7 +132,7 @@ class GroupController extends Controller
 
 
         return redirect()
-        ->route('admin.groups.index')
+        ->route('admin.groups.show', ['group'=>$id])
         ->with(['message'=> '曲を削除しました。' , 'status'=>'error']);
     }
 }
