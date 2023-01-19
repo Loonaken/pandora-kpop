@@ -70,7 +70,7 @@ Route::middleware('auth:admin')->group(function () {
     ->name('periods.song.add');
     Route::put('periods/{song}/song', [PeriodController::class, 'song_store'])
     ->name('periods.song.store');
-    Route::delete('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
+    Route::post('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
     ->name('periods.song.destroy');
 
 });

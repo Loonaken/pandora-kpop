@@ -33,9 +33,9 @@
                           <label for="period_id" class="leading-7 text-sm text-gray-600">曲の選択</label><br>
                           <select name="song_ids[]" multiple="multiple">
                             @foreach ($songs as $song)
-                            <option value="{{$song->id}}">
+                            <option class="py-2 border-2" value="{{$song->id}}">
                               {{-- $songs 全ての曲の情報 --}}
-                                {{$song->name}}
+                                {{$song->name}} | {{$song->period ? $song->period->term : '登録なし' }}
                               </option>
                             @endforeach
                           </select>

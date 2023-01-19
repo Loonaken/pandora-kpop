@@ -85,7 +85,11 @@ class PeriodController extends Controller
     {
         $period = Period::findOrFail($id);
 
-        $songs = Song::whereNotIn('period_id' , [$period->id])->get();
+        // 特定の年代タグに登録されていない曲を全て取得するため、
+        // whereNotIn,orWhereNullを使用して取得している
+        $songs = Song::whereNotIn('period_id' , [$period->id])
+        ->orWhereNull('period_id')
+        ->get();
 
         return view('admin.periods.song_add', compact('period', 'songs'));
     }
@@ -95,6 +99,7 @@ class PeriodController extends Controller
     {
         $song_ids = $request->song_ids;
 
+        // リクエストで選択された曲の年代タグを該当の年代タグに差し替える
         foreach ($song_ids as $song_id) {
             $song = Song::findOrFail($song_id);
             $song->period_id = $id;//$idは現在選択中のperiodのid
@@ -107,24 +112,38 @@ class PeriodController extends Controller
 
     }
 
-
-
-    public function destroy($id)
-    // 年代タグに登録されている全ての曲の年代タグをnullにする
-    {
-        //
-    }
-
     public function song_destroy($id)
-    // 選択された曲の年代タグを1つずつnullにする
+    // 年代タグに登録されている曲の「年代Id」を1つずつnullにする
     {
-        // $group = Group::findOrFail($id);
+        $song = Song::findOrFail($id);
 
-        Song::findOrFail($id)->delete();
+        $period = Period::findOrFail($id);
 
+        // 年代タグのIdのみをNull化している
+        $song->period_id = null;
+
+        $song->save();
 
         return redirect()
-        ->route('admin.groups.index')
-        ->with(['message'=> '曲を削除しました。' , 'status'=>'error']);
+        ->route('admin.periods.show' , ['period'=> $song->id])
+        ->with(['message'=> '曲の年代タグを削除しました。' , 'status'=>'error']);
     }
+
+    public function destroy($id)
+    // 年代タグに登録されている全ての曲の「年代Id」をnullにする
+    {
+        $period = Period::findOrFail($id);
+        $songsInPeriod = Song::where('period_id', $period->id)->get();
+
+        foreach($songsInPeriod as $songInPeriod){
+            $songInPeriod->period_id = null;
+            $songInPeriod->save();
+        }
+        $period->delete();
+
+        return redirect()
+        ->route('admin.periods.index')
+        ->with(['message'=>'年代タグを削除しました。' , 'status'=>'info']);
+        }
+
 }
