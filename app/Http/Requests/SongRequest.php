@@ -26,7 +26,7 @@ class SongRequest extends FormRequest
         return [
                 'name'=>'required|string|max:30',
                 'information'=>'required|string|max:100',
-                'youtube_link'=>'required',
+                'youtube_link'=>'required|regex:/^http:\/\/\w+(\.\w+)*(:[0-9]+)?\/?$/',
                 'emotion'=>'required|exists:emotions,id',
                 'period'=>'required|exists:periods,id',
                 'group'=>'required|exists:groups,id',

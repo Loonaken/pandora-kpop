@@ -24,7 +24,7 @@
                     src="{{ asset('storage/songs/'. $image->filename)}}"
                     @endif
                   >
-                  <div class="text-lg text-center -mt-4 border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
+                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
               </div>
               </div>
               @elseif(is_null($image->title))
@@ -41,7 +41,7 @@
                     src="{{ asset('storage/songs/'. $image->filename)}}" >
                     @endif
 
-              <div class="text-lg text-center -mt-4 border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
+              <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
           </div>
           </div>
           @endif

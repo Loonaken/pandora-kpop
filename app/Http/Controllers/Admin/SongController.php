@@ -34,19 +34,17 @@ class SongController extends Controller
 
         $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
 
-        $emotions = Emotion::with('song')->get();
+        $emotions = Emotion::get();
 
-        $periods = Period::with('song')->get();
+        $periods = Period::get();
 
-        $groups = Group::with('song')->get();
+        $groups = Group::get();
 
         return view ('admin.songs.create', compact('songs', 'images', 'emotions', 'periods', 'groups'));
     }
 
     public function store(SongRequest $request)
     {
-
-
         Song::create([
             'name'=> $request->name,
             'information'=> $request->information,
@@ -79,11 +77,11 @@ class SongController extends Controller
 
         $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
 
-        $emotions = Emotion::with('song')->get();
+        $emotions = Emotion::get();
 
-        $periods = Period::with('song')->get();
+        $periods = Period::get();
 
-        $groups = Group::with('song')->get();
+        $groups = Group::get();
 
         return view('admin.songs.edit', compact('song', 'images' ,'emotions','periods','groups'));
     }

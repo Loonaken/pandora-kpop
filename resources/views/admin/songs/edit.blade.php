@@ -46,6 +46,22 @@
                       </div>
                       {{-- fin youtube_linkの入力 --}}
 
+                      <div class="flex mb-8">
+                      {{-- groupタグ選択 --}}
+                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
+                        <div class="relative">
+                          <p class="leading-7 text-sm text-gray-600">グループ名</p>
+                          <select name="group">
+                            @foreach ($groups as $group)
+                            <option value="{{$group->id}}" @if($group->id === $song->group_id) selected @endif>
+                              {{$group->name}}
+                            </option>
+                            @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      {{-- fin groupタグ選択 --}}
+
                       {{-- emotionタグ選択 --}}
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
@@ -75,21 +91,8 @@
                         </div>
                       </div>
                       {{-- fin periodタグ選択 --}}
+                    </div>
 
-                      {{-- groupタグ選択 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
-                          <p class="leading-7 text-sm text-gray-600">グループ名</p>
-                          <select name="group">
-                            @foreach ($groups as $group)
-                            <option value="{{$group->id}}" @if($group->id === $song->group_id) selected @endif>
-                              {{$group->name}}
-                            </option>
-                            @endforeach
-                          </select>
-                        </div>
-                      </div>
-                      {{-- fin groupタグ選択 --}}
 
                       {{-- 画像選択 --}}
                       <x-select-image_edit :images="$images" currentId="{{$song->image_id}}" currentImage="{{$song->image->filename}}" name="images" />
@@ -99,7 +102,7 @@
                       {{-- fin 画像選択 --}}
 
                     </div>
-                    <div class="flex p-2 w-full">
+                    <div class="flex p-2 mt-4 w-full">
                         <button type="button" onclick="location.href='{{route('admin.songs.index')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
                         <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">登録</button>
                     </div>
@@ -109,7 +112,7 @@
                   @csrf
                   @method('delete')
                   <div class="flex justify-center mt-16 p-4 w-full">
-                  <a href='#' data-id="{{$song->id}}" onclick="deletePost(this)" type="submit" class=" text-white bg-red-500 border-0 py-2 px-2 focus:outline-none hover:bg-red-600 rounded text-base">削除する</a>
+                  <a href='#' data-id="{{$song->id}}" onclick="deletePost(this)" type="submit" class="flex mx-auto text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg">削除</a>
                 </div>
               </form>
 
