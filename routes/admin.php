@@ -48,10 +48,10 @@ Route::middleware('auth:admin')->group(function () {
     ->name('emotions.name.edit');
     Route::put('emotions/{name}/name', [EmotionController::class, 'name_update'])
     ->name('emotions.name.update');
-    Route::get('emotions/{song}/song/edit', [EmotionController::class, 'song_edit'])
-    ->name('emotions.song.edit');
-    Route::put('emotions/{song}/song', [EmotionController::class, 'song_update'])
-    ->name('emotions.song.update');
+    Route::get('emotions/{song}/song/add', [EmotionController::class, 'song_add'])
+    ->name('emotions.song.add');
+    Route::put('emotions/{song}/song', [EmotionController::class, 'song_store'])
+    ->name('emotions.song.store');
 
 
 });

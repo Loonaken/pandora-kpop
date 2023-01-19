@@ -28,7 +28,7 @@
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
                         <div class="flex justify-end mb-4 border-b-2 border-gray-500">
                           <button onclick="location.href='{{route('admin.emotions.destroy' , ['emotion'=>$emotion->id])}}'" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 mr-8 ">削除</button>
-                          <button onclick="location.href='{{route('admin.emotions.song.edit', ['song'=>$emotion->id])}}'" class="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">編集</button>
+                          <button onclick="location.href='{{route('admin.emotions.song.add', ['song'=>$emotion->id])}}'" class="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">追加</button>
                         </div>
 
                         {{-- 登録曲一覧 --}}
