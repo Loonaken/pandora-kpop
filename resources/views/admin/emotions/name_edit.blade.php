@@ -60,6 +60,14 @@
                     </div>
                 </form>
 
+                <div class="text-center flex justify-center">
+                  <form id="delete_{{$emotion->id}}" action="{{route('admin.emotions.destroy' , ['emotion'=>$emotion->id])}}" method="post">
+                    @csrf
+                    @method('delete')
+                      <button type='submit' data-id="{{$emotion->id}}}" onclick="deletePost(this)" class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">削除</button>
+                  </form>
+                </div>
+
 
 
                 {{-- fin contents --}}
@@ -70,26 +78,10 @@
   </div>
 
   <script>
-    'use strict'
-    const images = document.querySelectorAll('.image') //全てのimageタグを取得
-
-    images.forEach(image => { // 1つずつ繰り返す
-      image.addEventListener('click', function(e){ // クリックしたら
-        const imageName = e.target.dataset.id.substr(0, 6) //data-idの6文字
-        const imageId = e.target.dataset.id.replace(imageName + '_', '') // 6文字カット
-        const imageFile = e.target.dataset.file
-        const imagePath = e.target.dataset.path
-        const modal = e.target.dataset.modal
-        // サムネイルと input type=hiddenのvalueに設定
-        document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile
-        document.getElementById(imageName + '_hidden').value = imageId
-        MicroModal.close(modal); //モーダルを閉じる
-      })
-    })
 
     function deletePost(e) {
   'use strict';
-  if (confirm('本当に削除してもいいですか?')) {
+  if (confirm('気分タグに登録されている曲の「全ての気分Id」が削除されます。本当に削除してもいいですか?')) {
   document.getElementById('delete_' + e.dataset.id).submit();
   }
   }

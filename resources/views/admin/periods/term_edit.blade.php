@@ -58,13 +58,14 @@
                     </div>
                 </form>
 
-                <form method="POST" action="{{route('admin.periods.destroy' , ['period'=>$period->id])}}'">
-                  @csrf
-                  @method('delete')
-                  <div class="text-center">
-                    <button type="submit" class="text-white bg-red-500 border-0 py-2 px-8 focus:outline-none hover:bg-red-500 rounded text-lg mb-2 ">削除</button>
-                  </div>
-                </form>
+                <div class="text-center flex justify-center">
+                  <form id="delete_{{$period->id}}" action="{{route('admin.periods.destroy' , ['period'=>$period->id])}}" method="post">
+                    @csrf
+                    @method('delete')
+                      <button type='submit' data-id="{{$period->id}}}" onclick="deletePost(this)" class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">削除</button>
+                  </form>
+                </div>
+
 
 
 
@@ -74,5 +75,16 @@
           </div>
       </div>
   </div>
+
+  <script>
+
+    function deletePost(e) {
+  'use strict';
+  if (confirm('年代タグに登録されている曲の「全ての年代Id」が削除されます。本当に削除してもいいですか?')) {
+  document.getElementById('delete_' + e.dataset.id).submit();
+  }
+  }
+
+  </script>
 
 </x-app-layout>

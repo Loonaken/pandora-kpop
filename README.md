@@ -85,3 +85,22 @@ sail npm run dev
 http://localhost
 
 にアクセスして、表示確認してください。
+
+
+## 注意事項
+
+Imageを削除したのちに、
+```
+sail artisan migrate:refresh --seed
+```
+を実行して画像管理の画面を表示した際、
+画像が正しく表示されないエラーが発生します。
+
+エラー解決方法
+- 画像を再度新規登録
+- Storageに保存されたfilenameをImageSeederのfilenameのカラムに入れる
+-
+```
+sail artisan migrate:refresh --seed
+```
+
