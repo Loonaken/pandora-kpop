@@ -130,8 +130,37 @@ class EmotionController extends Controller
     }
 
 
-    public function destroy($id)
+    public function song_destroy($id)
+    // 年代タグに登録されている曲の「年代Id」を1つずつnullにする
     {
-        //
+        $song = Song::findOrFail($id);
+
+        $emotion = Emotion::findOrFail($id);
+
+        // 年代タグのIdのみをNull化している
+        $song->emotion_id = null;
+
+        $song->save();
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=> '曲の年代タグを削除しました。' , 'status'=>'error']);
     }
+
+    public function destroy($id)
+    // 年代タグに登録されている全ての曲の「年代Id」をnullにする
+    {
+        $emotion = Emotion::findOrFail($id);
+        $songsInEmotion = Song::where('emotion_id', $emotion->id)->get();
+
+        foreach($songsInEmotion as $songInEmotion){
+            $songInEmotion->emotion_id = null;
+            $songInEmotion->save();
+        }
+        $emotion->delete();
+
+        return redirect()
+        ->route('admin.emotions.index')
+        ->with(['message'=>'年代タグを削除しました。' , 'status'=>'info']);
+        }
 }
