@@ -52,6 +52,8 @@ Route::middleware('auth:admin')->group(function () {
     ->name('emotions.song.add');
     Route::put('emotions/{song}/song', [EmotionController::class, 'song_store'])
     ->name('emotions.song.store');
+    Route::post('emotions/{song}/song/destroy', [EmotionController::class, 'song_destroy'])
+    ->name('emotions.song.destroy');
 
 
 });
