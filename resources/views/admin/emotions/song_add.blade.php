@@ -24,8 +24,8 @@
 
                       {{-- 気分タグで使用されている曲一覧 --}}
 
-                      <form method="POST" action="{{route('admin.emotions.song.update' , ['song' => $emotion->id ])}}" >
-                        {{-- 上記の$emotionはページの気分タグ --}}
+                      <form method="POST" action="{{route('admin.emotions.song.store' , ['song' => $emotion->id ])}}" >
+                        {{-- 上記の$periodはページの年代タグ --}}
                         @csrf
                         @method('put')
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
@@ -33,15 +33,14 @@
                           <label for="emotion_id" class="leading-7 text-sm text-gray-600">曲の選択</label><br>
                           <select name="song_ids[]" multiple="multiple">
                             @foreach ($songs as $song)
-                            <option value="{{$song->id}}">
+                            <option class="py-2 border-2" value="{{$song->id}}">
                               {{-- $songs 全ての曲の情報 --}}
-                                {{$song->name}}
+                                {{$song->name}} | {{$song->emotion ? $song->emotion->name : '登録なし' }}
                               </option>
                             @endforeach
                           </select>
                         </div>
                       </div>
-
                       {{-- fin 気分タグで使用されている曲一覧 --}}
 
 

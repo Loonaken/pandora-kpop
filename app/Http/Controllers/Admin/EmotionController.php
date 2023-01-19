@@ -94,53 +94,40 @@ class EmotionController extends Controller
         $emotion->save();
 
         return redirect()
-        ->route('admin.periods.index')
+        ->route('admin.emotions.index')
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
-    public function song_edit($id)
+    public function song_add($id)
     {
         $emotion = Emotion::findOrFail($id);
 
-        $songs = Song::with('emotion')->get();
+        // 特定の年代タグに登録されていない曲を全て取得するため、
+        // whereNotIn,orWhereNullを使用して取得している
+        $songs = Song::whereNotIn('emotion_id' , [$emotion->id])
+        ->orWhereNull('emotion_id')
+        ->get();
 
-
-        // dd(empty($songs->toArray()));
-
-        return view ('admin.emotions.song_edit', compact('emotion', 'songs'));
+        return view('admin.emotions.song_add', compact('emotion', 'songs'));
     }
 
-    public function song_update(Request $request, $id)
+
+    public function song_store(Request $request, $id)
     {
-        //ステップは２つ
-        //１．現在選択中のemotionにひとがsongsのemotion_idをnullにする
-        //２．選択した曲のid配列を取得し、それにひとがsongsのemotion_idを現在選択中のemotionのidにする
-
-        //現在選択中のemotionのidを取得
-        $emotion = Emotion::findOrFail($id);
-        //それにひとがsongsのemotion_idをnullにする
-        $songs = Song::where('emotion_id', $emotion->id)->get();
-        foreach ($songs as $song) {
-            $song->emotion_id = null;
-            $song->save();
-        }
-
-        //選択した曲のid配列を取得
         $song_ids = $request->song_ids;
+
+        // リクエストで選択された曲の年代タグを該当の年代タグに差し替える
         foreach ($song_ids as $song_id) {
             $song = Song::findOrFail($song_id);
-            $song->emotion_id = $id;//$idは現在選択中のemotionのid
+            $song->emotion_id = $id;//$idは現在選択中のperiodのid
             $song->save();
-            //参考(saveとupdateの使い分け):https://qiita.com/gomaaa/items/91e5cbd319279a2db6ec
         }
 
         return redirect()
-            ->route('admin.emotions.index')
-            ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
+        ->route('admin.emotions.show', ['emotion'=>$id])
+        ->with(['message'=> '曲を追加しました。' , 'status'=>'info']);
+
     }
-
-
-
 
 
     public function destroy($id)
