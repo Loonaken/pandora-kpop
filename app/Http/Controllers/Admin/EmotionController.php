@@ -144,7 +144,7 @@ class EmotionController extends Controller
 
         return redirect()
         ->route('admin.emotions.index')
-        ->with(['message'=> '曲の年代タグを削除しました。' , 'status'=>'error']);
+        ->with(['message'=> '曲の気分タグを削除しました。' , 'status'=>'error']);
     }
 
     public function destroy($id)
