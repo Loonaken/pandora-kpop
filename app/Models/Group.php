@@ -34,8 +34,12 @@ class Group extends Model
 
     public function scopeAvailableGroupTypes($query, $type)
     {
-
-        if($type === null || $type === \Constant::GROUP_LIST['male']){
+        if($type === null){
+            return $query
+            ->where('type', \Constant::GROUP_LIST['male'] )
+            ->orWhere('type', \Constant::GROUP_LIST['female'] );
+        }
+        if($type === \Constant::GROUP_LIST['male']){
             return $query
             ->where('type', \Constant::GROUP_LIST['male'] );
         }
