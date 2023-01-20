@@ -9,7 +9,15 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __('Welcome') }}
+                    {{-- content --}}
+                    <section class="text-gray-600 body-font">
+                        <div class="container px-4 py-8 mx-auto">
+                        {{-- icon --}}
+                        <x-dashboard-icon :songs="$songs" :images="$images" :users="$users" :emotions="$emotions" :periods="$periods " :groups="$groups"  />
+                        {{-- fin icon --}}
+                    </div>
+                    </section>
+                    {{-- fin content --}}
                 </div>
             </div>
         </div>

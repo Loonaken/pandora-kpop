@@ -28,10 +28,11 @@
                           <input type="text" id="sort_order" name="sort_order" value="{{$period->sort_order}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           </div>
                         </div>
+                      </div>
 
                       {{-- fin  年代タグの編集 --}}
 
-                      {{-- 気分タグで使用されている曲一覧 --}}
+                      {{-- 年代タグで使用されている曲一覧 --}}
                       <div class="p-2 my-4 w-full lg:w-3/4 mx-auto bg-blue-300/25">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
                         <div class="flex flex-wrap">

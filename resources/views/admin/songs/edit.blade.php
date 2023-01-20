@@ -46,9 +46,9 @@
                       </div>
                       {{-- fin youtube_linkの入力 --}}
 
-                      <div class="flex mb-8">
-                      {{-- groupタグ選択 --}}
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
+                      <div class="flex mb-8 justify-between">
+                      {{-- groupタグ選択 --}}
                         <div class="relative">
                           <p class="leading-7 text-sm text-gray-600">グループ名</p>
                           <select name="group">
@@ -58,12 +58,10 @@
                             </option>
                             @endforeach
                           </select>
-                        </div>
                       </div>
                       {{-- fin groupタグ選択 --}}
 
                       {{-- emotionタグ選択 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <p class="leading-7 text-sm text-gray-600">気分タグ</p>
                           <select name="emotion">
@@ -73,12 +71,10 @@
                             </option>
                             @endforeach
                           </select>
-                        </div>
                       </div>
                       {{-- fin emotionタグ選択 --}}
 
                       {{-- periodタグ選択 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <p class="leading-7 text-sm text-gray-600">年代タグ</p>
                           <select name="period">
@@ -88,7 +84,6 @@
                             </option>
                             @endforeach
                           </select>
-                        </div>
                       </div>
                       {{-- fin periodタグ選択 --}}
                     </div>
