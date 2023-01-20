@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\EmotionController;
 use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\SongController;
+use App\Http\Controllers\Admin\UserInformationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('dashboard');
+
 
 
 Route::resource('images', ImageController::class)
@@ -88,6 +90,9 @@ Route::middleware('auth:admin')->group(function () {
     ->name('groups.song.destroy');
 });
 
+Route::middleware('auth:admin')
+    ->get('user-information/index' , [UserInformationController::class, 'index' ])
+    ->name('user.index');
 
 
 Route::resource('songs', SongController::class)

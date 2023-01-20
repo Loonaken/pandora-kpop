@@ -30,6 +30,9 @@
                     <x-nav-link :href="route('admin.groups.index')" :active="request()->routeIs('admin.groups.index')">
                         グループタグ
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                        ユーザー管理
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -99,6 +102,9 @@
             </x-nav-link>
             <x-nav-link :href="route('admin.groups.index')" :active="request()->routeIs('admin.groups.index')">
                 グループタグ
+            </x-nav-link>
+            <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
+                ユーザー管理
             </x-nav-link>
         </div>
 
