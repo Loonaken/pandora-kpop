@@ -16,7 +16,6 @@
                 <form method="POST" action="{{route('admin.emotions.name.update', ['name'=>$emotion->id ])}}" >
                   @csrf
                   @method('put')
-                  <div class="C">
                     {{-- 気分タグの名前編集 --}}
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative flex ">

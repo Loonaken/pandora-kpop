@@ -32,11 +32,12 @@ Route::get('/', function () {
     return view('admin.welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth:admin', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserInformationController::class, 'dashboard'])
+->middleware(['auth:admin', 'verified'])->name('dashboard');
 
-
+Route::get('user-information/index' , [UserInformationController::class, 'index' ])
+    ->middleware('auth:admin')
+    ->name('user.index');
 
 Route::resource('images', ImageController::class)
     ->middleware('auth:admin')->except(['show']);
@@ -89,10 +90,6 @@ Route::middleware('auth:admin')->group(function () {
     Route::delete('groups/{song}/song', [GroupController::class, 'song_destroy'])
     ->name('groups.song.destroy');
 });
-
-Route::middleware('auth:admin')
-    ->get('user-information/index' , [UserInformationController::class, 'index' ])
-    ->name('user.index');
 
 
 Route::resource('songs', SongController::class)

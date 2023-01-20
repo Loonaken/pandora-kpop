@@ -6,29 +6,29 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('admin.dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <x-application-logo class="block h-12 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                        {{ __('Dashboard') }}
+                        ダッシュボード
                     </x-nav-link>
                     <x-nav-link :href="route('admin.images.index')" :active="request()->routeIs('admin.images.index')">
-                        画像管理
+                        画像
                     </x-nav-link>
                     <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
-                        曲の管理
+                        曲
                     </x-nav-link>
                     <x-nav-link :href="route('admin.emotions.index')" :active="request()->routeIs('admin.emotions.index')">
-                        気分タグ
+                        気分
                     </x-nav-link>
                     <x-nav-link :href="route('admin.periods.index')" :active="request()->routeIs('admin.periods.index')">
-                        年代タグ
+                        年代
                     </x-nav-link>
                     <x-nav-link :href="route('admin.groups.index')" :active="request()->routeIs('admin.groups.index')">
-                        グループタグ
+                        グループ
                     </x-nav-link>
                     <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                         ユーザー管理
@@ -63,7 +63,7 @@
                             <x-dropdown-link :href="route('admin.logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                ログアウト
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -85,23 +85,23 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                ダッシュボード
+            </x-nav-link>
             <x-nav-link :href="route('admin.images.index')" :active="request()->routeIs('admin.images.index')">
-                画像管理
+                画像
             </x-nav-link>
             <x-nav-link :href="route('admin.songs.index')" :active="request()->routeIs('admin.songs.index')">
-                曲の管理
+                曲
             </x-nav-link>
             <x-nav-link :href="route('admin.emotions.index')" :active="request()->routeIs('admin.emotions.index')">
-                気分タグ
+                気分
             </x-nav-link>
             <x-nav-link :href="route('admin.periods.index')" :active="request()->routeIs('admin.periods.index')">
-                年代タグ
+                年代
             </x-nav-link>
             <x-nav-link :href="route('admin.groups.index')" :active="request()->routeIs('admin.groups.index')">
-                グループタグ
+                グループ
             </x-nav-link>
             <x-nav-link :href="route('admin.user.index')" :active="request()->routeIs('admin.user.index')">
                 ユーザー管理
@@ -127,7 +127,7 @@
                     <x-responsive-nav-link :href="route('admin.logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        ログアウト
                     </x-responsive-nav-link>
                 </form>
             </div>
