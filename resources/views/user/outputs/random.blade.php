@@ -23,13 +23,13 @@
                 <section class="text-gray-600 body-font overflow-hidden">
                   <div class="container mt-4 py-8 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap items-center ">
-                      <div class="basis-1/3 pr-4 -mt-12">
+                      <div class="basis-1/3 -mt-12 hover:border-4 hover:border-lime-300 transition delay-100 ease-in-out">
                         <a href="{{$song->youtube_link}}">
-                        <x-thumbnail :filename="$song->image->filename" type="songs" class="mb-0" />
+                        <x-thumbnail :filename="$song->image->filename" type="songs" class="mb-0  " />
                         </a>
                       </div>
 
-                      <div class="basis-2/3 pl-4">
+                      <div class="basis-2/3 pl-8">
                         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{$song->group->name}}</h1>
                         <p class="leading-relaxed"> {{$song->information}} </p>
                         <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
@@ -43,7 +43,7 @@
                 </section>
                 {{-- fin song --}}
 
-                
+
 
                 {{-- group --}}
 
