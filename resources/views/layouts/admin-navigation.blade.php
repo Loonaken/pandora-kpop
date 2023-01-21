@@ -11,6 +11,7 @@
                 </div>
 
                 <!-- Navigation Links -->
+                @auth('admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         ダッシュボード
@@ -34,6 +35,7 @@
                         ユーザー管理
                     </x-nav-link>
                 </div>
+                @endauth
             </div>
 
             <!-- Settings Dropdown -->
@@ -83,6 +85,7 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
+    @auth('admin')
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
@@ -107,6 +110,7 @@
                 ユーザー管理
             </x-nav-link>
         </div>
+        @endauth
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
