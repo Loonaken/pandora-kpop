@@ -17,7 +17,6 @@ class GroupController extends Controller
     {
         $this->middleware('auth:admin');
 
-
     }
 
     public function index(Request $request)
