@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Pandora-Kpop</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -44,12 +44,12 @@
                                             <div class="fix w-32 md:w-40 border-2 border-gray-300 p-4 mx-auto text-center hover:bg-yellow-200 transition-colors duration-300 ease-in-out">
                                                 <a href="{{ route('user.login') }}" >ログイン</a>
                                             </div>
-                                    @if (Route::has('user.register'))
+                                        @if (Route::has('user.register'))
                                             <div class="fix w-32 md:w-40 border-2 border-gray-300 p-4 mx-auto text-center hover:bg-yellow-200 transition-colors duration-300 ease-in-out">
                                                 <a href="{{ route('user.register') }}" >新規登録</a>
                                             </div>
                                         </div>
-                                    @endif
+                                        @endif
                                     @endauth
                                     @endif
                                 </div>
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-            {{-- fin main --}}
+                {{-- fin main --}}
         </div>
     </body>
 </html>
