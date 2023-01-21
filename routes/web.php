@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\OutputController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,15 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('user.dashboard');
 })->middleware(['auth:users', 'verified'])->name('dashboard');
+
+Route::middleware('auth:users')->group(function () {
+    Route::get('outputs/random', [OutputController::class, 'random'])
+    ->name('outputs.random');
+    Route::get('outputs/create', [OutputController::class, 'create'])
+    ->name('outputs.create');
+    Route::get('outputs/show', [OutputController::class, 'show'])
+    ->name('outputs.show');
+});
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
