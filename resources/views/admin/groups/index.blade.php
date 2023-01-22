@@ -19,10 +19,10 @@
                     <form method="get" action="{{route('admin.groups.index' )}}" >
                       {{-- @if ($request_type === null) --}}
                         <div class="flex justify-center mb-2">
-                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
+                          <input type="radio"  name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
                           <label for="male" class=" grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
                             男性アーティスト</label>
-                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
+                          <input type="radio"  name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
                           <label for="female" class="grow text-center border-2 py-3  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
                             女性アーティスト</label>
                         </div>

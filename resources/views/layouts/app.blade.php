@@ -17,6 +17,10 @@
             input[type=radio]{
                 display:none;
             }
+            input:checked + label {
+    background: orange;
+    font-weight: 500;
+    color: #fff;
         </style>
     </head>
     <body class="font-sans antialiased">
@@ -30,7 +34,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="">
-                    <div class=" tracking-wider w-48 lg:w-452 mt-4 mx-auto text-center py-2 px-2 -mb-10 border-4 border-gray-400 ">
+                    <div class=" tracking-wider w-48 lg:w-45 mt-4 mx-auto text-center py-2 px-2 -mb-10 border-4 border-gray-400 ">
                         {{ $header }}
                     </div>
                 </header>
