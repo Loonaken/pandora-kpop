@@ -41,6 +41,16 @@
                           </select>
                         </div>
                       </div>
+                      @if ($errors->any())
+                      <div class="text-red-600 text-center text-bold" role="alert">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                      @endif
+
 
                       {{-- fin 年代タグで使用されている曲一覧 --}}
 

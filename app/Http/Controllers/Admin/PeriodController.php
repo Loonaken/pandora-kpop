@@ -97,6 +97,10 @@ class PeriodController extends Controller
 
     public function song_store(Request $request, $id)
     {
+        $request->validate([
+            'song_ids'=>'required',
+        ]);
+
         $song_ids = $request->song_ids;
 
         // リクエストで選択された曲の年代タグを該当の年代タグに差し替える
