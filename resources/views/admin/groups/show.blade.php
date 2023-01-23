@@ -79,7 +79,7 @@
                           @foreach ($songs as $song)
                           <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
                             <div class=" rounded-md p-4">
-                              <form method="POST" action="{{route('admin.groups.song.destroy', ['song'=>$song->id])}}" >
+                              <form id="delete_{{$song->id}}"  method="POST"  onclick="deletePost(this)" action="{{route('admin.groups.song.destroy', ['song'=>$song->id])}}" >
                                 @csrf
                                 @method('delete')
                           <x-original.registered_song_show :song="$song" />
