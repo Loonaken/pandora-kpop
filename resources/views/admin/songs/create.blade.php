@@ -51,6 +51,9 @@
                         <div class="relative">
                           <p class="leading-7 text-sm text-gray-600">グループ名</p>
                           <select name="group">
+                            <option value = "">
+                              選択してください
+                            </option>
                             @foreach ($groups as $group)
                             <option value="{{$group->id}}">
                               {{$group->name}}
@@ -66,6 +69,9 @@
                         <div class="relative">
                           <p class="leading-7 text-sm text-gray-600">気分タグ</p>
                           <select name="emotion">
+                            <option value = "">
+                              選択してください
+                            </option>
                             @foreach ($emotions as $emotion)
                             <option value="{{$emotion->id}}">
                               {{$emotion->name}}
@@ -81,6 +87,9 @@
                         <div class="relative">
                           <p class="leading-7 text-sm text-gray-600">年代タグ</p>
                           <select name="period">
+                            <option value = "">
+                              選択してください
+                            </option>
                             @foreach ($periods as $period)
                             <option value="{{$period->id}}">
                               {{$period->term}}

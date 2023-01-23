@@ -44,6 +44,9 @@
                             </div>
                             <div>
                               <select name="type">
+                                <option value = "">
+                                  選択してください
+                                </option>
                                 <option value="{{ \Constant::GROUP_LIST['male']}}">
                                   1, 男性アーティスト
                                 </option>
