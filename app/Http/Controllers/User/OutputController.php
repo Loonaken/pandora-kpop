@@ -44,6 +44,8 @@ class OutputController extends Controller
         $period=$request->period;
         $group_type=$request->type;
 
+        
+
         return view ('user.outputs.show', compact('emotion', 'period', 'group_type'));
     }
 

@@ -35,7 +35,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [UserInformationController::class, 'dashboard'])
 ->middleware(['auth:admin', 'verified'])->name('dashboard');
 
-Route::get('user-information/index' , [UserInformationController::class, 'index' ])
+Route::get('user-info' , [UserInformationController::class, 'index' ])
     ->middleware('auth:admin')
     ->name('user.index');
 

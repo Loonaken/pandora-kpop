@@ -22,7 +22,7 @@
                             <group class="inline-radio" >
                               <div class="flex space-x-2">
                                 @foreach ($emotions as $emotion)
-                                  <input type="radio" id="{{$emotion->name}}" name="emotion" value="{{$emotion->id}}" required>
+                                  <input type="radio" id="{{$emotion->name}}" name="emotion" value="{{$emotion->id}}" >
                                   <label for="{{$emotion->name}}" class=" text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
                                     {{$emotion->name}}</label>
                                     @endforeach
@@ -40,7 +40,7 @@
                               <p class="leading-7 text-base ">曲の年代を選んでください</p>
                               <span class="text-sm text-gray-500 pb-2">＊1つのみ</span>
                               <div class="border-2 border-gray-200 shadow-md p-2">
-                                <group class="inline-radio" required>
+                                <group class="inline-radio" >
                                   <div class="flex space-x-2">
                                     @foreach ($periods as $period)
                                       <input type="radio" id="{{$period->term}}" name="period" value="{{$period->id}}" required >
@@ -58,7 +58,7 @@
                         <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
                           <p class="leading-7 text-base ">アーティストを選んでください</p>
                           <x-input-error :messages="$errors->get('type')" class="mt-2" />
-                            <group class="inline-radio" required>
+                            <group class="inline-radio" >
                             <div class="flex justify-center mb-2">
                               <input type="radio" id="male" name="type" value="{{\Constant::GROUP_LIST['male']}}" required>
                               <label for="male" class=" grow text-center border-2 py-3  border-orange-400 rounded shadow-md  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
