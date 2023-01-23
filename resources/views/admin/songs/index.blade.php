@@ -9,16 +9,16 @@
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
-                <div class="flex justify-end mb-4 border-b-2 border-gray-500">
-                  <button onclick="location.href='{{route('admin.songs.create')}}'" class="text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">新規登録</button>
-                </div>
+                <x-original.create onclick="location.href='{{route('admin.songs.create')}}'" />
                 {{-- Contents --}}
                 <x-flash-message status="session('status')" />
                 <div class="flex flex-wrap">
                   @foreach ($songs as $song)
                   <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
                     <a href="{{route('admin.songs.edit' , ['song'=>$song->id] )}}">
-                      <x-simple_show :song="$song" />
+                      <div class="border-2 border-lime-400 hover:border-cyan-300 ">
+                      <x-original.simple-show :song="$song" />
+                      </div>
                     </a>
                   </div>
                   @endforeach

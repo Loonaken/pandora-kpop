@@ -26,9 +26,9 @@
                         </div>
                       </div>
 
-                      <div class="flex p-2 w-full">
-                        <button type="button" onclick="location.href='{{route('admin.images.index')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                        <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">更新</button>
+                      <div class="flex justify-around items-center p-2 w-full">
+                        <x-original.return onclick="location.href='{{route('admin.images.index')}}'" />
+                        <x-original.action action=更新 />
                     </div>
                 </form>
               </div>

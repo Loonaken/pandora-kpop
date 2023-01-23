@@ -39,7 +39,7 @@
                           @if(!empty($songs->toArray()))
                           @foreach ($songs as $song)
                             <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-                          <x-simple_show :song="$song" />
+                              <x-original.simple-show :song="$song" />
                             </div>
                           @endforeach
                           @endif
@@ -53,10 +53,10 @@
                   </div>
                       {{-- fin 気分タグで使用されている曲一覧 --}}
                     </div>
-                    <div class="flex p-2 w-full">
-                        <button type="button" onclick="location.href='{{route('admin.emotions.index')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                        <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">更新</button>
-                    </div>
+                    <div class="flex justify-around items-center p-2 mt-12 w-full">
+                      <x-original.return onclick="location.href='{{route('admin.emotions.index')}}'" />
+                      <x-original.action action=更新 />
+                  </div>
                 </form>
 
                 <div class="text-center flex justify-center">

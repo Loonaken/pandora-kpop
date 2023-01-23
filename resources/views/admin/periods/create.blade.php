@@ -26,7 +26,7 @@
                     <div class="my-4">
                       <table class="border-collapse border border-slate-400 mx-auto" id="dynamicAddRemove">
                         <tr>
-                            <th class="bg-blue-300 md:w-3/6 py-2">年代タグ</th>
+                            <th class="bg-blue-300 md:w-3/6 py-2">年代</th>
                             <th class="bg-yellow-100 md:w-2/6 py-2">表示順</th>
                             <th class="bg-gray-300 md:w-1/6 py-2">操作</th>
                         </tr>
@@ -41,11 +41,10 @@
 
                     <p class="text-center my-4 text-gray-500">※年代の記入欄は空白にしないでください</p>
 
-                      <div class="p-2 mt-8 mb-2 w-full lg:w-2/3 mx-auto ">
-                      <div class="flex p-2 w-full">
-                        <button type="button" onclick="location.href='{{route('admin.periods.index')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                        <button type="submit" class="flex mx-auto text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg">登録</button>
-                    </div>
+                        <div class="flex justify-around items-center p-2 w-full">
+                            <x-original.return onclick="location.href='{{route('admin.periods.index')}}'" />
+                            <x-original.action action=追加 />
+                        </div>
                 </form>
               </div>
           </div>
