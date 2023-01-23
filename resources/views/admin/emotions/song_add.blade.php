@@ -11,7 +11,6 @@
               <div class="p-6 text-gray-900">
                 {{-- Contents --}}
                 <x-flash-message status="session('status')" />
-
                   <div class="my-4">
                     {{-- 気分タグの名前編集 --}}
                     <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-4 rounded-md focus:outline-none mb-4">
@@ -28,6 +27,7 @@
                         {{-- 上記の$periodはページの年代タグ --}}
                         @csrf
                         @method('put')
+
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto ">
                         <div class="relative">
                           <label for="emotion_id" class="leading-7 text-sm text-gray-600">曲の選択　(複数選択が可能です。)</label><br>
@@ -41,6 +41,16 @@
                           </select>
                         </div>
                       </div>
+                      @if ($errors->any())
+                      <div class="text-red-600 text-center text-bold" role="alert">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                      @endif
+
                       {{-- fin 気分タグで使用されている曲一覧 --}}
 
 
