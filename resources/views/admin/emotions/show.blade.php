@@ -15,9 +15,9 @@
 
                   <div class="my-4">
                     {{-- 気分タグの名前編集 --}}
-                    <div class=" w-2/3 max-w-2xl mx-auto bg-pink-400 border-0 p-4 rounded-md focus:outline-none mb-4">
-                    <div class="text-white text-center rounded text-lg mb-2">タグ名: {{$emotion->name}}</div>
-                    <div class="text-white text-center rounded text-lg ">表示順: {{$emotion->sort_order}}</div>
+                    <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-4 rounded-md focus:outline-none mb-4">
+                    <div class="text-black text-center rounded text-xl  mb-2">タグ名: {{$emotion->name}}</div>
+                    <div class="text-black text-center rounded text-xl ">表示順: {{$emotion->sort_order}}</div>
                     </div>
                   <div class="text-center flex justify-center">
                     <form id="delete_{{$emotion->id}}" action="{{route('admin.emotions.destroy' , ['emotion'=>$emotion->id])}}" method="post">
@@ -32,11 +32,10 @@
                       {{-- fin  気分タグの名前編集 --}}
 
                       {{-- 気分タグで使用されている曲一覧 --}}
-                      <div class="p-2 my-4 w-full mx-auto bg-blue-300/25">
+                      <div class="p-2 my-4 w-full mx-auto">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
-                        <div class="flex justify-end mb-4 border-b-2 border-gray-500">
-                          <button onclick="location.href='{{route('admin.emotions.song.add', ['song'=>$emotion->id])}}'" class="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">追加</button>
-                        </div>
+                        <x-original.create create="曲登録" onclick="location.href='{{route('admin.emotions.song.add', ['song'=>$emotion->id])}}'" />
+
 
                         {{-- 登録曲一覧 --}}
                         <div class="flex flex-wrap">
@@ -46,7 +45,7 @@
                             <div class=" rounded-md p-4">
                                   <form method="POST" action="{{route('admin.emotions.song.destroy', ['song'=>$song->id])}}" >
                                     @csrf
-                          <x-registered_song_show :song="$song" />
+                          <x-original.registered_song_show :song="$song" />
                             </div>
                           </div>
                           @endforeach

@@ -12,7 +12,7 @@
           @foreach ($images as $image)
           @if (!is_null($image->title))
               <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-                <div class=" rounded-md p-4">
+                <div class=" rounded-md p-4 cursor-pointer">
                   <img class="image"
                   data-id="{{ $name }}_{{ $image->id }}"
                   data-file="{{$image->filename}}"
@@ -29,7 +29,7 @@
               </div>
               @elseif(is_null($image->title))
               <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-            <div class=" rounded-md p-4">
+            <div class=" rounded-md p-4 cursor-pointer">
               <img class="image"
               data-id="{{ $name }}_{{ $image->id }}"
               data-file="{{$image->filename}}"
@@ -95,8 +95,8 @@
 .modal__container {
   background-color: #fff;
   padding: 30px;
-  max-width: 500px;
-  max-height: 3000px;
+  max-width: 700px;
+  max-height: 1000px;
   border-radius:4px;
   overflow-y: auto;
   box-sizing: border-box;
@@ -138,7 +138,7 @@
   padding-right: 1rem;
   padding-top: .5rem;
   padding-bottom: .5rem;
-  background-color: #e6e6e6;
+  background-color: white;
   color: rgba(0,0,0,.8);
   border-radius: .25rem;
   border-style: none;
@@ -172,15 +172,17 @@
 
 .modal__btn {
 width: 200px;
-border: 1px solid #ccc;
+border: 2px solid limegreen;
 border-radius: 4px;
 text-align: center;
 padding: 12px;
 margin: 16px auto 0;
 --tw-bg-opacity: 1;
-background-color: rgba(245, 158, 11, var(--tw-bg-opacity));
-color: white;
+color: black;
 }
+
+
+
 
 .wrapper {
 width: 100%;
@@ -189,6 +191,15 @@ display: flex;
 flex-wrap: wrap;
 align-items: center;
 justify-content: center;
+}
+
+.image{
+  border-width:4px;
+  border-color:gainsboro;
+}
+
+.image:hover{
+  border-color:cyan;
 }
 
 /**************************\

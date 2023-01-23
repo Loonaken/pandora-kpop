@@ -15,9 +15,9 @@
 
                   <div class="my-4">
                     {{-- 年代タグの名前編集 --}}
-                    <div class=" w-2/3 max-w-2xl mx-auto bg-pink-400 border-0 p-4 rounded-md focus:outline-none mb-4">
-                    <div class="text-white text-center rounded text-lg mb-2">タグ名: {{$period->term}}</div>
-                    <div class="text-white text-center rounded text-lg ">表示順: {{$period->sort_order}}</div>
+                    <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-4 rounded-md focus:outline-none mb-4">
+                    <div class="text-black text-center rounded text-xl mb-2">年代: {{$period->term}}年</div>
+                    <div class="text-black text-center rounded text-xl ">表示順: {{$period->sort_order}}</div>
                     </div>
                     <div class="text-center flex justify-center">
                       <form id="delete_{{$period->id}}" action="{{route('admin.periods.destroy' , ['period'=>$period->id])}}" method="post">
@@ -33,11 +33,9 @@
                       {{-- fin  年代タグの名前編集 --}}
 
                       {{-- 登録曲追加 --}}
-                      <div class="p-2 my-4 w-full mx-auto bg-blue-300/25">
+                      <div class="p-2 my-4 w-full mx-auto ">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
-                        <div class="flex justify-end mb-4 border-b-2 border-gray-500">
-                          <button onclick="location.href='{{route('admin.periods.song.add', ['song'=>$period->id])}}'" class="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg mb-2 mr-4 ">追加</button>
-                        </div>
+                        <x-original.create create="曲登録" onclick="location.href='{{route('admin.periods.song.add', ['song'=>$period->id])}}'" />
                       {{-- fin 登録曲追加 --}}
 
                       {{-- 登録曲一覧 --}}
@@ -48,7 +46,7 @@
                           <div class=" rounded-md p-4">
                             <form method="POST" action="{{route('admin.periods.song.destroy', ['song'=>$song->id])}}" >
                               @csrf
-                        <x-registered_song_show :song="$song" />
+                        <x-original.registered_song_show :song="$song" />
                             </div>
                           </div>
                         @endforeach
@@ -68,9 +66,10 @@
 
 
                     </div>
-                    <div class="flex p-2 w-full">
-                        <button type="button" onclick="location.href='{{route('admin.periods.index')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                    </div>
+                    <div class="flex justify-around items-center p-2 w-full">
+                      <x-original.return onclick="location.href='{{route('admin.periods.index')}}'" />
+                  </div>
+
 
                 {{-- fin contents --}}
 
