@@ -43,7 +43,7 @@
                                 <group class="inline-radio" >
                                   <div class="flex space-x-2">
                                     @foreach ($periods as $period)
-                                      <input type="radio" id="{{$period->term}}" name="period" value="{{$period->id}}" required >
+                                      <input type="radio" id="{{$period->term}}" name="period" value="{{$period->id}}"  >
                                       <label for="{{$period->term}}" class=" text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
                                         {{$period->term}}</label>
                                         @endforeach
@@ -60,7 +60,7 @@
                           <x-input-error :messages="$errors->get('type')" class="mt-2" />
                             <group class="inline-radio" >
                             <div class="flex justify-center mb-2">
-                              <input type="radio" id="male" name="type" value="{{\Constant::GROUP_LIST['male']}}" required>
+                              <input type="radio" id="male" name="type" value="{{\Constant::GROUP_LIST['male']}}" >
                               <label for="male" class=" grow text-center border-2 py-3  border-orange-400 rounded shadow-md  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
                                 男性アーティスト</label>
                               <input type="radio" id="female" name="type" value="{{\Constant::GROUP_LIST['female']}}" >
