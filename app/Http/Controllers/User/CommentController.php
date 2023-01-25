@@ -53,23 +53,39 @@ class CommentController extends Controller
 
     }
 
-    public function show($id)
+    public function edit(Comment $comment)
     {
-        //
+        $this->authorize($comment);
+        $data = ['comment' => $comment];
+
+
+        return view ('user.comments.edit', compact('data', 'comment'));
     }
 
-    public function edit($id)
+    public function update(CommentRequest $request, Comment $comment)
     {
-        //
+        $this->authorize($comment);
+
+
+        $comment->title = $request->title;
+        $comment->body = $request->body;
+        $comment->save();
+
+        return redirect()
+        ->route('user.comments.index')
+        ->with(['message'=> 'コメントが更新されました。' , 'status'=>'info']);
+
+
     }
 
-    public function update(Request $request, $id)
+    public function destroy(Comment $comment)
     {
-        //
-    }
+        $this->authorize($comment);
+        $comment->delete();
 
-    public function destroy($id)
-    {
-        //
+        return redirect()
+        ->route('user.comments.index')
+        ->with(['message'=> 'コメントが削除されました。' , 'status'=>'error']);
+
     }
 }

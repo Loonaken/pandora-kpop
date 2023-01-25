@@ -46,7 +46,7 @@ Route::middleware('auth:users')->group(function () {
 
 
 Route::resource('comments', CommentController::class)
-    ->middleware('auth:users');
+    ->middleware('auth:users')->except('show');
 
 
 
