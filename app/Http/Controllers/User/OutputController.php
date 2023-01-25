@@ -94,4 +94,6 @@ class OutputController extends Controller
         return view ('user.outputs.show', compact('emotion', 'period', 'type', 'songs', 'view_emotion', 'view_period'));
     }
 
+
+    
 }

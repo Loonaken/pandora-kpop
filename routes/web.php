@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\OutputController;
+use App\Http\Controllers\User\HashtagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,17 @@ Route::middleware('auth:users')->group(function () {
     ->name('outputs.random');
     Route::get('outputs/create', [OutputController::class, 'create'])
     ->name('outputs.create');
-    Route::get('outputs/show', [OutputController::class, 'show'])
+    Route::post('outputs/show', [OutputController::class, 'show'])
     ->name('outputs.show');
+
+    Route::get('hashtags/refer', [HashtagController::class, 'refer'])
+    ->name('hashtags.refer');
+    Route::get('hashtags/emotion/{emotion}', [HashtagController::class, 'emotion'])
+    ->name('hashtags.emotion');
+    Route::get('hashtags/period/{period}', [HashtagController::class, 'period'])
+    ->name('hashtags.period');
+    Route::get('hashtags/group/{group}', [HashtagController::class, 'group'])
+    ->name('hashtags.group');
 });
 
 // Route::middleware('auth')->group(function () {

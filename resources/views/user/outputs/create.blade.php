@@ -10,7 +10,8 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
                 {{-- Contents --}}
-                <form method="get" action="{{route('user.outputs.show')}}" >
+                <form method="post" action="{{route('user.outputs.show')}}" >
+                  @csrf
                   <div class="my-4">
                     {{-- emotionタグ選択 --}}
                     <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
