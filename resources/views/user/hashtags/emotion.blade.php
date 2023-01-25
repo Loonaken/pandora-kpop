@@ -1,33 +1,13 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      あなたが聞きたかった曲
-      </h2>
-  </x-slot>
 
   <div class="py-12">
       <div class="max-w-7xl mx-auto px-2 lg:px-4">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="py-6 text-gray-900">
                 {{-- Contents --}}
-                @foreach ($songs as $song)
-                @if ($loop->index == 0)
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
-                  <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$emotion ? $song->emotion->name : '気分タグ -> 未選択'}}</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$period ? $song->period->term : '年代 -> 未選択' }}</div>
-                  <div class="text-black text-center rounded text-base  mb-2">
-                    @if ($type == 1)
-                    # 男性アーティスト
-                    @elseif($type == 2)
-                    # 女性アーティスト
-                    @else
-                    # アーティスト種類 -> 未選択
-                    @endif
+                  <div class="text-black text-center rounded text-base  mb-2"># {{$emotion->name}}</div>
                   </div>
-                  </div>
-                  @endif
-                @endforeach
 
                 {{-- song --}}
 
@@ -65,22 +45,8 @@
 
                 {{-- 0 Hit --}}
                 @if (empty($songs->toArray()))
-                <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
-                  <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$emotion ? $view_emotion->name : '気分タグ -> 未選択'}}</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$period ? $view_period->term : '年代 -> 未選択' }}</div>
-                  <div class="text-black text-center rounded text-base  mb-2">
-                    @if ($type == 1)
-                    # 男性アーティスト
-                    @elseif($type == 2)
-                    # 女性アーティスト
-                    @else
-                    # アーティスト種類 -> 未選択
-                    @endif
-                  </div>
-                  </div>
                   <div class="m-8 mx-auto ">
-                    <p class="text-xl text-center text-gray-500">あなたが聞きたかった曲が見つかりませんでした。</p>
+                    <p class="text-xl text-center text-gray-500">このハッシュタグに当てはまる曲は見つかりませんでした。</p>
                   </div>
                 @endif
                 {{--fin  0 Hit --}}
@@ -88,8 +54,8 @@
 
                 {{-- return button --}}
                 <div class="flex justify-around items-center p-2 w-full">
-                  <x-original.return onclick="location.href='{{route('user.dashboard')}}'" />
-                  <x-original.action onclick="location.href='{{route('user.outputs.create')}}'" action=やり直す！ />
+                  <x-original.return return=ホーム onclick="location.href='{{route('user.dashboard')}}'" />
+                  <x-original.action onclick="location.href='{{route('user.hashtags.refer')}}'" action=#再選択 />
               </div>
                 {{-- fin return button --}}
 

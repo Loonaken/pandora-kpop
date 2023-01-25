@@ -29,7 +29,7 @@
                         </div>
                         <div class="flex justify-around mb-4">
                             <div class="basis-1/2 border-2 border-gray-300 p-4   text-center hover:bg-lime-200 transition-colors duration-300 ease-in-out ">
-                                <a href="#">
+                                <a href="{{route('user.hashtags.refer')}}">
                                         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class=" ml-3 text-indigo-500 w-20 h-20 mb-3 inline-block" viewBox="0 0 30 30">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5" />
                                         </svg>

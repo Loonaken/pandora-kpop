@@ -9,8 +9,7 @@ use App\Models\Image;
 use App\Models\Emotion;
 use App\Models\Period;
 use App\Models\Group;
-
-
+use Closure;
 
 class OutputController extends Controller
 {
@@ -38,15 +37,63 @@ class OutputController extends Controller
 
     public function show(Request $request){
 
-        // dd($request);
 
-        $emotion=$request->emotion;
-        $period=$request->period;
-        $group_type=$request->type;
+        $request->validate([
+            'emotion'=>'nullable',
+            'period'=>'nullable',
+            'type'=>'nullable',
+        ]);
 
-        
+        // 以下の変数にはIdが入る
 
-        return view ('user.outputs.show', compact('emotion', 'period', 'group_type'));
+        $emotion= $request->emotion;
+        $period = $request->period;
+        $type = $request->type;
+
+
+        $view_emotion = Emotion::findOrFail($emotion);
+        $view_period = Period::findOrFail($emotion);
+
+        $songs = Song::where('emotion_id', $emotion)
+        ->where('period_id', $period)
+        ->whereHas('group', function($q)use($type){
+            $q->where('type', $type);
+        })->get();
+
+        if($emotion == null){
+            $songs = Song::where('period_id', $period)
+            ->whereHas('group', function($q)use($type){
+                $q->where('type', $type);
+            })->get();
+        }
+        if($period == null){
+            $songs = Song::where('emotion_id', $emotion)
+            ->whereHas('group', function($q)use($type){
+                $q->where('type', $type);
+            })->get();
+        }
+        if ($type == null){
+            $songs = Song::where('emotion_id', $emotion)
+            ->where('period_id', $period)
+            ->get();
+        }
+        if($emotion === null && $period === null){
+            $songs = Song::whereHas('group', function($q)use($type){
+                $q->where('type', $type);
+            })->get();
+        }
+        if($period === null && $type === null){
+            $songs = Song::where('emotion_id', $emotion)
+            ->get();
+        }
+        if($type === null && $emotion === null){
+            $songs = Song::where('period_id', $period)
+            ->get();
+        }
+
+        return view ('user.outputs.show', compact('emotion', 'period', 'type', 'songs', 'view_emotion', 'view_period'));
     }
 
+
+    
 }
