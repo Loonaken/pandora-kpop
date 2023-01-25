@@ -78,8 +78,14 @@ class CommentController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy(Comment $comment)
     {
-        //
+        $this->authorize($comment);
+        $comment->delete();
+
+        return redirect()
+        ->route('user.comments.index')
+        ->with(['message'=> 'コメントが削除されました。' , 'status'=>'error']);
+
     }
 }

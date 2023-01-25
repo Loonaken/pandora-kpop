@@ -24,8 +24,9 @@
                           <a href="{{route('user.comments.edit', ['comment'=>$comment->id])}}" class="border-2 border-lime-500 hover:border-cyan-400 p-2 focus:outline-none rounded text-lg -my-2 transition duration-200 ease-in-out ">
                           編集
                         </a>
-                      </div>
-                      @endcan
+                        </div>
+                        @endcan
+
                       <div class="flex">
                         <div class="flex-none w-16 h-16 sm:mr-8 sm:mb-0 mb-4 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 flex-shrink-0">
                           <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
