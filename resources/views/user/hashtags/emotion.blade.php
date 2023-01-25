@@ -6,7 +6,7 @@
               <div class="py-6 text-gray-900">
                 {{-- Contents --}}
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$emotion->name}}</div>
+                  <div class="text-black text-center rounded text-xl mb-2 pt-2"># {{$emotion->name}}</div>
                   </div>
 
                 {{-- song --}}
@@ -65,16 +65,5 @@
           </div>
       </div>
   </div>
-
-  <script>
-
-    function deletePost(e) {
-  'use strict';
-  if (confirm('曲の「全ての情報」が削除されます。本当に削除してもいいですか?')) {
-  document.getElementById('delete_' + e.dataset.id).submit();
-  }
-  }
-
-  </script>
 
 </x-app-layout>

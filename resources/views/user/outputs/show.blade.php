@@ -88,7 +88,7 @@
 
                 {{-- return button --}}
                 <div class="flex justify-around items-center p-2 w-full">
-                  <x-original.return onclick="location.href='{{route('user.dashboard')}}'" />
+                  <x-original.return return=ホーム onclick="location.href='{{route('user.dashboard')}}'" />
                   <x-original.action onclick="location.href='{{route('user.outputs.create')}}'" action=やり直す！ />
               </div>
                 {{-- fin return button --}}

@@ -48,8 +48,7 @@ class HashtagController extends Controller
 
         $period = Period::findOrFail($request_period);
 
-        $songs = Song::where('period', $request_period)
-        ->orderBy('term', 'desc')
+        $songs = Song::where('period_id', $request_period)
         ->get();
 
         return view ('user.hashtags.period', compact('songs', 'period'));
@@ -61,7 +60,7 @@ class HashtagController extends Controller
 
         $group = Group::findOrFail($request_group);
 
-        $songs = Song::where('group', $request_group)
+        $songs = Song::where('group_id', $request_group)
         ->orderBy('name', 'asc')
         ->get();
 
