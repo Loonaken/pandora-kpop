@@ -41,7 +41,7 @@
 
                 <div class="flex justify-around items-center p-2 w-full">
                   <x-original.return onclick="location.href='{{route('user.comments.index')}}'" />
-                  <x-original.action action=登録 />
+                  <x-original.action action=更新 />
               </div>
             </form>
 
@@ -50,7 +50,7 @@
                   @csrf
                   @method('delete')
                   <div class="flex justify-center p-2">
-                  <button data-id="{{$comment->id}}" onclick="deletePost(this)"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-4 focus:outline-none  rounded text-lg mb-2 mx-2" >削除</button>
+                  <a href="#" data-id="{{$comment->id}}" onclick="deletePost(this)"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-4 focus:outline-none  rounded text-lg mb-2 mx-2" >削除</a>
                 </div>
               </form>
               @endcan
