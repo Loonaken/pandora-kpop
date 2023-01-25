@@ -40,7 +40,14 @@ Route::middleware('auth:users')->group(function () {
     ->name('hashtags.period');
     Route::get('hashtags/group/{group}', [HashtagController::class, 'group'])
     ->name('hashtags.group');
+
 });
+
+
+Route::resource('comments', CommentController::class)
+    ->middleware('auth:user');
+
+
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
