@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\OutputController;
 use App\Http\Controllers\User\HashtagController;
+use App\Http\Controllers\User\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::middleware('auth:users')->group(function () {
 
 
 Route::resource('comments', CommentController::class)
-    ->middleware('auth:user');
+    ->middleware('auth:users');
 
 
 
