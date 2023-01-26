@@ -26,7 +26,21 @@ class CommentController extends Controller
     {
         $comments = Comment::orderBy('created_at', 'desc')->get();
 
-        return view('user.comments.index', compact('comments'));
+        $user = User::where('id', Auth::id())->first();
+
+
+        return view('user.comments.index', compact('comments', 'user'));
+    }
+
+    public function show()
+    {
+
+        $comments = Comment::where('user_id', Auth::id())
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        return view ('user.comments.show', compact('comments'));
+
     }
 
     public function create()

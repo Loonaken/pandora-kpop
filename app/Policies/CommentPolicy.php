@@ -14,6 +14,11 @@ class CommentPolicy
         //
     }
 
+    public function view(User $user, Comment $comment)
+    {
+        return $user->id == $comment->user_id;
+    }
+
     public function update(User $user, Comment $comment)
     {
         return $user->id == $comment->user_id;
