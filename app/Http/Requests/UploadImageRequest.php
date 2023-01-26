@@ -6,28 +6,29 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class UploadImageRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
+
+
+/*
+出来ること
+    - アップロードする画像のvalidation
+コード説明・やり方
+    - validationで形式やサイズを指定している
+    - 単数、複数アップロードにも対応するため、[image][files.*.image]
+        の両方をルール登録している
+*/
+
     public function rules()
     {
         $rules = [
             'image' => ['image','mimes:jpg,jpeg,png','max:2048'],
             'files.*.image' => ['image','mimes:jpg,jpeg,png','max:2048'],
         ];
-        if($this->route==='owner.images.store'){
+        if($this->route==='admin.images.store'){
             $rules = array_merge($rules,[
                 'files' => 'required',
             ],);

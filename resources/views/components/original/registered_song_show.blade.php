@@ -1,6 +1,6 @@
 <x-original.delete />
 </form>
-<x-thumbnail :filename="$song->image->filename" type="songs" />
+<x-thumbnail :filename="$song->image->filename" />
 <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲ID{{$song->id}}</div>
 <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">グループ名{{$song->group->name}}</div>
 <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">曲名{{$song->name}}</div>

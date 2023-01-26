@@ -22,7 +22,7 @@
 
                     <div class="border-2 mt-4 border-gray-300 ">
                       <div class="w-1/2 lg:w-1/3 mx-auto border-4 my-2 border-gray-300">
-                        <x-thumbnail :filename="$group->image->filename" type="songs" class="mb-0" />
+                        <x-thumbnail :filename="$group->image->filename" class="mb-0" />
                       </div>
                       <div class="flex border-4 mx-24 md:mx-32 border-gray-400 ">
                         <div class="w-1/6 my-auto ">

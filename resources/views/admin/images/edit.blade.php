@@ -22,7 +22,7 @@
                       </div>
                       <div class="p-2 mb-2 w-1/2 mx-auto ">
                         <div class="border rounded-md p-4">
-                          <x-thumbnail :filename="$image->filename" type="songs" />
+                          <x-thumbnail :filename="$image->filename" />
                         </div>
                       </div>
 

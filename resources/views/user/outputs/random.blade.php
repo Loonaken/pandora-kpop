@@ -25,7 +25,7 @@
                     <div class="lg:w-4/5 mx-auto flex flex-wrap items-center border-b-2 border-gray-200 ">
                       <div class="basis-1/3 -mt-12 hover:border-4 hover:border-lime-300 transition delay-100 ease-in-out">
                         <a href="{{$song->youtube_link}}" target="_blank">
-                        <x-thumbnail :filename="$song->image->filename" type="songs" class="mb-0  " />
+                        <x-thumbnail :filename="$song->image->filename"  class="mb-0  " />
                         </a>
                       </div>
 
@@ -52,7 +52,7 @@
                 {{-- return button --}}
                 <div class="flex justify-around items-center p-2 w-full">
                   <x-original.return return=ホーム onclick="location.href='{{route('user.dashboard')}}'" />
-                  <x-original.action onclick="location.href='{{route('user.outputs.random')}}'" action=もう一回！ />
+                  <x-original.action onclick="location.href='{{route('user.outputs.random')}}'" action=もう />
               </div>
 
                 {{-- fin return button --}}

@@ -21,7 +21,7 @@
                               @method('delete')
                               <x-original.delete />
                             </form>
-                            <x-thumbnail :filename="$image->filename" type="songs" />
+                            <x-thumbnail :filename="$image->filename" />
                               <div class="border-x-2 border-b-2 -mt-4 border-lime-300 hover:border-cyan-300">
                               <a href="{{route('admin.images.edit' , ['image'=>$image->id] )}}" >
                             <div class="text-lg text-center  text-gray-500">{{$image->title ? $image->title : '登録なし' }}</div>

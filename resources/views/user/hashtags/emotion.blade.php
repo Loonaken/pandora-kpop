@@ -26,7 +26,7 @@
                         <div class="lg:w-4/5 mx-auto flex flex-wrap items-center ">
                           <div class="basis-1/3 hover:border-4 hover:border-lime-300 transition delay-100 ease-in-out">
                             <a href="{{$song->youtube_link}}" target="_blank">
-                            <x-thumbnail :filename="$song->image->filename" type="songs" class="mb-0  " />
+                            <x-thumbnail :filename="$song->image->filename"  class="mb-0  " />
                             </a>
                           </div>
 
