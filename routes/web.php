@@ -42,6 +42,8 @@ Route::middleware('auth:users')->group(function () {
     Route::get('hashtags/group/{group}', [HashtagController::class, 'group'])
     ->name('hashtags.group');
 
+    Route::get('comments/show', [CommentController::class, 'show'])
+    ->name('comments.show');
 });
 
 
