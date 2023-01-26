@@ -57,6 +57,9 @@
                 </div>
               </section>
 
+              <div class="flex justify-around items-center p-2 w-full">
+                <x-original.return onclick="location.href='{{route('user.comments.index')}}'" />
+              </div>
               {{-- fin content --}}
 
 

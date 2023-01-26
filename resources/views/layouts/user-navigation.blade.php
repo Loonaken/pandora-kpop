@@ -15,6 +15,12 @@
                     <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                         ホーム
                     </x-nav-link>
+                    <x-nav-link :href="route('user.hashtags.refer')" :active="request()->routeIs('user.hashtags.refer')">
+                        ハッシュタグ集
+                    </x-nav-link>
+                    <x-nav-link :href="route('user.comments.index')" :active="request()->routeIs('user.comments.index')">
+                        コメント
+                    </x-nav-link>
                 </div>
             </div>
 

@@ -53,6 +53,10 @@
                           <div class="basis-2/3 pl-8">
                             <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{$song->group->name}}</h1>
                             <p class="leading-relaxed"> {{$song->information}} </p>
+                            <div class="flex gap-4 mt-4">
+                              <p>#{{$song->emotion->name}}</p>
+                              <p>#{{$song->period->term}}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
