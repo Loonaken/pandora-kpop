@@ -63,7 +63,7 @@
                     {{-- fin group選択 --}}
 
                     <div class="flex justify-around items-center p-2 w-full">
-                      <x-original.return onclick="location.href='{{route('user.dashboard')}}'" />
+                      <x-original.return return=ホーム onclick="location.href='{{route('user.dashboard')}}'" />
                   </div>
                 </form>
 

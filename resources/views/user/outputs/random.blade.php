@@ -22,7 +22,7 @@
 
                 <section class="text-gray-600 body-font overflow-hidden">
                   <div class="container mt-4 py-8 mx-auto">
-                    <div class="lg:w-4/5 mx-auto flex flex-wrap items-center ">
+                    <div class="lg:w-4/5 mx-auto flex flex-wrap items-center border-b-2 border-gray-200 ">
                       <div class="basis-1/3 -mt-12 hover:border-4 hover:border-lime-300 transition delay-100 ease-in-out">
                         <a href="{{$song->youtube_link}}" target="_blank">
                         <x-thumbnail :filename="$song->image->filename" type="songs" class="mb-0  " />
@@ -32,10 +32,9 @@
                       <div class="basis-2/3 pl-8">
                         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{$song->group->name}}</h1>
                         <p class="leading-relaxed"> {{$song->information}} </p>
-                        <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-                          <div class="flex ml-6 items-center">
-
-                          </div>
+                        <div class="flex  gap-4 mt-4">
+                          <p>#{{$song->emotion->name}}</p>
+                          <p>#{{$song->period->term}}</p>
                         </div>
                       </div>
                     </div>
@@ -51,10 +50,11 @@
 
 
                 {{-- return button --}}
-                <div class="flex p-2 w-full justify-around">
-                  <button type="button" onclick="location.href='{{route('user.dashboard')}}'" class=" text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                  <button type="button" onclick="location.href='{{route('user.outputs.random')}}'" class=" text-black bg-orange-300 border-0 py-2 px-8 focus:outline-none hover:bg-orange-200 rounded text-lg">もう一度！</button>
-                </div>
+                <div class="flex justify-around items-center p-2 w-full">
+                  <x-original.return return=ホーム onclick="location.href='{{route('user.dashboard')}}'" />
+                  <x-original.action onclick="location.href='{{route('user.outputs.random')}}'" action=もう一回！ />
+              </div>
+
                 {{-- fin return button --}}
 
                 {{-- fin contents --}}
@@ -63,16 +63,5 @@
           </div>
       </div>
   </div>
-
-  <script>
-
-    function deletePost(e) {
-  'use strict';
-  if (confirm('曲の「全ての情報」が削除されます。本当に削除してもいいですか?')) {
-  document.getElementById('delete_' + e.dataset.id).submit();
-  }
-  }
-
-  </script>
 
 </x-app-layout>

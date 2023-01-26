@@ -24,13 +24,13 @@ class UserSeeder extends Seeder
                 'name'=>'btsFan',
                 'email'=>'btsFan@gmail.com',
                 'password'=>Hash::make('password123'),
-                'created_at'=>'2022/1/4 12:18:11'
+                'created_at'=>'2023/1/4 12:18:11'
             ],
             [
                 'name'=>'TwiceTaro',
                 'email'=>'taro@gmail.com',
                 'password'=>Hash::make('password123'),
-                'created_at'=>'2022/1/10 12:18:11'
+                'created_at'=>'2023/1/10 12:18:11'
             ],
         ]);
     }
