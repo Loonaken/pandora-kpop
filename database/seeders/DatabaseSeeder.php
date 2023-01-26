@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             SongSeeder::class,
             UserSeeder::class,
+            CommentSeeder::class,
         ]);
 
 
