@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PeriodController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\SongController;
 use App\Http\Controllers\Admin\UserInformationController;
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +47,19 @@ Route::resource('emotions', EmotionController::class)
     ->except(['edit' , 'update' ])
     ->middleware('auth:admin');
 
+Route::resource('periods', PeriodController::class)
+    ->except(['edit' , 'update' ])
+    ->middleware('auth:admin');
+
+Route::resource('groups', GroupController::class)
+    ->except(['destroy'])
+    ->middleware('auth:admin');
+
+Route::resource('songs', SongController::class)
+    ->middleware('auth:admin');
+
 Route::middleware('auth:admin')->group(function () {
+    // Emotion Route
     Route::get('emotions/{name}/name/edit', [EmotionController::class, 'name_edit'])
     ->name('emotions.name.edit');
     Route::put('emotions/{name}/name', [EmotionController::class, 'name_update'])
@@ -57,16 +70,9 @@ Route::middleware('auth:admin')->group(function () {
     ->name('emotions.song.store');
     Route::post('emotions/{song}/song/destroy', [EmotionController::class, 'song_destroy'])
     ->name('emotions.song.destroy');
+    // fin Emotion Route
 
-
-});
-
-Route::resource('periods', PeriodController::class)
-    ->except(['edit' , 'update' ])
-    ->middleware('auth:admin');
-
-
-Route::middleware('auth:admin')->group(function () {
+    // Period Route
     Route::get('periods/{term}/term/edit', [PeriodController::class, 'term_edit'])
     ->name('periods.term.edit');
     Route::put('periods/{term}/term', [PeriodController::class, 'term_update'])
@@ -77,23 +83,23 @@ Route::middleware('auth:admin')->group(function () {
     ->name('periods.song.store');
     Route::post('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
     ->name('periods.song.destroy');
+    // fin Period Route
 
-});
-
-Route::resource('groups', GroupController::class)
-    ->except(['destroy'])
-    ->middleware('auth:admin');
-
-Route::middleware('auth:admin')->group(function () {
+    // Group Route
     Route::delete('groups/{group}/group', [GroupController::class, 'group_destroy'])
     ->name('groups.group.destroy');
     Route::delete('groups/{song}/song', [GroupController::class, 'song_destroy'])
     ->name('groups.song.destroy');
+    // fin Group Route
+
+    // Profile Route
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // fin Profile Route
+
 });
 
-
-Route::resource('songs', SongController::class)
-    ->middleware('auth:admin');
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
