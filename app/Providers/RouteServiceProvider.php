@@ -20,11 +20,15 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/dashboard';
     public const ADMIN_HOME = '/admin/dashboard';
 
-    /**
-     * Define your route model bindings, pattern filters, and other route configuration.
-     *
-     * @return void
-     */
+	/*
+	出来ること
+        - ルートのPrefixをここで指定している。
+            管理者側Routeであれば接頭辞にadmin.
+            ユーザー側Routeであれば接頭辞にuser.
+	コード説明・やり方
+        - 接頭辞を定めることで命名が楽になる
+	*/
+
     public function boot()
     {
         $this->configureRateLimiting();
@@ -39,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
-            
+
             Route::prefix('/')
             ->as('user.')
             ->middleware('web')
