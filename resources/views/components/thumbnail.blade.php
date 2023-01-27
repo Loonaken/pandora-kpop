@@ -1,4 +1,4 @@
-@php
+{{-- @php
 
 if ($type === 'songs') {
   $path = 'storage/songs/';
@@ -8,7 +8,7 @@ if ($type === 'groups') {
 }
 
 
-@endphp
+@endphp --}}
 
 
 
@@ -17,7 +17,9 @@ if ($type === 'groups') {
 ]) }} >
   @if (empty($filename))
   <img src="{{ asset('images/no_image.jpg')}}">
+  
   @else
-  <img src="{{ asset($path . $filename)}}" >
+  <img src="{{ asset('storage/songs/' . $filename)}}" >
+  {{-- 画像がアップロードしたフォルダ(storage/songs/)の中の特定のファイルを選択している --}}
   @endif
 </div>

@@ -17,6 +17,8 @@
                         <div class="relative">
                           <label for="image" class="leading-7 text-sm text-gray-600">画像</label>
                           <input type="file" id="image" name="files[][image]" multiple accept="image/png,image/jpeg,image/jpg" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          {{-- name = 複数の画像選択を可能にするために[]で連想配列で渡す
+                          accept = jpg,jp,png形式のみを指定する --}}
                         </div>
                       </div>
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto ">
