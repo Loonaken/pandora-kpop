@@ -1,3 +1,6 @@
+{{-- Udemy>青木>マルチログイン機能
+    + Googleに載っている Laravel,ModalのGithubのソースを参考にした --}}
+
 <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
   <div class="modal__overlay z-50" tabindex="-1" data-micromodal-close>
     <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
@@ -9,6 +12,12 @@
       </header>
       <main class="modal__content" id="modal-1-content">
         <div class="flex flex-wrap">
+          {{--
+            - foreach.. 画像選択画面にて全ての画像を表示させたいので、
+              画像データ$imagesをforeachにかけて表示させている
+            - 1つ目のif.. タイトルがある場合は画像の下にタイトルを表示させる
+            - data-id/file/path/.. Javascriptにデータを渡すために必要な情報である
+          --}}
           @foreach ($images as $image)
           @if (!is_null($image->title))
               <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
@@ -55,6 +64,7 @@
   </div>
 </div>
 
+{{-- 選択したのちに表示されるコードである --}}
 <div class="flex justify-around items-center mb-4">
   <a data-micromodal-trigger="modal-1" href="javascript:;" class="modal__btn">画像を選択してください</a>
   <div class="w-1/4">

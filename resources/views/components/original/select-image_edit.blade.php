@@ -1,3 +1,10 @@
+{{--
+  - $currentImage.. $song->image->filenameを指しており、
+      曲に保存されているfilenameを取得している
+  - #currnetId.. 曲の画像idである
+
+  --}}
+
 @php
 $cImage = $currentImage ?? '' ;
 $cId = $currentId ?? '' ;
@@ -60,6 +67,10 @@ $cId = $currentId ?? '' ;
     </div>
   </div>
 </div>
+
+{{--
+  - <img id>.. Create画面とは違い、すでに格納されてある画像のfilenameをassetしている
+  --}}
 
 <div class="flex justify-around items-center mb-4">
   <a data-micromodal-trigger="modal-1" href="javascript:;" class="modal__btn">画像を選択してください</a>

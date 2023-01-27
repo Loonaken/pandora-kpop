@@ -28,6 +28,9 @@ class SongController extends Controller
         return view ('admin.songs.index', compact('songs'));
     }
 
+	/*
+	- ??? CreateBlade SHOW (line105)
+	*/
     public function create()
     {
         $songs = Song::select('id', 'name')->get();
@@ -57,13 +60,9 @@ class SongController extends Controller
         // （左辺＝キー名）＝MG（マイグレーション）ファイルで定めたカラムを挿入
          // （右辺＝値）＝上のページのValidationで定めたカラム名を挿入する
 
-
-
         return redirect()
         ->route('admin.songs.index')
         ->with(['message'=> '登録が完了しました。' , 'status'=>'info']);
-
-
     }
 
     public function show($id)
@@ -86,10 +85,15 @@ class SongController extends Controller
         return view('admin.songs.edit', compact('song', 'images' ,'emotions','periods','groups'));
     }
 
-    public function update(SongRequest $request, $id)
-    // Requestはvalidation項目が多いので、別でSongRequestファイルにまとめてある
-    {
+	/*
+	引数
+        - Requestはvalidation項目が多いので、別でSongRequestファイルにまとめてある
+        - ??? SongRequest SHOW
+	*/
 
+    public function update(SongRequest $request, $id)
+
+    {
         $song = Song::findOrFail($id);
 
         $song->name = $request->name;
@@ -102,11 +106,9 @@ class SongController extends Controller
 
         $song->save();
 
-
         return redirect()
         ->route('admin.songs.index')
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
-
     }
 
     public function destroy($id)
