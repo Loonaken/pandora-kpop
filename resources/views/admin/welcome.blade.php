@@ -39,8 +39,8 @@
                                 @if (Route::has('admin.login'))
                                     @auth('admin')
                                         <div class="mx-auto text-center">
-                                            <h2 class=" sm:text-2xl text-lg font-medium title-font mb-8 text-gray-900">管理者、おかえりなさい！</h2>
-                                            <a href="{{ url('/admin/dashboard') }}" class="mr-3 fix w-32 md:w-40 border-2 border-gray-300 p-4  hover:bg-lime-200 transition-colors duration-300 ease-in-out">管理者ダッシュボードへ</a>
+                                            <h2 class=" sm:text-2xl text-lg font-medium title-font mb-8  text-gray-900">管理者、おかえりなさい！</h2>
+                                            <a href="{{ url('/admin/dashboard') }}" class="fix w-32 md:w-40 border-2 border-gray-300 p-4  hover:bg-lime-200 transition-colors duration-300 ease-in-out">管理者ダッシュボードへ</a>
                                         </div>
                                     @else
                                         <div class="flex flex-row-reverse">

@@ -20,8 +20,7 @@
                           <span class="text-sm text-gray-500 pb-2">＊1つのみ</span>
                           <div class="border-2 border-gray-200 shadow-md px-2 py-4">
                             <group class="inline-radio" >
-                              <div class="flex space-x-2">
-                                  <input type="radio" id="全て" name="emotion" value="0" >
+                              <div class="flex space-x-2 flex-wrap">
                                 @foreach ($emotions as $emotion)
                                   <input type="radio" id="{{$emotion->name}}" name="emotion" value="{{$emotion->id}}" >
                                   <label for="{{$emotion->name}}" class=" text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
