@@ -25,7 +25,7 @@ class GroupRequest extends FormRequest
     {
         return [
                 'name'=>'required|string|max:30',
-                'information'=>'required|string|max:100',
+                'information'=>'nullable|string|max:100',
                 'type' =>  'required|integer',
                 'sort_order' =>  'nullable|integer',
                 'images'=>'required|exists:images,id'

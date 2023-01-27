@@ -29,12 +29,16 @@
                           <script src="https://code.iconify.design/3/3.0.1/iconify.min.js"></script>
                           <span class="iconify text-cyan-300 ml-2 w-8 h-8 md:w-12 md:h-12 " data-icon="ant-design:info-circle-outlined"></span>
                         </div>
-                        <div class="w-5/6 md:text-lg lg:text-xl ml-2 lg:-ml-8 lg:-mr-4 ">
+                        <div class="w-5/6 sm:ml-4 md:text-lg lg:text-xl ml-2 lg:-ml-8 lg:-mr-4 ">
                           <div>・グループ名：{{$group->name}}</div>
+                          {{-- アーティスト属性を表示させるため、条件分岐を行なっている --}}
                           @if ($group->type == \Constant::GROUP_LIST['male'])
                           <div>・アーティスト属性：男性アーティスト</div>
                           @elseif ($group->type == \Constant::GROUP_LIST['female'])
-                          <div>・アーティスト属性：女性アーティスト</div>
+                          <div class=" flex flex-col md:flex-row" >
+                            <div>・アーティスト属性</div>
+                            <div class="ml-4 md:ml-0">：女性アーティスト</div>
+                          </div>
                           @endif
                           <div>・表示順：{{$group->sort_order}}</div>
                         </div>
@@ -44,17 +48,11 @@
                         <div class="border-b-4 border-black border-dotted">
                           グループについて
                         </div>
-                        @if (!empty($group->information))
                         <div class="my-4">
-                          {{$group->information}}
+                          {{$group->information ? $group->information : "グループの詳しい情報は記載されていません"}}
                         </div>
-                        @endif
-                        @if (empty($group->information))
-                        <div class="my-4">
-                          グループの詳しい情報は記載されていません
-                        </div>
-                        @endif
                       </div>
+
                       <div class="text-center flex justify-center">
                         <button onclick="location.href='{{route('admin.groups.edit' , ['group'=>$group->id])}}'"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">グループ編集</button>
                       </div>

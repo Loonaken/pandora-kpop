@@ -19,6 +19,21 @@ class GroupController extends Controller
 
     }
 
+	/*
+    MUST_Strength
+	出来ること
+        - 男性アーティスト、女性アーテイスト別で編集したいグループを
+            分けて表示している
+    引数
+        - リクエストに応じて男性か女性アーティストを選んでいるので、
+            リクエストパラメーターを使用している
+	コード説明・やり方
+        - 条件分岐、FatController防止の理由でコードをScopeにしている
+        - ??? /Model/Group SHOW
+
+        -
+	*/
+
     public function index(Request $request)
     {
 
@@ -31,6 +46,11 @@ class GroupController extends Controller
         return view ('admin.groups.index', compact('groups', 'request_type'));
     }
 
+
+	/*
+	出来ること
+        - 画像選択も含めた新規登録ページの表示
+	*/
 
     public function create()
     {
@@ -96,25 +116,32 @@ class GroupController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
+	/*
+	出来ること
+        - グループ情報の削除
+        - グループに登録されてある曲の削除を優先する警告を出す
+        -
+	コード説明・やり方
+        - グループに登録されてある曲のデータを取得
+        - 1つ目のif.. 該当する曲がグループに登録されている場合は削除ストップ
+                →$songsInGroupの中にデータが入っている時,リダイレクトをして削除できない仕様にし、
+                曲の削除を先に促すようグループのshowページにてフラッシュメッセージを出す
+        - 2つ目のif.. 該当する曲がグループに全く登録されていない場合は削除を実行
+                        ($songsInGroupの中にデータが入っていない時)
+	*/
+
     public function group_destroy($id)
-    // グループ情報を削除する
     {
         $group = Group::findOrFail($id);
         $songsInGroup = Song::where('group_id', $group->id)->get();
 
         // dd($songsInGroup);
-        // 該当する曲がグループに登録されている場合は削除ストップ
-        // →$songsInGroupの中にデータが入っている時
-        // リダイレクトをして削除できない仕様にし、
-        // 曲の削除を先に促すようグループのshowページにてフラッシュメッセージを出す
+
         if(!empty($songsInGroup->toArray())){
             return redirect()->route('admin.groups.show' , ['group'=>$group->id])
             ->with(['message'=>'登録されている曲を削除したのちにグループ情報を削除してください。' , 'status'=>'error']);
         }
 
-
-        //該当する曲がグループに全く登録されていない場合は削除を実行
-        // →$songsInGroupの中にデータが入っていない時
         if(empty($songsInGroup->toArray())){
 
             Group::findOrFail($id)->delete();
@@ -125,13 +152,17 @@ class GroupController extends Controller
         }
     }
 
+	/*
+	出来ること
+        - グループに登録されている曲の「全てのでデータ」を1つずつ削除する
+        - !! Emotion,Periodの場合は曲を削除した際、曲の「気分Id,年代Id」が削除されていた
+            この[song _Destroy]は曲の「全てのデータ」を削除する
+            そのため、Bladeにてモーダルメッセージで注意を促している
+	*/
+
     public function song_destroy($id)
-    // グループに登録されている曲の「全ての情報」を1つずつ削除する
     {
-        // $group = Group::findOrFail($id);
-
         Song::findOrFail($id)->delete();
-
 
         return redirect()
         ->route('admin.groups.show', ['group'=>$id])

@@ -15,6 +15,7 @@
                     <form method="get" action="{{route('admin.groups.index' )}}" >
                       {{-- @if ($request_type === null) --}}
                         <div class="flex justify-center mb-2 -mt-4">
+                          {{-- 定数化した値をValueにそれぞれ当てはめている --}}
                           <input type="radio"  name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
                           <label for="male" class=" grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
                             男性アーティスト</label>
@@ -83,6 +84,8 @@
           </div>
       </div>
   </div>
+
+{{-- Javascriptを初めて0から実装した！ --}}
   <script>
     const selectMale = document.getElementById('male')
     selectMale.addEventListener('click' , function(){
