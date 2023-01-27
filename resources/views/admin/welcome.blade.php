@@ -36,6 +36,10 @@
                                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-8 text-gray-900 text-center ml-6 ">Pandora Kpopへようこそ！</h1>
                                     <x-application-logo class="block h-24 mx-auto rounded-md w-auto fill-current text-gray-800" />
                                 </div>
+                                {{--
+                                    - @if.. ログイン済みかチェックしている
+                                    - @auth.. 管理者以外は立ち入ることができない
+                                --}}
                                 @if (Route::has('admin.login'))
                                     @auth('admin')
                                         <div class="mx-auto text-center">

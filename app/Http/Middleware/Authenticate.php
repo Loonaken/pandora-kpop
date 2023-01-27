@@ -11,12 +11,13 @@ class Authenticate extends Middleware
     protected $user_route = 'user.login';
     protected $admin_route = 'admin.login';
 
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string|null
-     */
+	/*
+	出来ること
+        - リダイレクト先を設定している
+        - 現在のクライアントが管理者であれば管理者のログイン画面へ
+            それ以外はユーザーログインへ遷移させる
+	*/
+
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {

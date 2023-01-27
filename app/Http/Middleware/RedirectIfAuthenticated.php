@@ -12,14 +12,12 @@ class RedirectIfAuthenticated
     private const GUARD_USER = 'users';
     private const GUARD_ADMIN = 'admin';
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
+    /*
+	出来ること
+        - クライアントの権限情報をチェックし、
+            あるべき権限のないひとはログイン画面へ遷移を促している
+	*/
+
     public function handle(Request $request, Closure $next, ...$guards)
     {
     //     $guards = empty($guards) ? [null] : $guards;
