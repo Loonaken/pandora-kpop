@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('image_id')->nullable()->constrained();
             $table->string('name')->unique();
             $table->integer('type');
-            $table->text('information');
+            $table->text('information')->nullable();
             $table->integer('sort_order')->nullable();
             $table->timestamps();
         });
