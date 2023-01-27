@@ -15,20 +15,11 @@
 
                   <div class="my-4">
                     {{-- 年代タグの名前編集 --}}
-                    <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-4 rounded-md focus:outline-none mb-4">
-                    <div class="text-black text-center rounded text-xl mb-2">年代: {{$period->term}}年</div>
+                    <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 px-4 pb-4 pt-2 rounded-md focus:outline-none mb-4">
+                      <a href='{{route('admin.periods.term.edit' , ['term'=>$period->id])}}'  class="text-black bg-white border-2 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 focus:outline-none rounded text-sm -ml-4">年代名編集</a>
+                    <div class="text-black text-center rounded text-xl -mt-4 mb-2">年代: {{$period->term}}年</div>
                     <div class="text-black text-center rounded text-xl ">表示順: {{$period->sort_order}}</div>
                     </div>
-                    <div class="text-center flex justify-center">
-                      <form id="delete_{{$period->id}}" action="{{route('admin.periods.destroy' , ['period'=>$period->id])}}" method="post">
-                        @csrf
-                        @method('delete')
-                          <button type='submit' data-id="{{$period->id}}}" onclick="deletePost(this)" class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">削除</button>
-                      </form>
-                      <button onclick="location.href='{{route('admin.periods.term.edit' , ['term'=>$period->id])}}'"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">更新</button>
-                    </div>
-
-
 
                       {{-- fin  年代タグの名前編集 --}}
 
@@ -46,7 +37,14 @@
                           <div class=" rounded-md p-4">
                             <form method="POST" action="{{route('admin.periods.song.destroy', ['song'=>$song->id])}}" >
                               @csrf
-                        <x-original.registered_song_show :song="$song" />
+                              <div class="flex justify-end -mb-6">
+                                <button type="submit" class=" text-rose-500 z-10 bg-white  border-rose-500 focus:outline-none rounded-full ">
+                                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 ">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                              </div>
+                              </form>
+                              <x-original.simple-show :song="$song" />
                             </div>
                           </div>
                         @endforeach

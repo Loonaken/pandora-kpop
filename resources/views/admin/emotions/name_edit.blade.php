@@ -63,7 +63,7 @@
                   <form id="delete_{{$emotion->id}}" action="{{route('admin.emotions.destroy' , ['emotion'=>$emotion->id])}}" method="post">
                     @csrf
                     @method('delete')
-                      <button type='submit' data-id="{{$emotion->id}}}" onclick="deletePost(this)" class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">削除</button>
+                      <a href='#' data-id="{{$emotion->id}}" onclick="deletePost(this)" type="submit" class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-8 mx-2 ">削除</a>
                   </form>
                 </div>
 

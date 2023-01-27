@@ -56,12 +56,7 @@
                         @endif
                       </div>
                       <div class="text-center flex justify-center">
-                        <form action="{{route('admin.groups.group.destroy' , ['group'=>$group->id])}}" method="post">
-                          @csrf
-                          @method('delete')
-                            <button type='submit' class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">削除</button>
-                        </form>
-                        <button onclick="location.href='{{route('admin.groups.edit' , ['group'=>$group->id])}}'"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">更新</button>
+                        <button onclick="location.href='{{route('admin.groups.edit' , ['group'=>$group->id])}}'"  class="text-black bg-white border-4 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-2 mx-2 ">グループ編集</button>
                       </div>
 
                     </div>
@@ -79,10 +74,19 @@
                           @foreach ($songs as $song)
                           <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
                             <div class=" rounded-md p-4">
-                              <form id="delete_{{$song->id}}"  method="POST"  onclick="deletePost(this)" action="{{route('admin.groups.song.destroy', ['song'=>$song->id])}}" >
+                              <form id="delete_{{$song->id}}"  method="POST" action="{{route('admin.groups.song.destroy', ['song'=>$song->id])}}" >
                                 @csrf
                                 @method('delete')
-                          <x-original.registered_song_show :song="$song" />
+                                <div class="flex justify-end -mb-6">
+                                  <a href="#" data-id="{{$song->id}}" onclick="deletePost(this)"  type="submit" class=" text-rose-500 z-10 bg-white  border-rose-500 focus:outline-none rounded-full ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 ">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                  </a>
+                                </div>
+                                </form>
+                                <x-original.simple-show :song="$song" />
+
                               </div>
                             </div>
                           @endforeach
