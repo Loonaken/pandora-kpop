@@ -10,8 +10,7 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900">
                 {{-- Contents --}}
-                <form method="post" action="{{route('user.outputs.show')}}" >
-                  @csrf
+                <form method="get" action="{{route('user.outputs.show')}}" >
                   <div class="my-4">
                     {{-- emotionタグ選択 --}}
                     <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
@@ -22,6 +21,7 @@
                           <div class="border-2 border-gray-200 shadow-md px-2 py-4">
                             <group class="inline-radio" >
                               <div class="flex space-x-2">
+                                  <input type="radio" id="全て" name="emotion" value="0" >
                                 @foreach ($emotions as $emotion)
                                   <input type="radio" id="{{$emotion->name}}" name="emotion" value="{{$emotion->id}}" >
                                   <label for="{{$emotion->name}}" class=" text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
