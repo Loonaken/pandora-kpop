@@ -71,10 +71,16 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
+        <div class="ml-2 pt-2 pb-3 space-y-1 space-x-4">
+            <x-nav-link  :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                 ホーム
-            </x-responsive-nav-link>
+            </x-nav-link >
+            <x-nav-link :href="route('user.hashtags.refer')" :active="request()->routeIs('user.hashtags.refer')">
+                ハッシュタグ集
+            </x-nav-link>
+            <x-nav-link :href="route('user.comments.index')" :active="request()->routeIs('user.comments.index')">
+                コメント
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
