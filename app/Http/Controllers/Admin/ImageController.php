@@ -61,7 +61,8 @@ class ImageController extends Controller
     /*
     MUST
     出来ること
-        - 画像保存処理
+        - 画像保存処理のみ
+        - タイトルは設定できない
     引数
         - FαtController回避のため、Requestクラスを別に作成した
         - ??? UploadImageRequest SHOW
