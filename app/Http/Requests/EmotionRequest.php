@@ -16,11 +16,14 @@ class EmotionRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
+
+	/*
+	コード説明・やり方
+        - [*]で連想配列で受け取った値を一つずつ入れている
+        - unique.. unique:emotions.nameとすることで、追加するときのダブりを無くしている
+        
+	*/
+
     public function rules()
     {
         return [

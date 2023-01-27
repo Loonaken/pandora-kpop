@@ -41,6 +41,7 @@
                           </select>
                         </div>
                       </div>
+                      {{-- 以下は一つずつ追加するデータのValidationを行なっている --}}
                       @if ($errors->any())
                       <div class="text-red-600 text-center text-bold" role="alert">
                           <ul>

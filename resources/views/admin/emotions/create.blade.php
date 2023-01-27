@@ -13,6 +13,8 @@
                   @csrf
                   {{-- <x-input-error :messages="$errors->get('addMoreInputFields.*.[name]')" class="mt-2" />
                   <x-input-error :messages="$errors->get('addMoreInputFields.*.[sort_order]')" class="mt-2" /> --}}
+                    {{-- 以上のエラーメッセージの表示ではなく
+                    以下の複数ErrorCheckができるようForeachをかけている --}}
                     @if ($errors->any())
                     <div class="text-red-600 text-center text-bold" role="alert">
                         <ul>
@@ -32,6 +34,7 @@
                             <th class="bg-gray-300 md:w-1/6 py-2">操作</th>
                         </tr>
                         <tr>
+                            {{-- addMoreInputFieldsの[初期値]は0としておく --}}
                             <td><input type="text" name="addMoreInputFields[0][name]"  placeholder="名前" class="focus:border-green-500 pr-28" />
                             </td>
                             <td><input type="text" name="addMoreInputFields[0][sort_order]" placeholder="表示順" class="focus:border-green-500" />
@@ -52,6 +55,8 @@
           </div>
       </div>
   </div>
+
+{{-- 以下はネットで検索した記事から修正を加えて実装をした！ --}}
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script type="text/javascript">

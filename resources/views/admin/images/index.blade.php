@@ -25,6 +25,8 @@
                               <div class="border-x-2 border-b-2 -mt-4 border-lime-300 hover:border-cyan-300">
                               <a href="{{route('admin.images.edit' , ['image'=>$image->id] )}}" >
                             <div class="text-lg text-center  text-gray-500">{{$image->title ? $image->title : '登録なし' }}</div>
+                            {{-- 最初に画像をアップロードする際、複数選択を考慮してタイトルの記述欄は無しにしてある
+                            アップロード済みの画像にはタイトルの名前を編集することのみが可能である --}}
                             <div class="text-center text-gray-400 bg-white  transition duration-300 ease-in-out  focus:outline-none shadow-md rounded text-lg" >
                               更新
                             </div>

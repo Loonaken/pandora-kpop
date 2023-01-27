@@ -33,6 +33,8 @@
                       {{-- fin  気分タグの名前編集 --}}
 
                       {{-- 気分タグで使用されている曲一覧 --}}
+                      {{-- 以下は特定の気分タグに登録されている曲の有無によって(!empty())でBladeの出しわけをしている --}}
+                      
                       <div class="p-2 my-4 w-full lg:w-3/4 mx-auto bg-blue-300/25">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
                         <div class="flex flex-wrap">
