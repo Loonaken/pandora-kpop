@@ -26,11 +26,12 @@ class EmotionController extends Controller
         return view ('admin.emotions.index', compact('emotions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+	/*
+    MUST_Strength
+	出来ること
+        -タグの複数登録画面表示
+        - ??? CreateBlade SHOW
+	*/
     public function create()
     {
         $emotions = Emotion::select('id', 'name')->get();
@@ -39,12 +40,18 @@ class EmotionController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+	/*
+    MUST
+	出来ること
+        - 気分タグの複数追加
+    引数
+        - RequestClassを別に作成している
+        - ??? EmotionRequest SHOW
+	コード説明・やり方
+        -
+        - foreach.. addMoreInputFieldsという共通のinput名で$valueをEmotion DBに登録している
+	*/
+
     public function store(EmotionRequest $request)
     {
         foreach($request->addMoreInputFields as $key =>$value){
@@ -72,12 +79,18 @@ class EmotionController extends Controller
 
         $songs = Song::where('emotion_id', $emotion->id)->get();
 
-
-        // dd(empty($songs->toArray()));
-
         return view ('admin.emotions.name_edit', compact('emotion', 'songs'));
     }
 
+	/*
+    MUST+TitleDemonstration
+	出来ること
+        - 気分タグの名前の変更
+    引数
+        - EmotionRequestを使用していない理由として
+            複数のValidationのみが可能であ理、気分タグ名を編集する際である単数Validationは
+            対応していないので、name_updateの際は別でルールを定義している
+	*/
     public function name_update(Request $request, $id)
     {
 
@@ -98,12 +111,18 @@ class EmotionController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
+	/*
+    MUST
+	出来ること
+        - 現在の気分タグに曲を登録する
+	コード説明・やり方
+        - $songs.. 特定の気分タグに登録されていない曲を全て取得するため、
+        whereNotIn,orWhereNullを使用して取得している
+	*/
     public function song_add($id)
     {
         $emotion = Emotion::findOrFail($id);
 
-        // 特定の年代タグに登録されていない曲を全て取得するため、
-        // whereNotIn,orWhereNullを使用して取得している
         $songs = Song::whereNotIn('emotion_id' , [$emotion->id])
         ->orWhereNull('emotion_id')
         ->get();
@@ -111,6 +130,14 @@ class EmotionController extends Controller
         return view('admin.emotions.song_add', compact('emotion', 'songs'));
     }
 
+	/*
+    MUST
+	出来ること
+        - 複数の曲の気分タグを変更することができる
+	コード説明・やり方
+        - foreach.. リクエストした曲(変更したい曲)のId(song_id)を曲DBから探し、
+            既存の曲のemotionカラムに現在の気分タグのページId(emotion_id)を代入して保存する処理
+	*/
 
     public function song_store(Request $request, $id)
     {
@@ -133,17 +160,18 @@ class EmotionController extends Controller
 
     }
 
+	/*
+	出来ること
+        - 現在の気分タグページに登録されている曲の「気分Id」をNull化している
+	*/
 
     public function song_destroy($id)
-    // 年代タグに登録されている曲の「年代Id」を1つずつnullにする
+    // 気分タグに登録されている曲の「気分Id」を1つずつnullにする
     {
         $song = Song::findOrFail($id);
-
         $emotion = Emotion::findOrFail($id);
 
-        // 年代タグのIdのみをNull化している
         $song->emotion_id = null;
-
         $song->save();
 
         return redirect()
@@ -151,8 +179,17 @@ class EmotionController extends Controller
         ->with(['message'=> '曲の気分タグを削除しました。' , 'status'=>'error']);
     }
 
+	/*
+    MUST
+	出来ること
+        - 気分タグに登録されている「全て」の曲の「気分Id」をnull化する
+	コード説明・やり方
+        - $songInEmotion.. 曲のEmotion_idを探し~foreachで一つずつNull化して保存している
+        ^ $emotion->delete 曲のEmotion_idのNull化の後に気分タグ情報を削除している
+	*/
+
     public function destroy($id)
-    // 年代タグに登録されている全ての曲の「年代Id」をnullにする
+
     {
         $emotion = Emotion::findOrFail($id);
         $songsInEmotion = Song::where('emotion_id', $emotion->id)->get();
@@ -165,6 +202,6 @@ class EmotionController extends Controller
 
         return redirect()
         ->route('admin.emotions.index')
-        ->with(['message'=>'年代タグを削除しました。' , 'status'=>'info']);
+        ->with(['message'=>'気分タグを削除しました。' , 'status'=>'info']);
         }
 }
