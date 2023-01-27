@@ -102,6 +102,8 @@
                       </div>
 
                       {{-- 画像選択 --}}
+                      {{-- 記述量が多く、使い回しをするのでComponent化をした --}}
+                      {{-- - ??? 以下のconponent SHOW --}}
                       <x-original.select-image_create :images="$images" name="images" />
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />
                       {{-- fin 画像選択 --}}
