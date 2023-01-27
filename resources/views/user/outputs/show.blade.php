@@ -10,13 +10,13 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="py-6 text-gray-900">
                 {{-- Contents --}}
-                @foreach ($songs as $song)
+                {{-- @foreach ($songs as $song)
                 @if ($loop->index == 0)
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
                   <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$emotion ? $song->emotion->name : '気分タグ -> 未選択'}}</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$period ? $song->period->term : '年代 -> 未選択' }}</div>
-                  <div class="text-black text-center rounded text-base  mb-2">
+                  <div class="text-black text-center rounded text-base  mb-2"># {{$request_emotion ? $view_emotion->emotion->name : '気分タグ -> 未選択'}}</div>
+                  <div class="text-black text-center rounded text-base  mb-2"># {{$request_period ? $view_period->period->term : '年代 -> 未選択' }}</div> --}}
+                  {{-- <div class="text-black text-center rounded text-base  mb-2">
                     @if ($type == 1)
                     # 男性アーティスト
                     @elseif($type == 2)
@@ -24,10 +24,10 @@
                     @else
                     # アーティスト種類 -> 未選択
                     @endif
-                  </div>
-                  </div>
+                  </div> --}}
+                  {{-- </div>
                   @endif
-                @endforeach
+                @endforeach --}}
 
                 {{-- song --}}
 
@@ -69,7 +69,7 @@
 
                 {{-- 0 Hit --}}
                 @if (empty($songs->toArray()))
-                <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
+                {{-- <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
                   <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
                   <div class="text-black text-center rounded text-base  mb-2"># {{$emotion ? $view_emotion->name : '気分タグ -> 未選択'}}</div>
                   <div class="text-black text-center rounded text-base  mb-2"># {{$period ? $view_period->term : '年代 -> 未選択' }}</div>
@@ -82,7 +82,7 @@
                     # アーティスト種類 -> 未選択
                     @endif
                   </div>
-                  </div>
+                  </div> --}}
                   <div class="m-8 mx-auto ">
                     <p class="text-xl text-center text-gray-500">あなたが聞きたかった曲が見つかりませんでした。</p>
                   </div>

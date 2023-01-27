@@ -30,7 +30,7 @@ Route::middleware('auth:users')->group(function () {
     ->name('outputs.random');
     Route::get('outputs/create', [OutputController::class, 'create'])
     ->name('outputs.create');
-    Route::post('outputs/show', [OutputController::class, 'show'])
+    Route::get('outputs/show', [OutputController::class, 'show'])
     ->name('outputs.show');
 
     Route::get('hashtags/refer', [HashtagController::class, 'refer'])
