@@ -10,25 +10,20 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="py-6 text-gray-900">
                 {{-- Contents --}}
-                {{-- @foreach ($songs as $song)
-                @if ($loop->index == 0)
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
-                  <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$request_emotion ? $view_emotion->emotion->name : '気分タグ -> 未選択'}}</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$request_period ? $view_period->period->term : '年代 -> 未選択' }}</div> --}}
-                  {{-- <div class="text-black text-center rounded text-base  mb-2">
-                    @if ($type == 1)
-                    # 男性アーティスト
-                    @elseif($type == 2)
-                    # 女性アーティスト
-                    @else
-                    # アーティスト種類 -> 未選択
-                    @endif
-                  </div> --}}
-                  {{-- </div>
-                  @endif
-                @endforeach --}}
-
+                    <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
+                    <div class="text-black text-center rounded text-base  mb-2"># {{$emotion->name ?? '気分タグ -> 未選択'}}</div>
+                    <div class="text-black text-center rounded text-base  mb-2"># {{$period->term ?? '年代 -> 未選択' }}</div>
+                    <div class="text-black text-center rounded text-base  mb-2">
+                        @if ($typeId == 1){{--ここは後で修正して--}}
+                        # 男性アーティスト
+                        @elseif($typeId == 2){{--ここは後で修正して--}}
+                        # 女性アーティスト
+                        @else
+                        # アーティスト種類 -> 未選択
+                        @endif
+                    </div>
+                </div>
                 {{-- song --}}
 
                 @if (!empty($songs->toArray()))
