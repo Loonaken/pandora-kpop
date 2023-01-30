@@ -40,7 +40,7 @@
                         <x-input-error :messages="$errors->get('type')" class="mt-2" />
                           <div class="relative ">
                             <div>
-                              <label for="sort_order" class="leading-7 text-sm text-gray-600">アーティスト属性</label>
+                              <label for="type" class="leading-7 text-sm text-gray-600">アーティスト属性</label>
                             </div>
                             <div>
                               <select name="type">
@@ -60,7 +60,7 @@
                       {{-- fin Typeの入力 --}}
 
                       {{-- 表示順の入力 --}}
-                        <div class="p-2 mb-2  mx-auto">
+                        {{-- <div class="p-2 mb-2  mx-auto">
                         <x-input-error :messages="$errors->get('sort_order')" class="mt-2" />
                           <div class="relative">
                             <div>
@@ -70,9 +70,9 @@
                             <input type="text" id="sort_order" name="sort_order" value="{{old('sort_order')}}" class="bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                             </div>
                           </div>
-                        </div>
+                        </div> --}}
+                        {{-- fin 表示順の入力 --}}
                       </div>
-                      {{-- fin 表示順の入力 --}}
 
 
                     {{-- 画像選択 --}}

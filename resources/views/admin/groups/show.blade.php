@@ -40,7 +40,7 @@
                             <div class="ml-4 md:ml-0">：女性アーティスト</div>
                           </div>
                           @endif
-                          <div>・表示順：{{$group->sort_order}}</div>
+                          {{-- <div>・表示順：{{$group->sort_order}}</div> --}}
                         </div>
                       </div>
 
