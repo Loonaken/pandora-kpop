@@ -13,7 +13,7 @@ class Period extends Model
 
     protected $fillable = [
         'term',
-        'sort_order'
+        // 'sort_order'
     ];
 
     public function song()

@@ -19,23 +19,23 @@ class EmotionSeeder extends Seeder
         DB::table('emotions')->insert([
             [
                 'name'=> 'FUN',
-                'sort_order'=> '1'
+                // 'sort_order'=> '1'
             ],
             [
                 'name'=> 'MYSTIC',
-                'sort_order'=> '2'
+                // 'sort_order'=> '2'
             ],
             [
                 'name'=> 'HIGH-TEMPO',
-                'sort_order'=> '1'
+                // 'sort_order'=> '1'
             ],
             [
                 'name'=> 'HEALING',
-                'sort_order'=> '3'
+                // 'sort_order'=> '3'
             ],
             [
                 'name'=> 'RAP',
-                'sort_order'=> '1'
+                // 'sort_order'=> '1'
             ],
         ]);
     }

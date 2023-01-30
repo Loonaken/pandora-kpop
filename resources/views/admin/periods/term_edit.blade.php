@@ -12,7 +12,7 @@
                 {{-- Contents --}}
                 <x-flash-message status="session('status')" />
                 <x-input-error :messages="$errors->get('term')" class="mt-2" />
-                <x-input-error :messages="$errors->get('sort_order')" class="mt-2" />
+                {{-- <x-input-error :messages="$errors->get('sort_order')" class="mt-2" /> --}}
                 <form method="POST" action="{{route('admin.periods.term.update', ['term'=>$period->id ])}}" >
                   @csrf
                   @method('put')
@@ -23,10 +23,10 @@
                           <label for="term" class=" ml-2 text-sm text-gray-600">年代</label>
                           <input type="text" id="term" name="term" value="{{$period->term}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           </div>
-                          <div class="basis-1/4">
+                          {{-- <div class="basis-1/4">
                           <label for="sort_order" class=" ml-2 text-sm text-gray-600">表示順</label>
                           <input type="text" id="sort_order" name="sort_order" value="{{$period->sort_order}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                          </div>
+                          </div> --}}
                         </div>
                       </div>
 

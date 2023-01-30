@@ -19,7 +19,7 @@ class Group extends Model
         'name',
         'information',
         'type',
-        'sort_order',
+        // 'sort_order',
         'image_id',
     ];
 

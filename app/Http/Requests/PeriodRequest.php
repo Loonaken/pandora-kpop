@@ -25,7 +25,7 @@ class PeriodRequest extends FormRequest
     {
         return [
             'addMoreInputFields.*.term' => 'required|unique:periods,term|integer',
-            'addMoreInputFields.*.sort_order' => 'nullable|integer',
+            // 'addMoreInputFields.*.sort_order' => 'nullable|integer',
         ];
     }
 
@@ -35,7 +35,7 @@ class PeriodRequest extends FormRequest
             // 'name'=>'名前は必ず入力してください。',
             // 'sort_order'=>'数字を入力してください。',
             'addMoreInputFields.*.term'=>'年代は必ず入力してください。もしくは年代が重複している可能性があります。',
-            'addMoreInputFields.*.sort_order'=>'数字を入力してください。',
+            // 'addMoreInputFields.*.sort_order'=>'数字を入力してください。',
         ];
     }
 }

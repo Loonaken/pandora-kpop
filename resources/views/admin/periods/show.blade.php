@@ -18,7 +18,7 @@
                     <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 px-4 pb-4 pt-2 rounded-md focus:outline-none mb-4">
                       <a href='{{route('admin.periods.term.edit' , ['term'=>$period->id])}}'  class="text-black bg-white border-2 transition duration-300 ease-in-out border-yellow-300 hover:bg-yellow-200/80 py-2 focus:outline-none rounded text-sm -ml-4">年代名編集</a>
                     <div class="text-black text-center rounded text-xl -mt-4 mb-2">年代: {{$period->term}}年</div>
-                    <div class="text-black text-center rounded text-xl ">表示順: {{$period->sort_order}}</div>
+                    {{-- <div class="text-black text-center rounded text-xl ">表示順: {{$period->sort_order}}</div> --}}
                     </div>
 
                       {{-- fin  年代タグの名前編集 --}}

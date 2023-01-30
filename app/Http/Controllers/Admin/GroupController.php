@@ -54,7 +54,7 @@ class GroupController extends Controller
 
     public function create()
     {
-        $groups = Group::select('id', 'type', 'sort_order', 'name')->get();
+        $groups = Group::select('id', 'type', 'name')->get();
 
         $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
 
@@ -67,7 +67,7 @@ class GroupController extends Controller
             'name'=> $request->name,
             'information'=> $request->information,
             'type'=> $request->type,
-            'sort_order'=> $request->sort_order,
+            // 'sort_order'=> $request->sort_order,
             'image_id'=> $request->images,
         ]);
 
@@ -105,7 +105,7 @@ class GroupController extends Controller
         $group->name = $request->name;
         $group->information = $request->information;
         $group->type = $request->type;
-        $group->sort_order = $request->sort_order;
+        // $group->sort_order = $request->sort_order;
         $group->image_id = $request->images;
 
         $group->save();

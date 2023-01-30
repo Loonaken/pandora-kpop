@@ -16,7 +16,7 @@
                     {{-- 年代タグの名前編集 --}}
                     <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-4 rounded-md focus:outline-none mb-4">
                       <div class="text-black text-center rounded text-xl mb-2">年代: {{$period->term}}年</div>
-                      <div class="text-black text-center rounded text-xl ">表示順: {{$period->sort_order}}</div>
+                      {{-- <div class="text-black text-center rounded text-xl ">表示順: {{$period->sort_order}}</div> --}}
                     </div>
 
 
