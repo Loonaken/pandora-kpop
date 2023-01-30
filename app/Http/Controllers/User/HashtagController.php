@@ -27,6 +27,13 @@ class HashtagController extends Controller
 
     }
 
+	/*
+	出来ること
+        - リクエストにお応じた検索キーワードを表示している
+	コード説明・やり方
+        - それぞれ別のBladeを作成して表示させている
+	*/
+
     public function emotion(Request $request){
 
         $request_emotion = $request->emotion;

@@ -27,6 +27,7 @@
                       {{-- comment --}}
                       @foreach ($comments as $comment)
                       <div class="border-2 rounded-lg border-gray-200 border-opacity-50 px-8 py-6 sm:flex-row flex-col mb-2">
+                        {{-- ここでPolicyを使用している --}}
                         @can('update', $comment)
                         <div class="flex justify-end border-gray-500">
                           <a href="{{route('user.comments.edit', ['comment'=>$comment->id])}}" class="border-2 border-lime-500 hover:border-cyan-400 p-2 focus:outline-none rounded text-lg -my-2 transition duration-200 ease-in-out ">
