@@ -25,7 +25,7 @@ class ImageSeeder extends Seeder
             ],
             [
                 'admin_id'=>1,
-                'filename'=>'1446898152_63c91b7864abf.jpg',
+                'filename'=>'20952995_63d5cb2c3648d.jpg',
                 'title'=> 'Iz*one'
 
             ],

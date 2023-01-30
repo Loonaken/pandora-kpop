@@ -22,15 +22,29 @@ class CommentController extends Controller
 
     }
 
+	/*
+	出来ること
+        - 自分の投稿と他人の投稿が全て見ることができる
+        - policy を設けている
+            投稿されているコメントが自分の投稿であれば、
+            編集ボタンを表示させ、それ以外は空白に設定している
+        - ??? comment.index.blade SHOW
+	*/
+
     public function index()
     {
         $comments = Comment::orderBy('created_at', 'desc')->get();
 
-        $user = User::where('id', Auth::id())->first();
-
-
-        return view('user.comments.index', compact('comments', 'user'));
+        return view('user.comments.index', compact('comments'));
     }
+
+	/*
+	出来ること
+        - 自分の投稿したコメントの一覧が確認できる
+	コード説明・やり方
+        - $comments.. UserIdを特定し、その人が投稿したコメントの
+            データを取得している
+	*/
 
     public function show()
     {
