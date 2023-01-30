@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('emotions', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->integer('sort_order')->nullable();
+            // $table->integer('sort_order')->nullable();
             $table->timestamps();
         });
     }

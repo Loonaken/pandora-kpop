@@ -66,13 +66,13 @@ class PeriodController extends Controller
 
         $request->validate([
             'term' => 'required|unique:periods,term|integer',
-            'sort_order' =>  'nullable|integer',
+            // 'sort_order' =>  'nullable|integer',
         ]);
 
         $period = Period::findOrFail($id);
 
         $period->term = $request->term;
-        $period->sort_order = $request->sort_order;
+        // $period->sort_order = $request->sort_order;
 
         $period->save();
 

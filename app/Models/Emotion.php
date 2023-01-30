@@ -13,7 +13,7 @@ class Emotion extends Model
 
     protected $fillable = [
         'name',
-        'sort_order'
+        // 'sort_order'
     ];
 
     public function songs()

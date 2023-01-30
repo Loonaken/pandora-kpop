@@ -18,20 +18,20 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
-                          <label for="name" class="leading-7 text-sm text-gray-600">曲名 *必須</label>
+                          <label for="name" class="leading-7 text-sm text-gray-600">曲名</label>
                           <input type="text" id="name" name="name" value="{{old('name')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                       {{-- fin 曲名の入力 --}}
 
                       {{-- 曲情報の入力 --}}
                     <x-input-error :messages="$errors->get('information')" class="mt-2" />
-                          <label for="information" class="leading-7 text-sm text-gray-600">曲について</label>
+                          <label for="information" class="leading-7 text-sm text-gray-600">曲について　*任意</label>
                           <textarea id="information" name="information" rows="3" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                       {{-- fin 曲情報の入力 --}}
 
                       {{-- youtube_linkの入力 --}}
                     <x-input-error :messages="$errors->get('youtube_link')" class="mt-2" />
 
-                          <label for="youtube_link" class="leading-7 text-sm text-gray-600">Youtube_link *必須</label>
+                          <label for="youtube_link" class="leading-7 text-sm text-gray-600">Youtube_link </label>
                           <input type="text" id="youtube_link" name="youtube_link" value="{{old('youtube_link')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                       {{-- fin youtube_linkの入力 --}}
 

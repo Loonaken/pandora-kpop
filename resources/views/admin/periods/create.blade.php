@@ -26,16 +26,16 @@
                     <div class="my-4">
                       <table class="border-collapse border border-slate-400 mx-auto" id="dynamicAddRemove">
                         <tr>
-                            <th class="bg-blue-300 md:w-3/6 py-2">年代</th>
-                            <th class="bg-yellow-100 md:w-2/6 py-2">表示順</th>
-                            <th class="bg-gray-300 md:w-1/6 py-2">操作</th>
+                            <th class="bg-blue-300 py-2 px-16 md:px-24 lg:px-32">年代</th>
+                            {{-- <th class="bg-yellow-100 md:w-2/6 py-2">表示順</th> --}}
+                            <th class="bg-gray-300  py-2  px-12">操作</th>
                         </tr>
                         <tr>
-                            <td><input type="text" name="addMoreInputFields[0][term]"  placeholder="例:2022, 2018" class="focus:border-green-500 pr-28" />
+                            <td><input type="text" name="addMoreInputFields[0][term]"  placeholder="例:2022, 2018" class="text-center focus:border-green-500 py-2 px-16 md:px-24 lg:px-32" />
                             </td>
-                            <td><input type="text" name="addMoreInputFields[0][sort_order]" placeholder="表示順" class="focus:border-green-500" />
+                            {{-- <td><input type="text" name="addMoreInputFields[0][sort_order]" placeholder="表示順" class="focus:border-green-500" /> --}}
                             </td>
-                            <td class="text-center"><button type="button" name="add" id="dynamic-ar" class="underline decoration-blue-400 underline-offset-4 decoration-2 hover:bg-blue-200/50 hover:rounded-md ">追加</button></td>
+                            <td class="text-center"><button type="button" name="add" id="dynamic-ar" class="py-2 px-6 md:px-9 lg:px-12 underline decoration-blue-400 underline-offset-4 decoration-2 hover:bg-blue-200/50 hover:rounded-md ">追加</button></td>
                         </tr>
                     </table>
 
@@ -58,8 +58,7 @@
           ++i;
           $("#dynamicAddRemove").append
           ('<tr><td><input type="text" name="addMoreInputFields[' + i +
-              '][term]" placeholder="年代" class="focus:border-green-500 pr-28" /></td><td><input type="text" name="addMoreInputFields[' + i +
-              '][sort_order]" placeholder="表示順" class="focus:border-green-500" /></td><td class="text-center"><button type="button" class=" text-white bg-red-500 border-0 py-2 px-8   focus:outline-none hover:bg-red-600 rounded text-base   remove-input-field">削除</button></td></tr>'
+              '][term]" placeholder="例:2022, 2018" class="text-center focus:border-green-500 py-2 px-16 md:px-24 lg:px-32" /></td><td class=" text-center"><button type="button" class=" text-white bg-red-500 border-0 py-2 px-6 md:px-9 lg:px-12   focus:outline-none hover:bg-red-600 rounded text-base   remove-input-field">削除</button></td></tr>'
               );
       });
       $(document).on('click', '.remove-input-field', function () {

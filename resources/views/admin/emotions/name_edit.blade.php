@@ -17,25 +17,18 @@
                   @csrf
                   @method('put')
                     {{-- 気分タグの名前編集 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative flex ">
-                          <div class="basis-3/4">
+                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto relative">
                           <label for="name" class=" ml-2 text-sm text-gray-600">気分タグ名</label>
                           <input type="text" id="name" name="name" value="{{$emotion->name}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                           </div>
-                          <div class="basis-1/4">
-                          <label for="name" class=" ml-2 text-sm text-gray-600">表示順</label>
-                          <input type="text" id="sort_order" name="sort_order" value="{{$emotion->sort_order}}" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                          </div>
-                        </div>
                       </div>
 
                       {{-- fin  気分タグの名前編集 --}}
 
                       {{-- 気分タグで使用されている曲一覧 --}}
                       {{-- 以下は特定の気分タグに登録されている曲の有無によって(!empty())でBladeの出しわけをしている --}}
-                      
-                      <div class="p-2 my-4 w-full lg:w-3/4 mx-auto bg-blue-300/25">
+
+                      <div class="p-2 my-4 w-full lg:w-3/4 mx-auto ">
                         <p class="text-center underline tracker-wider underline-offset-4 text-lg ">登録曲一覧</p>
                         <div class="flex flex-wrap">
                           @if(!empty($songs->toArray()))

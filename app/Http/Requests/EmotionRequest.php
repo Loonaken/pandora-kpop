@@ -21,7 +21,7 @@ class EmotionRequest extends FormRequest
 	コード説明・やり方
         - [*]で連想配列で受け取った値を一つずつ入れている
         - unique.. unique:emotions.nameとすることで、追加するときのダブりを無くしている
-        
+
 	*/
 
     public function rules()
@@ -30,7 +30,7 @@ class EmotionRequest extends FormRequest
             // 'name' => 'required|string|max:15',
             // 'sort_order' =>  'nullable|integer',
             'addMoreInputFields.*.name' => 'required|string|max:15|unique:emotions,name',
-            'addMoreInputFields.*.sort_order' => 'nullable|integer',
+            // 'addMoreInputFields.*.sort_order' => 'nullable|integer',
         ];
     }
 
@@ -40,7 +40,7 @@ class EmotionRequest extends FormRequest
             // 'name'=>'名前は必ず入力してください。',
             // 'sort_order'=>'数字を入力してください。',
             'addMoreInputFields.*.name'=>'名前は必ず入力してください。もしくは名前が重複している可能性があります。',
-            'addMoreInputFields.*.sort_order'=>'数字を入力してください。',
+            // 'addMoreInputFields.*.sort_order'=>'数字を入力してください。',
         ];
     }
 }

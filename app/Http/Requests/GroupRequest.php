@@ -27,7 +27,7 @@ class GroupRequest extends FormRequest
                 'name'=>'required|string|max:30',
                 'information'=>'nullable|string|max:100',
                 'type' =>  'required|integer',
-                'sort_order' =>  'nullable|integer',
+                // 'sort_order' =>  'nullable|integer',
                 'images'=>'required|exists:images,id'
         ];
     }

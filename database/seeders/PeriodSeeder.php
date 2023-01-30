@@ -19,23 +19,23 @@ class PeriodSeeder extends Seeder
         DB::table('periods')->insert([
             [
                 'term'=> '2023',
-                'sort_order'=> '1'
+                // 'sort_order'=> '1'
             ],
             [
                 'term'=> '2022',
-                'sort_order'=> '2'
+                // 'sort_order'=> '2'
             ],
             [
                 'term'=> '2021',
-                'sort_order'=> '1'
+                // 'sort_order'=> '1'
             ],
             [
                 'term'=> '2020',
-                'sort_order'=> '2'
+                // 'sort_order'=> '2'
             ],
             [
                 'term'=> '2019',
-                'sort_order'=> '1'
+                // 'sort_order'=> '1'
             ],
         ]);
     }

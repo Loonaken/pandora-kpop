@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('periods', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('term')->unique();
-            $table->integer('sort_order')->nullable();
+            // $table->integer('sort_order')->nullable();
             // 上半期か下半期かどうかを区別できるようControllerで条件分岐する
             $table->timestamps();
         });

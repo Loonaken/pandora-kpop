@@ -95,14 +95,14 @@ class EmotionController extends Controller
     {
 
         $request->validate([
-            'name' => 'required|string|max:15|unique:emotions,name',
-            'sort_order' =>  'nullable|integer',
+            'name' => 'nullable|string|max:15|unique:emotions,name',
+            // 'sort_order' =>  'nullable|integer',
         ]);
 
         $emotion = Emotion::findOrFail($id);
 
         $emotion->name = $request->name;
-        $emotion->sort_order = $request->sort_order;
+        // $emotion->sort_order = $request->sort_order;
 
         $emotion->save();
 
