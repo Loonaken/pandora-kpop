@@ -18,6 +18,8 @@ class UploadImageRequest extends FormRequest
     - アップロードする画像のvalidation
 コード説明・やり方
     - validationで形式やサイズを指定している
+    - mimes... 画像をネットからダウンロードした際の拡張子がWebpで、
+                末尾をJpegと変更しても画像形式に引っかかる（Errorメッセージは表示されない）
     - 単数、複数アップロードにも対応するため、[image][files.*.image]
         の両方をルール登録している
 */

@@ -20,35 +20,24 @@
                         <div class="relative">
                           <label for="name" class="leading-7 text-sm text-gray-600">曲名 *必須</label>
                           <input type="text" id="name" name="name" value="{{old('name')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                        </div>
-                      </div>
                       {{-- fin 曲名の入力 --}}
 
                       {{-- 曲情報の入力 --}}
                     <x-input-error :messages="$errors->get('information')" class="mt-2" />
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
                           <label for="information" class="leading-7 text-sm text-gray-600">曲について</label>
                           <textarea id="information" name="information" rows="3" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
-                        </div>
-                      </div>
                       {{-- fin 曲情報の入力 --}}
 
                       {{-- youtube_linkの入力 --}}
                     <x-input-error :messages="$errors->get('youtube_link')" class="mt-2" />
 
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
                           <label for="youtube_link" class="leading-7 text-sm text-gray-600">Youtube_link *必須</label>
                           <input type="text" id="youtube_link" name="youtube_link" value="{{old('youtube_link')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                        </div>
-                      </div>
                       {{-- fin youtube_linkの入力 --}}
 
-                      <div class="flex mb-8">
+                      <div class="my-4 md:flex justify-between">
                       {{-- groupタグ選択 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
+                        <div class="mt-2 md:mt-0">
                           <p class="leading-7 text-sm text-gray-600">グループ名</p>
                           <select name="group">
                             <option value = "">
@@ -61,12 +50,10 @@
                             @endforeach
                           </select>
                         </div>
-                      </div>
                       {{-- fin groupタグ選択 --}}
 
                       {{-- emotionタグ選択 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
+                        <div class="mt-2 md:mt-0">
                           <p class="leading-7 text-sm text-gray-600">気分タグ</p>
                           <select name="emotion">
                             <option value = "">
@@ -79,12 +66,10 @@
                             @endforeach
                           </select>
                         </div>
-                      </div>
                       {{-- fin emotionタグ選択 --}}
 
                       {{-- periodタグ選択 --}}
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
+                      <div class="my-2 md:my-0">
                           <p class="leading-7 text-sm text-gray-600">年代タグ</p>
                           <select name="period">
                             <option value = "">
@@ -97,9 +82,9 @@
                             @endforeach
                           </select>
                         </div>
-                      </div>
                       {{-- fin periodタグ選択 --}}
-                      </div>
+                    </div>
+
 
                       {{-- 画像選択 --}}
                       {{-- 記述量が多く、使い回しをするのでComponent化をした --}}
@@ -108,7 +93,7 @@
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />
                       {{-- fin 画像選択 --}}
 
-                    </div>
+
                     <div class="flex justify-around items-center p-2 mt-12 w-full">
                       <x-original.return onclick="location.href='{{route('admin.songs.index')}}'" />
                       <x-original.action action=登録 />
