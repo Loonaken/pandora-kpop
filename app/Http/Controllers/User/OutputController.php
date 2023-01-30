@@ -56,70 +56,24 @@ class OutputController extends Controller
 
 
     public function show(Request $request){
+        //リクエスト情報取得
+        $emotionId = $request->emotion;
+        $periodId = $request->period;
+        $typeId = $request->type;
 
-        $emotions = Emotion::get();
-        $periods = Period::get();
-        $types = Group::select('type')->get();
-
-        $songs = Song::selectEmotion($request->emotion ?? '0')
-        ->selectPeriod($request->period ?? '0')
-        ->selectType($request->type ?? '0')
+        //該当する曲を取得
+        $songs = Song::selectEmotion($emotionId)
+        ->selectPeriod($periodId)
+        ->selectType($typeId)
         ->get();
 
-        // 以下の変数にはIdが入る
+        //リクエストした条件を取得する
+        $emotion = Emotion::findOrFail($emotionId);
+        $period = Period::findOrFail($periodId);
+        //groupとtypeがよくわからん
+        //typeテーブル作って、groupテーブルのtype_idを外部キーにして、紐づけてくれ
 
-        // $request_emotion= $request->emotion;
-        // $request_period = $request->period;
-        // $request_type = $request->type;
-
-
-        // $view_emotion = Emotion::findOrFail($request_emotion);
-        // $view_period = Period::findOrFail($request_period);
-
-        // $request_emotion_song = Song::selectEmotion($request->emotion ?? '0')->first();
-        // $request_period_song = Song::selectPeriod($request->period ?? '0')->first();
-        // $request_type_song = Song::selectType($request->type ?? '0')->first();
-
-        // dd($request_emotion_song,$request_period_song,$request_type_song);
-
-        // $songs = Song::where('emotion_id', $emotion)
-        // ->where('period_id', $period)
-        // ->whereHas('group', function($q)use($type){
-        //     $q->where('type', $type);
-        // })->get();
-
-        // if($emotion == null){
-        //     $songs = Song::where('period_id', $period)
-        //     ->whereHas('group', function($q)use($type){
-        //         $q->where('type', $type);
-        //     })->get();
-        // }
-        // if($period == null){
-        //     $songs = Song::where('emotion_id', $emotion)
-        //     ->whereHas('group', function($q)use($type){
-        //         $q->where('type', $type);
-        //     })->get();
-        // }
-        // if ($type == null){
-        //     $songs = Song::where('emotion_id', $emotion)
-        //     ->where('period_id', $period)
-        //     ->get();
-        // }
-        // if($emotion === null && $period === null){
-        //     $songs = Song::whereHas('group', function($q)use($type){
-        //         $q->where('type', $type);
-        //     })->get();
-        // }
-        // if($period === null && $type === null){
-        //     $songs = Song::where('emotion_id', $emotion)
-        //     ->get();
-        // }
-        // if($type === null && $emotion === null){
-        //     $songs = Song::where('period_id', $period)
-        //     ->get();
-        // }
-
-        return view ('user.outputs.show', compact('emotions', 'periods', 'types', 'songs'));
+        return view ('user.outputs.show', compact('songs',"emotion","period","typeId"));
     }
 
 

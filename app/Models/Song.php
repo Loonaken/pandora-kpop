@@ -58,31 +58,31 @@ class Song extends Model
 
     public function scopeSelectEmotion($query, $emotionId)
     {
-        if($emotionId !== '0')
+        if(!isset($emotionId))//nullの場合の処理
         {
-            return $query->where('emotion_id', $emotionId);
-        }else{
             return;
         }
+
+        return $query->where('emotion_id', $emotionId);
     }
     public function scopeSelectPeriod($query, $periodId)
     {
-        if($periodId !== '0')
+        if(!isset($periodId))//nullの場合の処理
         {
-            return $query->where('period_id', $periodId);
-        }else{
             return;
         }
+
+        return $query->where('period_id', $periodId);
     }
     public function scopeSelectType($query, $typeId)
     {
-        if($typeId !== '0')
+        if(!isset($typeId))//nullの場合の処理
         {
-            return $query->whereHas('group', function($q)use($typeId){
-                        $q->where('type', $typeId);
-            });
-        }else{
             return;
         }
+
+        return $query->whereHas('group', function($q)use($typeId){
+                    $q->where('type', $typeId);
+        });
     }
 }
