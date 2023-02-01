@@ -18,7 +18,7 @@ class CommentSeeder extends Seeder
     {
         DB::table('comments')->insert([
             [
-            'user_id' => '1',
+            'user_id' => '3',
             'title'=> '最近のK-POPについて',
             'body' => '最近はIVEとかNewJeansとかのガールズグループが人気になってきたよね',
             'created_at'=>'2023/1/20 12:18:11'

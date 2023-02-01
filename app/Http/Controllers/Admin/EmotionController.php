@@ -21,7 +21,7 @@ class EmotionController extends Controller
 
     public function index()
     {
-        $emotions = Emotion::orderByDesc('updated_at')->get();
+        $emotions = Emotion::orderBy('updated_at', 'desc')->get();
 
         return view ('admin.emotions.index', compact('emotions'));
     }

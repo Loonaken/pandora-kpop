@@ -18,7 +18,7 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
-                          <label for="name" class="leading-7 text-sm text-gray-600">グループ名 *必須</label>
+                          <label for="name" class="leading-7 text-sm text-gray-600">グループ名 </label>
                           <input type="text" placeholder="例: Loona" id="name" name="name" value="{{old('name')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                         </div>
                       </div>
@@ -28,7 +28,7 @@
                     <x-input-error :messages="$errors->get('information')" class="mt-2" />
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
-                          <label for="information" class="leading-7 text-sm text-gray-600">グループについて</label>
+                          <label for="information" class="leading-7 text-sm text-gray-600">グループについて *任意</label>
                           <textarea id="information" placeholder="例: このグループはエネルギッシュです。" name="information" rows="3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                         </div>
                       </div>

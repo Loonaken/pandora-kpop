@@ -35,8 +35,7 @@
                           @foreach ($songs as $song)
                           <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
                             <div class=" rounded-md p-4">
-                                  <form method="POST" action="{{route('admin.emotions.song.destroy', ['song'=>$song->id])}}" >
-                                    @csrf
+                                  <form method="get" action="{{route('admin.emotions.song.destroy', ['song'=>$song->id])}}" >
                                     <div class="flex justify-end -mb-6">
                                       <button type="submit" class=" text-rose-500 z-10 bg-white  border-rose-500 focus:outline-none rounded-full ">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 ">

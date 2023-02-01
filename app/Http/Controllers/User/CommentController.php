@@ -62,6 +62,7 @@ class CommentController extends Controller
         $user = User::where('id', Auth::id())->first();
 
         return view ('user.comments.create', compact('user'));
+        
     }
 
     public function store(CommentRequest $request)

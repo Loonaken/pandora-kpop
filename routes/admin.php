@@ -68,7 +68,7 @@ Route::middleware('auth:admin')->group(function () {
     ->name('emotions.song.add');
     Route::put('emotions/{song}/song', [EmotionController::class, 'song_store'])
     ->name('emotions.song.store');
-    Route::post('emotions/{song}/song/destroy', [EmotionController::class, 'song_destroy'])
+    Route::get('emotions/{song}/song/destroy', [EmotionController::class, 'song_destroy'])
     ->name('emotions.song.destroy');
     // fin Emotion Route
 
@@ -81,7 +81,7 @@ Route::middleware('auth:admin')->group(function () {
     ->name('periods.song.add');
     Route::put('periods/{song}/song', [PeriodController::class, 'song_store'])
     ->name('periods.song.store');
-    Route::post('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
+    Route::get('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
     ->name('periods.song.destroy');
     // fin Period Route
 
