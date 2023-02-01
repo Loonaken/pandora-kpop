@@ -21,7 +21,7 @@
                 {{-- song name --}}
 
                 <section class="text-gray-600 body-font overflow-hidden">
-                  <div class="container mt-4 py-8 mx-auto">
+                  <div class="container mt-4 py-8 px-4 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap items-center border-b-2 border-gray-200 ">
                       <div class="basis-1/3 -mt-12 hover:border-4 hover:border-lime-300 transition delay-100 ease-in-out">
                         <a href="{{$song->youtube_link}}" target="_blank">

@@ -59,7 +59,7 @@ songs
 画像ファイルは取り込み時に渡します。
 
 - app/database/seeders/imageSeeder.php/ のフォルダ内にて
-前の工程で取り込んだファイル名をimageSeederに登録します。
+前の工程で取り込んだファイル名(RandomId化された数桁の数字)をStorage/app/public/songsから探し、imageSeederに登録します。
 
 ## Seeder操作
 
@@ -103,4 +103,3 @@ sail artisan migrate:refresh --seed
 ```
 sail artisan migrate:refresh --seed
 ```
-
