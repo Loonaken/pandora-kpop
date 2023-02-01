@@ -26,36 +26,35 @@ Route::get('/dashboard', function () {
 })->middleware(['auth:users', 'verified'])->name('dashboard');
 
 Route::middleware('auth:users')->group(function () {
-    Route::get('outputs/random', [OutputController::class, 'random'])
-    ->name('outputs.random');
-    Route::get('outputs/create', [OutputController::class, 'create'])
-    ->name('outputs.create');
-    Route::get('outputs/show', [OutputController::class, 'show'])
-    ->name('outputs.show');
 
-    Route::get('hashtags/refer', [HashtagController::class, 'refer'])
-    ->name('hashtags.refer');
-    Route::get('hashtags/emotion/{emotion}', [HashtagController::class, 'emotion'])
-    ->name('hashtags.emotion');
-    Route::get('hashtags/period/{period}', [HashtagController::class, 'period'])
-    ->name('hashtags.period');
-    Route::get('hashtags/group/{group}', [HashtagController::class, 'group'])
-    ->name('hashtags.group');
+    Route::prefix('outputs')->controller(OutputController::class)->name('outputs.')->group(function(){
+        Route::get('random','random')->name('random');
+        Route::get('create','create')->name('create');
+        Route::get('show','show')->name('show');
+    });
 
-    Route::get('comments/show', [CommentController::class, 'show'])
-    ->name('comments.show');
+    Route::prefix('hashtags')->controller(HashtagController::class)->name('hashtags.')->group(function(){
+        Route::get('refer','refer')->name('refer');
+        Route::get('emotion/{emotion}','emotion')->name('emotion');
+        Route::get('period/{period}','period')->name('period');
+        Route::get('group/{group}','group')->name('group');
+    });
+
+    Route::controller(CommentController::class)->group(function(){
+        Route::get('comments/show','show')->name('comments.show');
+    });
+
+    Route::prefix('profile')->controller(ProfileController::class)->name('profile.')->group(function(){
+        Route::get('', 'edit')->name('edit');
+        Route::patch('', 'update')->name('update');
+        Route::delete('', 'destroy')->name('destroy');
+    });
+
 });
 
 
 Route::resource('comments', CommentController::class)
     ->middleware('auth:users')->except('show');
 
-
-
-Route::middleware('auth:users')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 require __DIR__.'/auth.php';

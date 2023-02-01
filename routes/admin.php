@@ -34,7 +34,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [UserInformationController::class, 'dashboard'])
-->middleware(['auth:admin', 'verified'])->name('dashboard');
+    ->middleware(['auth:admin', 'verified'])->name('dashboard');
 
 Route::get('user-info' , [UserInformationController::class, 'index' ])
     ->middleware('auth:admin')
@@ -59,44 +59,35 @@ Route::resource('songs', SongController::class)
     ->middleware('auth:admin');
 
 Route::middleware('auth:admin')->group(function () {
-    // Emotion Route
-    Route::get('emotions/{name}/name/edit', [EmotionController::class, 'name_edit'])
-    ->name('emotions.name.edit');
-    Route::put('emotions/{name}/name', [EmotionController::class, 'name_update'])
-    ->name('emotions.name.update');
-    Route::get('emotions/{song}/song/add', [EmotionController::class, 'song_add'])
-    ->name('emotions.song.add');
-    Route::put('emotions/{song}/song', [EmotionController::class, 'song_store'])
-    ->name('emotions.song.store');
-    Route::get('emotions/{song}/song/destroy', [EmotionController::class, 'song_destroy'])
-    ->name('emotions.song.destroy');
-    // fin Emotion Route
+
+    Route::prefix('emotions')->controller(EmotionController::class)->name('emotions.')->group(function(){
+        Route::get('{name}/name/edit','name_edit')->name('name.edit');
+        Route::put('{name}/name','name_update')->name('name.update');
+        Route::get('{song}/song/add','song_add')->name('song.add');
+        Route::put('{song}/song','song_store')->name('song.store');
+        Route::get('{song}/song/destroy','song_destroy')->name('song.destroy');
+
+    });
 
     // Period Route
-    Route::get('periods/{term}/term/edit', [PeriodController::class, 'term_edit'])
-    ->name('periods.term.edit');
-    Route::put('periods/{term}/term', [PeriodController::class, 'term_update'])
-    ->name('periods.term.update');
-    Route::get('periods/{song}/song/add', [PeriodController::class, 'song_add'])
-    ->name('periods.song.add');
-    Route::put('periods/{song}/song', [PeriodController::class, 'song_store'])
-    ->name('periods.song.store');
-    Route::get('periods/{song}/song/destroy', [PeriodController::class, 'song_destroy'])
-    ->name('periods.song.destroy');
-    // fin Period Route
+    Route::prefix('periods')->controller(PeriodController::class)->name('periods.')->group(function(){
+        Route::get('{term}/term/edit','term_edit')->name('term.edit');
+        Route::put('{term}/term','term_update')->name('term.update');
+        Route::get('{song}/song/add','song_add')->name('song.add');
+        Route::put('{song}/song','song_store')->name('song.store');
+        Route::get('{song}/song/destroy','song_destroy')->name('song.destroy');
+    });
 
-    // Group Route
-    Route::delete('groups/{group}/group', [GroupController::class, 'group_destroy'])
-    ->name('groups.group.destroy');
-    Route::delete('groups/{song}/song', [GroupController::class, 'song_destroy'])
-    ->name('groups.song.destroy');
-    // fin Group Route
+    Route::prefix('groups')->controller(GroupController::class)->name('groups.')->group(function(){
+        Route::delete('{group}/group','group_destroy')->name('group.destroy');
+        Route::delete('{song}/song','song_destroy')->name('song.destroy');
+    });
 
-    // Profile Route
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    // fin Profile Route
+    Route::prefix('profile')->controller(ProfileController::class)->name('profile.')->group(function(){
+        Route::get('', 'edit')->name('edit');
+        Route::patch('', 'update')->name('update');
+        Route::delete('', 'destroy')->name('destroy');
+    });
 
 });
 
