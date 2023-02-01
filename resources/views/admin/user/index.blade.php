@@ -50,9 +50,9 @@
                       </table>
                       {{-- fin table --}}
                     </div>
-                    <div class="flex p-2 mt-4 w-full">
-                      <button type="button" onclick="location.href='{{route('admin.dashboard')}}'" class="flex mx-auto text-black bg-gray-300 border-0 py-2 px-8 focus:outline-none hover:bg-gray-200 rounded text-lg">戻る</button>
-                  </div>
+                    <div class="flex justify-around items-center p-2 mt-8 w-full">
+                      <x-original.return onclick="location.href='{{route('admin.dashboard')}}'" />
+                    </div>
                   </div>
                 </section>
                 {{-- fin Contents --}}

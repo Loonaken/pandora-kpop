@@ -16,7 +16,7 @@
                         <div class="relative">
                           <p class="leading-7 text-base "># 気分</p>
                           <div class="border-2 border-gray-200 shadow-md px-2 py-4">
-                              <div class="flex space-x-2">
+                              <div class="flex flex-wrap gap-2">
                                 @foreach ($emotions as $emotion)
                                 <a href="{{route('user.hashtags.emotion', ['emotion'=>$emotion->id])}}" class="text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
                                 {{$emotion->name}}
@@ -33,7 +33,7 @@
                         <div class="relative">
                           <p class="leading-7 text-base "># 年代</p>
                           <div class="border-2 border-gray-200 shadow-md px-2 py-4">
-                              <div class="flex space-x-2">
+                              <div class="flex flex-wrap gap-2">
                                 @foreach ($periods as $period)
                                 <a href="{{route('user.hashtags.period', ['period'=>$period->id])}}" class="text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
                                 {{$period->term}}
@@ -50,7 +50,7 @@
                         <div class="relative">
                           <p class="leading-7 text-base "># グループ</p>
                           <div class="border-2 border-gray-200 shadow-md px-2 py-4">
-                              <div class="flex space-x-2">
+                              <div class="flex flex-wrap gap-2">
                                 @foreach ($groups as $group)
                                 <a href="{{route('user.hashtags.group', ['group'=>$group->id])}}" class="text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
                                 {{$group->name}}
@@ -59,6 +59,7 @@
                               </div>
                           </div>
                         </div>
+
                       </div>
                     {{-- fin group選択 --}}
 
