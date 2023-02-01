@@ -43,9 +43,7 @@
                             <div class="m-8 mx-auto ">
                               <p class="text-lg text-gray-400">このタグに登録されている曲は現在ありません。</p>
                           @endif
-
                         </div>
-                  </div>
                       {{-- fin 気分タグで使用されている曲一覧 --}}
                     </div>
                     <div class="flex justify-around items-center p-2 mt-12 w-full">
@@ -61,6 +59,7 @@
                       <a href='#' data-id="{{$emotion->id}}" onclick="deletePost(this)" type="submit" class="text-black bg-white border-4 transition duration-300 ease-in-out border-red-300 hover:bg-red-200/80 py-2 px-8 focus:outline-none  rounded text-lg mb-8 mx-2 ">削除</a>
                   </form>
                 </div>
+
 
 
 

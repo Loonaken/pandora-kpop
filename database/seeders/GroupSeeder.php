@@ -48,7 +48,7 @@ class GroupSeeder extends Seeder
             [
                 'name'=> 'The_Boyz',
                 'type'=> '1',
-                'information'=> '初期のK-popを牽引した5人組のグループである。',
+                'information'=> 'ダンスにキレがあり、ファンへの期待を裏切らない最近話題のグループである。',
                 'image_id'=> '5',
                 // 'sort_order'=> '1',
             ],

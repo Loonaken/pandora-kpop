@@ -9,6 +9,7 @@
     <div class="max-w-7xl mx-auto px-2 lg:px-4">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="py-6 text-gray-900">
+              <x-flash-message status="session('status')" />
 
               {{-- content --}}
               <div class="flex justify-between mb-4 border-b-2 border-gray-500">
