@@ -10,31 +10,39 @@
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
               <div class="py-6 text-gray-900">
                 {{-- Contents --}}
+
+                {{--
+                コード説明
+                  - L_23,4.. 絞り込み検索がされた際は気分タグの名前/年代名を表示、
+                              されていない時は未選択であることを表示
+                  --}}
+
+                {{-- 検索キーワード --}}
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
                     <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                    <div class="text-black text-center rounded text-base  mb-2"># {{$emotion->name ?? '気分タグ -> 未選択'}}</div>
-                    <div class="text-black text-center rounded text-base  mb-2"># {{$period->term ?? '年代 -> 未選択' }}</div>
+                    <div class="text-black text-center rounded text-base  mb-2"># {{$catchEmotionName ? $catchEmotionName->name : '気分タグ -> 未選択'}}</div>
+                    <div class="text-black text-center rounded text-base  mb-2"># {{$catchPeriodTerm ? $catchPeriodTerm->term : '年代 -> 未選択' }}</div>
                     <div class="text-black text-center rounded text-base  mb-2">
-                        @if ($typeId == 1){{--ここは後で修正して--}}
+                        @if ($typeId == \Constant::GROUP_LIST['male'])
                         # 男性アーティスト
-                        @elseif($typeId == 2){{--ここは後で修正して--}}
+                        @elseif($typeId == \Constant::GROUP_LIST['female'])
                         # 女性アーティスト
                         @else
                         # アーティスト種類 -> 未選択
                         @endif
                     </div>
                 </div>
+                {{-- fin 検索キーワード --}}
+
                 {{-- song --}}
 
                 @if (!empty($songs->toArray()))
                 @foreach ($songs as $song)
 
-                {{-- song name --}}
                 <div class="my-12 border-b-2 border-gray-400 last:border-0">
                   <div class=" w-1/2 max-w-2xl mx-auto bg-pink-400 border-0 p-2 rounded-md focus:outline-none -mt-6 mb-4">
                     <div class="text-white text-center rounded text-3xl mb-2"> {{$song->name}}</div>
                   </div>
-                {{-- fin song name --}}
 
                     <section class="text-gray-600 body-font overflow-hidden ">
                       <div class="container mb-4 py-2 mx-auto  ">
@@ -60,30 +68,15 @@
                 @endforeach
                 @endif
 
-                {{-- fin song --}}
-
                 {{-- 0 Hit --}}
                 @if (empty($songs->toArray()))
-                {{-- <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
-                  <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$emotion ? $view_emotion->name : '気分タグ -> 未選択'}}</div>
-                  <div class="text-black text-center rounded text-base  mb-2"># {{$period ? $view_period->term : '年代 -> 未選択' }}</div>
-                  <div class="text-black text-center rounded text-base  mb-2">
-                    @if ($type == 1)
-                    # 男性アーティスト
-                    @elseif($type == 2)
-                    # 女性アーティスト
-                    @else
-                    # アーティスト種類 -> 未選択
-                    @endif
-                  </div>
-                  </div> --}}
                   <div class="m-8 mx-auto ">
                     <p class="text-xl text-center text-gray-500">あなたが聞きたかった曲が見つかりませんでした。</p>
                   </div>
                 @endif
                 {{--fin  0 Hit --}}
 
+                {{-- fin song --}}
 
                 {{-- return button --}}
                 <div class="flex justify-around items-center p-2 w-full">
@@ -98,16 +91,5 @@
           </div>
       </div>
   </div>
-
-  <script>
-
-    function deletePost(e) {
-  'use strict';
-  if (confirm('曲の「全ての情報」が削除されます。本当に削除してもいいですか?')) {
-  document.getElementById('delete_' + e.dataset.id).submit();
-  }
-  }
-
-  </script>
 
 </x-app-layout>

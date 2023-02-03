@@ -32,8 +32,8 @@ class SongSeeder extends Seeder
                 'group_id'=> '2',
                 'name'=> 'Slow Journey',
                 'information'=> '完全体でのカムバックとしては最後の楽しい曲である',
-                'emotion_id'=> '4',
-                'period_id'=> '4',
+                'emotion_id'=> '2',
+                'period_id'=> '5',
             ],
             [
                 'youtube_link'=> 'https://www.youtube.com/watch?v=ePpPVE-GGJw',
@@ -41,7 +41,7 @@ class SongSeeder extends Seeder
                 'group_id'=> '3',
                 'name'=> 'TT',
                 'information'=> 'TTダンスがブームとなった。',
-                'emotion_id'=> '4',
+                'emotion_id'=> '3',
                 'period_id'=> '4',
             ],
             [
@@ -51,7 +51,7 @@ class SongSeeder extends Seeder
                 'name'=> 'Butter',
                 'information'=> '大衆ウケする英語の曲',
                 'emotion_id'=> '4',
-                'period_id'=> '4',
+                'period_id'=> '3',
             ],
             [
                 'youtube_link'=> 'https://www.youtube.com/watch?v=pYRSY1Kv3YY',
@@ -59,10 +59,10 @@ class SongSeeder extends Seeder
                 'group_id'=> '5',
                 'name'=> 'Whisper',
                 'information'=> '中毒性がある楽しい曲',
-                'emotion_id'=> '4',
-                'period_id'=> '4',
+                'emotion_id'=> '5',
+                'period_id'=> '1',
             ],
-            
+
         ]);
     }
 }

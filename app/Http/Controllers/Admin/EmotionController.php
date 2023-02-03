@@ -48,7 +48,6 @@ class EmotionController extends Controller
         - RequestClassを別に作成している
         - ??? EmotionRequest SHOW
 	コード説明・やり方
-        -
         - foreach.. addMoreInputFieldsという共通のinput名で$valueをEmotion DBに登録している
 	*/
 
@@ -117,7 +116,7 @@ class EmotionController extends Controller
         - 現在の気分タグに曲を登録する
 	コード説明・やり方
         - $songs.. 特定の気分タグに登録されていない曲を全て取得するため、
-        whereNotIn,orWhereNullを使用して取得している
+            whereNotIn,orWhereNullを使用して取得している
 	*/
     public function song_add($id)
     {
@@ -166,7 +165,6 @@ class EmotionController extends Controller
 	*/
 
     public function song_destroy($id)
-    // 気分タグに登録されている曲の「気分Id」を1つずつnullにする
     {
         $song = Song::findOrFail($id);
         $emotion = Emotion::findOrFail($id);
