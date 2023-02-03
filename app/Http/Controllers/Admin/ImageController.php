@@ -81,8 +81,6 @@ class ImageController extends Controller
         if(!is_null($imageFiles)){
             foreach($imageFiles as $imageFile){
             $fileNameToStore = ImageService::upload($imageFile);
-            // 第二引数に画像を格納したいフォルダ名を選択する
-            // ImageServiceファイルにファイル名やリサイズメソッドを記載している
                 Image::create([
                     'admin_id' => Auth::id(),
                     'filename' => $fileNameToStore

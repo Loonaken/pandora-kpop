@@ -48,32 +48,34 @@ class OutputController extends Controller
 	出来ること
         -気分、年代、アーティスト属性の3つの検索軸で聞きたい曲を絞り込むことができる
 	コード説明・やり方
+        -$emotionId等..  リクエスト情報取得
+
         -$songs.. 曲のDBから値を取得することを考えており、
-            かつ検索条件が複雑なためScopeを使用している
-            各selectOOの引数にはリクエストの値の有無をチェックしている
+                    かつ検索条件が複雑なためScopeを使用している
+                    各selectOOの引数にはリクエストの値の有無をチェックしている
         -??? Model/Song Show
+
+        -catchEmotionName.. Blade側に検索したキーワードを表示させるため,該当する曲の情報を取得している
+            - 一番重要な箇所は find()メソッド。
+                ユーザーが絞り込みを行わないことを考慮すると、emotionIdはnull・notNullの2つが想定される
+                findOrFail()であれば、nullの場合エラーが発生して処理が進めなくなる
+                一方でfind()であれば、nullの場合はnullを値として返してくれるので、Bladeに処理を回すことができる
+                そのためfind()を使用している
 	*/
-
-
     public function show(Request $request){
-        //リクエスト情報取得
         $emotionId = $request->emotion;
         $periodId = $request->period;
         $typeId = $request->type;
 
-        //該当する曲を取得
-        $songs = Song::selectEmotion($emotionId)
-        ->selectPeriod($periodId)
-        ->selectType($typeId)
+        $songs = Song::selectEmotion($emotionId ?? null)
+        ->selectPeriod($periodId ?? null)
+        ->selectType($typeId ?? null)
         ->get();
 
-        //リクエストした条件を取得する
-        $emotion = Emotion::findOrFail($emotionId);
-        $period = Period::findOrFail($periodId);
-        //groupとtypeがよくわからん
-        //typeテーブル作って、groupテーブルのtype_idを外部キーにして、紐づけてくれ
+        $catchEmotionName = Emotion::find($emotionId);
+        $catchPeriodTerm = Period::find($periodId);
 
-        return view ('user.outputs.show', compact('songs',"emotion","period","typeId"));
+        return view ('user.outputs.show', compact('songs','catchEmotionName','catchPeriodTerm','typeId'));
     }
 
 

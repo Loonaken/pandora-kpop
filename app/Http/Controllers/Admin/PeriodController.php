@@ -81,12 +81,16 @@ class PeriodController extends Controller
         ->with(['message'=> '更新が完了しました' , 'status'=>'info']);
     }
 
+	/*
+	コード説明・やり方
+        - $songs..  特定の年代タグに登録されていない曲を全て取得するため、
+                        whereNotIn,orWhereNullを使用して取得している
+	*/
     public function song_add($id)
     {
         $period = Period::findOrFail($id);
 
-        // 特定の年代タグに登録されていない曲を全て取得するため、
-        // whereNotIn,orWhereNullを使用して取得している
+
         $songs = Song::whereNotIn('period_id' , [$period->id])
         ->orWhereNull('period_id')
         ->get();
@@ -116,16 +120,19 @@ class PeriodController extends Controller
 
     }
 
+	/*
+	出来ること
+        - 年代タグに登録されている曲の「年代Id」を1つずつnullにする
+	コード説明・やり方
+        - L_135 $song..  年代タグのIdのみをNull化している
+	*/
     public function song_destroy($id)
-    // 年代タグに登録されている曲の「年代Id」を1つずつnullにする
+
     {
         $song = Song::findOrFail($id);
-
         $period = Period::findOrFail($id);
 
-        // 年代タグのIdのみをNull化している
         $song->period_id = null;
-
         $song->save();
 
         return redirect()
@@ -133,8 +140,12 @@ class PeriodController extends Controller
         ->with(['message'=> '曲の年代タグを削除しました。' , 'status'=>'error']);
     }
 
+	/*
+	出来ること
+        - 年代タグに登録されている全ての曲の「年代Id」をnullにする
+	*/
     public function destroy($id)
-    // 年代タグに登録されている全ての曲の「年代Id」をnullにする
+
     {
         $period = Period::findOrFail($id);
         $songsInPeriod = Song::where('period_id', $period->id)->get();
@@ -149,5 +160,6 @@ class PeriodController extends Controller
         ->route('admin.periods.index')
         ->with(['message'=>'年代タグを削除しました。' , 'status'=>'info']);
         }
+
 
 }
