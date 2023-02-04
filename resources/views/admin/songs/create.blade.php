@@ -24,8 +24,8 @@
 
                       {{-- 曲情報の入力 --}}
                     <x-input-error :messages="$errors->get('information')" class="mt-2" />
-                          <label for="information" class="leading-7 text-sm text-gray-600">曲について</label>
-                          <textarea id="information" name="information" rows="3" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
+                          <label for="information" class="leading-7 text-sm text-gray-600">曲について *任意</label>
+                          <textarea id="information" name="information" rows="3"  class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                       {{-- fin 曲情報の入力 --}}
 
                       {{-- youtube_linkの入力 --}}
