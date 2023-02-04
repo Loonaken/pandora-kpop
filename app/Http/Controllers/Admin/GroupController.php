@@ -42,6 +42,7 @@ class GroupController extends Controller
         ->get();
 
         $request_type = $request->type;
+        // dd($request_type);
 
         return view ('admin.groups.index', compact('groups', 'request_type'));
     }

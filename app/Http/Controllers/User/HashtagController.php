@@ -17,11 +17,14 @@ class HashtagController extends Controller
 
     }
 
-    public function refer(){
+    public function refer(Request $request){
+
+
 
         $emotions = Emotion::orderBy('name' , 'asc')->get();
         $periods = Period::orderBy('term' , 'desc')->get();
-        $groups = Group::orderBy('name' , 'asc')->get();
+        $groups = Group::AvailableGroupTypes($request->type)
+        ->orderBy('name' , 'asc')->get();
 
         return view ('user.hashtags.refer', compact('emotions', 'periods', 'groups'));
 

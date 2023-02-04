@@ -16,9 +16,12 @@
                       {{-- @if ($request_type === null) --}}
                         <div class="flex justify-center mb-2 -mt-4">
                           {{-- 定数化した値をValueにそれぞれ当てはめている --}}
-                          <input type="radio"  name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
+                          <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
                           <label for="male" class=" grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
                             男性アーティスト</label>
+                          <input type="radio" name="type" value="0" id="all">
+                          <label for="all" class=" grow text-center border-2 py-3  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                            全て</label>
                           <input type="radio"  name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
                           <label for="female" class="grow text-center border-2 py-3  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
                             女性アーティスト</label>
@@ -87,6 +90,13 @@
 
 {{-- Javascriptを初めて0から実装した！ --}}
   <script>
+
+    const selectAll = document.getElementById('all')
+    selectAll.addEventListener('click' , function(){
+      this.form.submit();
+
+    })
+
     const selectMale = document.getElementById('male')
     selectMale.addEventListener('click' , function(){
       this.form.submit();
@@ -98,7 +108,7 @@
       this.form.submit();
 
     })
-    
+
 
   </script>
 </x-app-layout>
