@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('image_id')->constrained();
             $table->foreignId('group_id')->constrained();
             $table->string('name')->unique();
-            $table->text('information');
+            $table->text('information')->nullable();
             $table->foreignId('emotion_id')->nullable()->constrained();
             $table->foreignId('period_id')->nullable()->constrained();
             $table->timestamps();
