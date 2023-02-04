@@ -167,7 +167,6 @@ class EmotionController extends Controller
     public function song_destroy($id)
     {
         $song = Song::findOrFail($id);
-        $emotion = Emotion::findOrFail($id);
 
         $song->emotion_id = null;
         $song->save();

@@ -124,13 +124,11 @@ class PeriodController extends Controller
 	出来ること
         - 年代タグに登録されている曲の「年代Id」を1つずつnullにする
 	コード説明・やり方
-        - L_135 $song..  年代タグのIdのみをNull化している
+        - L_133 $song..  年代タグのIdのみをNull化している
 	*/
     public function song_destroy($id)
-
     {
         $song = Song::findOrFail($id);
-        $period = Period::findOrFail($id);
 
         $song->period_id = null;
         $song->save();

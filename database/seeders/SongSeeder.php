@@ -62,6 +62,15 @@ class SongSeeder extends Seeder
                 'emotion_id'=> '5',
                 'period_id'=> '1',
             ],
+            [
+                'youtube_link'=> 'https://www.youtube.com/watch?v=pYRSY1Kv3YY',
+                'image_id'=> '6',
+                'group_id'=> '6',
+                'name'=> 'Stay this way',
+                'information'=> 'サマーソングである',
+                'emotion_id'=> '1',
+                'period_id'=> '1',
+            ],
 
         ]);
     }
