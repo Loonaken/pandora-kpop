@@ -49,17 +49,30 @@
                       <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
                           <p class="leading-7 text-base "># グループ</p>
-                          <div class="border-2 border-gray-200 shadow-md px-2 py-4">
-                              <div class="flex flex-wrap gap-2">
-                                @foreach ($groups as $group)
-                                <a href="{{route('user.hashtags.group', ['group'=>$group->id])}}" class="text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
-                                {{$group->name}}
-                                </a>
-                                @endforeach
-                              </div>
-                          </div>
-                        </div>
-
+                          <form method="get" action="{{route('user.hashtags.refer' )}}" >
+                              <div class="flex justify-center ">
+                                {{-- 定数化した値をValueにそれぞれ当てはめている --}}
+                                <input type="radio" name="type" value="{{\Constant::GROUP_LIST['male']}}" id="male">
+                                <label for="male" class=" grow text-center border-2 py-2  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                                  男性アーティスト</label>
+                                <input type="radio" name="type" value="0" id="all">
+                                <label for="all" class=" grow text-center border-2 py-2  border-orange-400 rounded  hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                                  全て</label>
+                                <input type="radio"  name="type" value="{{\Constant::GROUP_LIST['female']}}" id="female">
+                                <label for="female" class="grow text-center border-2 py-2  border-orange-400 rounded hover:bg-yellow-300/75 transition duration-300 ease-in-out cursor-pointer ">
+                                  女性アーティスト</label>
+                                </div>
+                                  <div class="border-2 border-gray-200 shadow-md px-2 py-4">
+                                      <div class="flex flex-wrap gap-2">
+                                        @foreach ($groups as $group)
+                                        <a href="{{route('user.hashtags.group', ['group'=>$group->id])}}" class="text-center border-2 px-4 py-2 my-1  border-orange-400 rounded-full  hover:border-green-400 transition duration-300 ease-in-out cursor-pointer ">
+                                        {{$group->name}}
+                                        </a>
+                                        @endforeach
+                                      </div>
+                                  </div>
+                                </div>
+                            </form>
                       </div>
                     {{-- fin group選択 --}}
 
@@ -75,7 +88,25 @@
       </div>
   </div>
 
-  <script>
+<script>
+
+    const selectAll = document.getElementById('all')
+    selectAll.addEventListener('click' , function(){
+      this.form.submit();
+
+    })
+
+    const selectMale = document.getElementById('male')
+    selectMale.addEventListener('click' , function(){
+      this.form.submit();
+
+    })
+
+    const selectFemale = document.getElementById('female')
+    selectFemale.addEventListener('click' , function(){
+      this.form.submit();
+
+    })
 
   </script>
 
