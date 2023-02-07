@@ -41,7 +41,7 @@ class ImageController extends Controller
     public function index()
     {
         $images = Image::orderBy('updated_at', 'desc')
-        ->paginate(20);
+        ->paginate(15);
 
         return view ('admin.images.index' , compact('images'));
     }
@@ -80,9 +80,8 @@ class ImageController extends Controller
         $imageFiles = $request->file('files');
         if(!is_null($imageFiles)){
             foreach($imageFiles as $imageFile){
-            $fileNameToStore = ImageService::upload($imageFile);
+                $fileNameToStore = ImageService::upload($imageFile);
                 Image::create([
-                    'admin_id' => Auth::id(),
                     'filename' => $fileNameToStore
                 ]);
             }

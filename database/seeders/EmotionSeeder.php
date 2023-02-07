@@ -37,6 +37,10 @@ class EmotionSeeder extends Seeder
                 'name'=> 'RAP',
                 // 'sort_order'=> '1'
             ],
+            [
+                'name'=> 'Mellow',
+                // 'sort_order'=> '1'
+            ],
         ]);
     }
 }

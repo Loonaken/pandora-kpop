@@ -84,7 +84,6 @@
                   <x-original.action onclick="location.href='{{route('user.outputs.create')}}'" action=やり直す！ />
               </div>
                 {{-- fin return button --}}
-
                 {{-- fin contents --}}
 
               </div>
