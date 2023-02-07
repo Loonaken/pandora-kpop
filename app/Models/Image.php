@@ -13,7 +13,6 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [
-        'admin_id',
         'filename'
     ];
 
@@ -22,11 +21,11 @@ class Image extends Model
         return $this->belongsTo(Admin::class);
     }
 
-    public function group()
+    public function groups()
     {
         return $this->hasMany(Group::class);
     }
-    public function song()
+    public function songs()
     {
         return $this->hasMany(Song::class);
     }
