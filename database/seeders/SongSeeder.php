@@ -179,6 +179,15 @@ class SongSeeder extends Seeder
                 'emotion_id'=> '5',
                 'period_id'=> '2',
             ],
+            [ //18
+                'youtube_link'=> 'https://www.youtube.com/watch?v=XMs2CIiqRDI',
+                'image_id'=> '25',
+                'group_id'=> '7',
+                'name'=> 'Ditto',
+                'information'=> '',
+                'emotion_id'=> '6',
+                'period_id'=> '1',
+            ],
 
         ]);
     }

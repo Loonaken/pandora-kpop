@@ -122,6 +122,11 @@ class ImageSeeder extends Seeder
                 'filename'=>'No air.jpeg',
                 'title'=> 'No air'
             ],
+            [ //25
+                'filename'=>'Newjeans.jpg',
+                'title'=> 'newjeans'
+            ],
+
         ]);
     }
 }
