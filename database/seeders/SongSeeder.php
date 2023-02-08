@@ -180,7 +180,7 @@ class SongSeeder extends Seeder
                 'period_id'=> '2',
             ],
             [ //18
-                'youtube_link'=> 'https://www.youtube.com/watch?v=XMs2CIiqRDI',
+                'youtube_link'=> 'https://www.youtube.com/watch?v=pSUydWEqKwE',
                 'image_id'=> '25',
                 'group_id'=> '7',
                 'name'=> 'Ditto',
