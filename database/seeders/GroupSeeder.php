@@ -60,6 +60,13 @@ class GroupSeeder extends Seeder
                 'image_id'=> '6',
                 // 'sort_order'=> '1',
             ],
+            [
+                'name'=> 'NewJeans',
+                'type'=> '2',
+                'information'=> '大型新人グループ',
+                'image_id'=> '25',
+                // 'sort_order'=> '1',
+            ],
         ]);
     }
 }
