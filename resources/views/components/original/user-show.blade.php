@@ -5,7 +5,7 @@
         <div class="basis-1/3 ">
           <x-thumbnail :filename="$song->image->filename"  class="mb-0  " />
           </div>
-          <div class="basis-2/3 pl-8">
+          <div class="basis-2/3 pl-2">
             <div class="flex items-center">
               <p class="mr-4">曲名</p>
               <p class="text-gray-900 text-2xl title-font font-medium">{{$song->name}}</p>
