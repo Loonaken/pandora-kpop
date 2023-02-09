@@ -1,9 +1,9 @@
 <x-app-layout>
 
-  <div class="py-12">
+  <div class="">
       <div class="max-w-7xl mx-auto px-2 lg:px-4">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="py-6 text-gray-900">
+              <div class="py-2 text-gray-900">
                 {{-- Contents --}}
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
                   <div class="text-black text-center rounded text-xl mb-2 pt-2"># {{$period->term}}</div>
@@ -13,7 +13,7 @@
 
                 @if (!empty($songs->toArray()))
                 @foreach ($songs as $song)
-                <div class="my-12 border-b-2 border-gray-400 last:border-0">
+                <div class="my-8 border-b-2 border-gray-400 last:border-0">
                   <x-original.user-show :song=$song /> {{--一つ一つの曲情報を表示している --}}
                 </div>
                 @endforeach

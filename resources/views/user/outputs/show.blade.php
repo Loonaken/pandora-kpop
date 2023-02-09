@@ -1,6 +1,9 @@
 <x-app-layout>
   <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      <h2 class="block sm:hidden md:hidden lg:hidden font-semibold text-xl text-gray-800 leading-tight">
+      聞きたかった曲
+      </h2>
+      <h2 class="hidden sm:block md:block lg:block font-semibold text-xl text-gray-800 leading-tight">
       あなたが聞きたかった曲
       </h2>
   </x-slot>
@@ -8,7 +11,7 @@
   <div class="py-12">
       <div class="max-w-7xl mx-auto px-4 lg:px-4">
           <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-              <div class="py-6 text-gray-900">
+              <div class="py-6 px-2 text-gray-900  ">
                 {{-- Contents --}}
 
                 {{--
@@ -19,10 +22,10 @@
 
                 {{-- 検索キーワード --}}
                 <div class=" w-2/3 max-w-2xl mx-auto border-2 border-lime-300 p-2 rounded-md focus:outline-none mb-4">
-                    <div class="text-black text-center rounded text-xl  mb-2">あなたが検索したキーワード</div>
-                    <div class="text-black text-center rounded text-base  mb-2"># {{$catchEmotionName ? $catchEmotionName->name : '気分タグ -> 未選択'}}</div>
-                    <div class="text-black text-center rounded text-base  mb-2"># {{$catchPeriodTerm ? $catchPeriodTerm->term : '年代 -> 未選択' }}</div>
-                    <div class="text-black text-center rounded text-base  mb-2">
+                    <div class=" text-black text-center rounded text-xl  mb-2">検索キーワード</div>
+                    <div class="text-black text-center rounded text-base  mb-1"># {{$catchEmotionName ? $catchEmotionName->name : '気分タグ -> 未選択'}}</div>
+                    <div class="text-black text-center rounded text-base  mb-1"># {{$catchPeriodTerm ? $catchPeriodTerm->term : '年代 -> 未選択' }}</div>
+                    <div class="text-black text-center rounded text-base  mb-1">
                         @if ($typeId == \Constant::GROUP_LIST['male'])
                         # 男性アーティスト
                         @elseif($typeId == \Constant::GROUP_LIST['female'])
@@ -39,7 +42,7 @@
                 @if (!empty($songs->toArray()))
                 @foreach ($songs as $song)
 
-                <div class="my-12 border-b-2 border-gray-400 last:border-0">
+                <div class="my-8 border-b-2 border-gray-400 last:border-0">
                   <x-original.user-show :song=$song /> {{--一つ一つの曲情報を表示している --}}
                 </div>
                 @endforeach
