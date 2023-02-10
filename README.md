@@ -47,27 +47,6 @@ sail artisan migrate
 ```
 
 
-## 画像のインストール
-
-- storage/public/ のフォルダの配下に
-```
-songs
-```
-というフォルダ名を新規作成する
-
-- admin側にて画像管理をページに遷移し、新規登録していくつか画像を取り込む(jpeg,jpg,pngのみ)
-画像ファイルは取り込み時に渡します。
-
-- app/database/seeders/imageSeeder.php/ のフォルダ内にて
-前の工程で取り込んだファイル名(RandomId化された数桁の数字)をStorage/app/public/songsから探し、imageSeederに登録します。
-
-## Seeder操作
-
-- app/database/seeders/ 内における、GroupSeeder,SongSeeder,PeriodSeeder,EmotionSeederをそれぞれ登録する
-（GroupSeeder,SongSeederは前の工程で登録した、Imageのランダムidを指定する）
-
-
-
 ## データベースの再マイグレーション
 ```
 sail artisan migrate:refresh --seed
@@ -86,20 +65,3 @@ http://localhost
 
 にアクセスして、表示確認してください。
 
-
-## 注意事項
-
-Imageを削除したのちに、
-```
-sail artisan migrate:refresh --seed
-```
-を実行して画像管理の画面を表示した際、
-画像が正しく表示されないエラーが発生します。
-
-エラー解決方法
-- 画像を再度新規登録
-- Storageに保存されたfilenameをImageSeederのfilenameのカラムに入れる
--
-```
-sail artisan migrate:refresh --seed
-```
