@@ -103,8 +103,7 @@ class ImageController extends Controller
 
                     if(app()->environment('production')) {
                         // 本番環境の場合の処理
-                        $check = Storage::put('public/songs/' . $filename, $resizedImage);
-                        dd($check);
+                        Storage::disk("s3")->put('public/songs/' . $filename, $resizedImage);
                     }
 
                     $path = 'storage/songs/' . $filename;
