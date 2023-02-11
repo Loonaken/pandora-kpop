@@ -104,9 +104,11 @@ class ImageController extends Controller
 
                     if(app()->environment('production')) {
                         // 本番環境の場合の処理
-                        Storage::disk("s3")->put('songs/' . $filename, $resizedImage);
+                        Storage::disk("s3")->put('storage/songs/' . $filename, $resizedImage);
                         $path = Storage::disk('s3')->url('storage/songs/' . $filename);
                     }
+
+                    Log::debug($path);
 
                     //画像の保存に成功したらDBに記録する
                     Image::create([
