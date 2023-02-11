@@ -94,7 +94,7 @@ class ImageController extends Controller
                     $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
 
                     //画像をサーバーに保存（公開したいからdiskはpublicに保存）
-                    Storage::disk("public")->put('public/songs/'. $filename, $resizedImage);                    // //画像の保存
+                    Storage::disk("public")->put('songs/'. $filename, $resizedImage);                    // //画像の保存
                     // if (app()->isLocal()) {
                     //     // ローカル環境の場合の処理（ローカルストレージに保存）
                     //     Storage::put('public/songs/'. $filename, $resizedImage);
