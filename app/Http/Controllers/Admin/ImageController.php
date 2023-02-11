@@ -88,22 +88,24 @@ class ImageController extends Controller
                 try {
                     DB::beginTransaction();
 
-                    $filename = $file->hashName() . $file->extension();//ユニークでランダムな名前を生成
+                    $filename = $file->hashName();//ユニークでランダムな名前を生成
+
+                    Log::debug($filename);
 
                     //画像のリサイズ
                     $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
 
                     //画像をサーバーに保存（公開したいからdiskはpublicに保存）
-                    Storage::disk("public")->put('songs/'. $filename, $resizedImage);                    // //画像の保存
-                    // if (app()->isLocal()) {
-                    //     // ローカル環境の場合の処理（ローカルストレージに保存）
-                    //     Storage::put('public/songs/'. $filename, $resizedImage);
-                    // }
+                    if (app()->isLocal()) {
+                        // ローカル環境の場合の処理（ローカルストレージに保存）
+                        Storage::disk("public")->put('songs/'. $filename, $resizedImage);
+                    }
 
-                    // if(app()->environment('production')) {
-                    //     // 本番環境の場合の処理(s3に保存)
-                    //     Storage::disk('s3')->put('public/songs/' . $filename, $resizedImage);
-                    // }
+                    if(app()->environment('production')) {
+                        // 本番環境の場合の処理
+                        $check = Storage::put('public/songs/' . $filename, $resizedImage);
+                        dd($check);
+                    }
 
                     $path = 'storage/songs/' . $filename;
 
