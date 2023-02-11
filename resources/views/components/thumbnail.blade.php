@@ -15,7 +15,7 @@ if ($type === 'groups') {
 <div {{ $attributes->merge([
   'class' => 'mb-4'
 ]) }} >
-<img src="{{ asset($path) }}" >
+<img src="{{ $path }}" >
   {{-- @if (empty($title))
   <img src="{{ asset('images/no_image.jpg')}}">
 
