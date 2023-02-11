@@ -52,20 +52,29 @@ class ImageService
 {
   public static function upload($imageFile)
   {
-    if(is_array($imageFile))
-    {
-      $file = $imageFile['image'];
-    }else{
-      $file = $imageFile;
-    }
+    //これいらない
+    // if(is_array($imageFile))
+    // {
+    //   $file = $imageFile['image'];
+    // }else{
+    //   $file = $imageFile;
+    // }
 
     $fileName = uniqid(rand().'_');
-    $extension = $file->extension();
+    $extension = $imageFile->extension();
     $fileNameToStore = $fileName. '.' . $extension;
-    $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
+    $resizedImage = InterventionImage::make($imageFile)->resize(1920, 1080)->encode();
 
-    Storage::put('public/songs/' . $fileNameToStore, $resizedImage);
+    if (app()->isLocal()) {
+        // ローカル環境の場合の処理（ローカルストレージに保存）
+        $path = Storage::put('public/songs/' . $fileNameToStore, $resizedImage);
+    }
 
-    return $fileNameToStore;
+    if(app()->environment('production')) {
+        // 本番環境の場合の処理(s3に保存)
+        $path = Storage::disk('s3')->put('public/songs/' . $fileNameToStore, $resizedImage);
+    }
+
+    return $path;
   }
 }

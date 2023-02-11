@@ -5,41 +5,39 @@
       </h2>
   </x-slot>
 
-  <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
                 {{-- Image Column --}}
                 <x-flash-message status="session('status')" />
                 <x-original.create onclick="location.href='{{route('admin.images.create')}}'" />
-                  <div class="flex flex-wrap">
-                    @foreach ($images as $image)
-                        <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-                          <div class=" rounded-md p-4">
+                <div class="flex flex-wrap">
+                @foreach ($images as $image)
+                    <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
+                        <div class=" rounded-md p-4">
                             <form method="POST" action="{{route('admin.images.destroy', ['image'=>$image->id])}}" >
-                              @csrf
-                              @method('delete')
-                              <x-original.delete />
+                            @csrf
+                            @method('delete')
+                            <x-original.delete />
                             </form>
-                            <x-thumbnail :filename="$image->filename" />
-                              <div class="border-x-2 border-b-2 -mt-4 border-lime-300 hover:border-cyan-300">
-                              <a href="{{route('admin.images.edit' , ['image'=>$image->id] )}}" >
-                            <div class="text-lg text-center  text-gray-500">{{$image->title ? $image->title : '登録なし' }}</div>
-                            {{-- 最初に画像をアップロードする際、複数選択を考慮してタイトルの記述欄は無しにしてある
-                            アップロード済みの画像にはタイトルの名前を編集することのみが可能である --}}
-                            <div class="text-center text-gray-400 bg-white  transition duration-300 ease-in-out  focus:outline-none shadow-md rounded text-lg" >
-                              更新
+                            <x-thumbnail :path="$image->path" />
+                            <div class="border-x-2 border-b-2 -mt-4 border-lime-300 hover:border-cyan-300">
+                                <a href="{{route('admin.images.edit' , ['image'=>$image->id] )}}" >
+                                    <div class="text-lg text-center  text-gray-500">{{$image->title ? $image->title : '登録なし' }}</div>
+                                    {{-- 最初に画像をアップロードする際、複数選択を考慮してタイトルの記述欄は無しにしてある
+                                    アップロード済みの画像にはタイトルの名前を編集することのみが可能である --}}
+                                    <div class="text-center text-gray-400 bg-white  transition duration-300 ease-in-out  focus:outline-none shadow-md rounded text-lg" >更新</div>
+                                </a>
                             </div>
-                          </div>
-                        </a>
-                      </div>
                         </div>
-                    @endforeach
-              </div>
-              {{$images->links()}}
-              {{-- End_Image Column --}}
-              </div>
-          </div>
-      </div>
-  </div>
+                    </div>
+                @endforeach
+                {{$images->links()}}
+                {{-- End_Image Column --}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </x-app-layout>

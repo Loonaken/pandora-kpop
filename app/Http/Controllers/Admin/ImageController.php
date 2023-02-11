@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Storage;
 use InterventionImage;
 use App\Http\Requests\UploadImageRequest;
 use App\Services\ImageService;
+use Exception;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ImageController extends Controller
 
@@ -78,12 +81,48 @@ class ImageController extends Controller
     public function store(UploadImageRequest $request)
     {
         $imageFiles = $request->file('files');
+
         if(!is_null($imageFiles)){
-            foreach($imageFiles as $imageFile){
-                $fileNameToStore = ImageService::upload($imageFile);
-                Image::create([
-                    'filename' => $fileNameToStore
-                ]);
+            foreach($imageFiles as $file){
+                //トランザクションを張る
+                try {
+                    DB::beginTransaction();
+
+                    $filename = $file->hashName() . $file->extension();//ユニークでランダムな名前を生成
+
+                    //画像のリサイズ
+                    $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
+
+                    //画像をサーバーに保存（公開したいからdiskはpublicに保存）
+                    Storage::disk("public")->put('public/songs/'. $filename, $resizedImage);                    // //画像の保存
+                    // if (app()->isLocal()) {
+                    //     // ローカル環境の場合の処理（ローカルストレージに保存）
+                    //     Storage::put('public/songs/'. $filename, $resizedImage);
+                    // }
+
+                    // if(app()->environment('production')) {
+                    //     // 本番環境の場合の処理(s3に保存)
+                    //     Storage::disk('s3')->put('public/songs/' . $filename, $resizedImage);
+                    // }
+
+                    $path = 'storage/songs/' . $filename;
+
+                    Log::debug($path);
+
+                    //画像の保存に成功したらDBに記録する
+                    Image::create([
+                        'path' => $path,
+                    ]);
+
+
+                    DB::commit();
+                } catch(Exception $e) {
+                    \Log::error($e);
+
+                    return redirect()
+                    ->route('admin.images.index')
+                    ->with(['message'=> '登録に失敗しました。' , 'status'=>'error']);
+                }
             }
         }
 

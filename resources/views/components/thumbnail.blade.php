@@ -15,11 +15,13 @@ if ($type === 'groups') {
 <div {{ $attributes->merge([
   'class' => 'mb-4'
 ]) }} >
-  @if (empty($filename))
+<img src="{{ asset($path) }}" >
+  {{-- @if (empty($title))
   <img src="{{ asset('images/no_image.jpg')}}">
 
   @else
   <img src="{{ asset('storage/songs/' . $filename)}}" >
   {{-- 画像がアップロードしたフォルダ(storage/songs/)の中の特定のファイルを選択している --}}
-  @endif
+
+  {{-- @endif --}}
 </div>
