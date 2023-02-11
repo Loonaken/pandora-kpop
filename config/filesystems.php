@@ -71,6 +71,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        //storage/app/public から public/storage へのシンボリックリンクを作成
     ],
 
 ];
