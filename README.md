@@ -5,21 +5,10 @@ git clone https://github.com/Loonaken/pandora-kpop.git
 
 cd pandora-kpop
 
-docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v $(pwd):/var/www/html \
-    -w /var/www/html \
-    laravelsail/php81-composer:latest \
-    composer install --ignore-platform-reqs
-
+composer install
 ```
 
-- .env.example をコピーして .envファイルを作成
-
-
-```
-cp .env.example .env
-```
+## .envをもらう
 
 ## sailのエイリアスを登録
 
@@ -39,19 +28,17 @@ sail up -d
 sail artisan key:generate
 ```
 
-## データベースのマイグレーション(試用)
-データベースと連携できるか確認する
-
+## シンボリックリンクの作成
 ```
-sail artisan migrate
+sail artisan storage:link
 ```
 
-
-## データベースの再マイグレーション
+## データベースのマイグレーション＋シードデータの挿入
 ```
 sail artisan migrate:refresh --seed
 
 ```
+
 
 ## フロントエンドのビルド
 ```
@@ -65,3 +52,7 @@ http://localhost
 
 にアクセスして、表示確認してください。
 
+## phpmyadminの起動
+http://localhost:8080
+
+id, passwordは .envのDB_USERNAME, DB_PASSWORDを使ってください。
