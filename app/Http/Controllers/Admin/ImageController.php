@@ -90,8 +90,6 @@ class ImageController extends Controller
 
                     $filename = $file->hashName();//ユニークでランダムな名前を生成
 
-                    Log::debug($filename);
-
                     //画像のリサイズ
                     $resizedImage = InterventionImage::make($file)->resize(1920, 1080)->encode();
 
@@ -99,20 +97,18 @@ class ImageController extends Controller
                     if (app()->isLocal()) {
                         // ローカル環境の場合の処理（ローカルストレージに保存）
                         Storage::disk("public")->put('songs/'. $filename, $resizedImage);
-                        $path = Storage::disk('public')->url('songs/' . $filename);
                     }
 
                     if(app()->environment('production')) {
                         // 本番環境の場合の処理
                         Storage::disk("s3")->put('storage/songs/' . $filename, $resizedImage);
-                        $path = Storage::disk('s3')->url('storage/songs/' . $filename);
                     }
 
-                    Log::debug($path);
+                    $path = "storage/songs/" . $filename;
 
                     //画像の保存に成功したらDBに記録する
                     Image::create([
-                        'path' => $path,//フルパスで保存
+                        'path' => $path,
                     ]);
 
 
