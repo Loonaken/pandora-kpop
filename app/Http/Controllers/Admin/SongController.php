@@ -35,7 +35,7 @@ class SongController extends Controller
     {
         $songs = Song::select('id', 'name')->get();
 
-        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+        $images  =Image::select('id', 'title', 'path')->orderByDesc('updated_at')->get();
 
         $emotions = Emotion::get();
 
@@ -74,7 +74,7 @@ class SongController extends Controller
     {
         $song = Song::findOrFail($id);
 
-        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+        $images  =Image::select('id', 'title', 'path')->orderByDesc('updated_at')->get();
 
         $emotions = Emotion::get();
 
