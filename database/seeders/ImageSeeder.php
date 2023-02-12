@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 
 class ImageSeeder extends Seeder
 {
@@ -16,117 +16,113 @@ class ImageSeeder extends Seeder
      */
     public function run()
     {
+        //ここは自動で取得する
+
+        //　本番とローカルで分ける
+        //$path = Storage::disk('public')->path('songs');
+
+
         DB::table('images')->insert([
             [
-                'filename'=> 'loona pic 4.jpeg',
+                'path'=> "storage/songs/loona pic 4.jpeg",
                 'title'=> 'Loona',
-
             ],
             [
-                'filename'=>'izone_pic_1.jpeg',
+                'path'=> 'storage/songs/izone_pic_1.jpeg',
                 'title'=> 'Iz*one'
-
             ],
             [
-                'filename'=>'Twice2_pic.jpeg',
+                'path'=> 'storage/songs/Twice2_pic.jpeg',
                 'title'=> 'Twice'
-
             ],
             [
-                'filename'=>'BTS.jpeg',
+                'path'=> 'storage/songs/BTS.jpeg',
                 'title'=> 'BTS'
-
             ],
             [
-                'filename'=>'The_Boyz_pic.png',
+                'path'=> 'storage/songs/The_Boyz_pic.png',
                 'title'=> 'The_Boyz'
-
             ],
             [
-                'filename'=>'fromis_9_pic.jpeg',
+                'path'=> 'storage/songs/fromis_9_pic.jpeg',
                 'title'=> 'Fromis_9'
-
             ],
             [ //7
-                'filename'=>'Loonatic.jpeg',
+                'path'=> 'storage/songs/Loonatic.jpeg',
                 'title'=> 'loonatic'
-
             ],
             [ //8
-                'filename'=>'so_what.jpeg',
+                'path'=> 'storage/songs/so_what.jpeg',
                 'title'=> 'So what'
-
             ],
             [ //9
-                'filename'=>'Flip that.jpeg',
+                'path'=> 'storage/songs/Flip that.jpeg',
                 'title'=> 'Flip that'
-
             ],
             [ //10
-                'filename'=>'Violeta.jpeg',
+                'path'=> 'storage/songs/Violeta.jpeg',
                 'title'=> 'Violeta'
             ],
             [ //11
-                'filename'=>'Secret Story Of Swan.jpeg',
+                'path'=> 'storage/songs/Secret Story Of Swan.jpeg',
                 'title'=> 'Secret Story of the Swan'
             ],
             [ //12
-                'filename'=>'To heart.jpeg',
+                'path'=> 'storage/songs/To heart.jpeg',
                 'title'=> 'To heart'
             ],
             [ //13
-                'filename'=>'Slow journey.jpeg',
+                'path'=> 'storage/songs/Slow journey.jpeg',
                 'title'=> 'Slow Journey'
             ],
             [ //14
-                'filename'=>'wake me up.jpeg',
+                'path'=> 'storage/songs/wake me up.jpeg',
                 'title'=> 'Wake me up'
             ],
             [ //15
-                'filename'=>'TT.jpeg',
+                'path'=> 'storage/songs/TT.jpeg',
                 'title'=> 'TT'
             ],
             [ //16
-                'filename'=>'Likey.jpeg',
+                'path'=> 'storage/songs/Likey.jpeg',
                 'title'=> 'Likey'
             ],
             [ //17
-                'filename'=>'Love bomb.jpeg',
+                'path'=> 'storage/songs/Love bomb.jpeg',
                 'title'=> 'Love bomb'
             ],
             [ //18
-                'filename'=>'stay this way.jpeg',
+                'path'=> 'storage/songs/stay this way.jpeg',
                 'title'=> 'Stay this way'
             ],
             [ //19
-                'filename'=>'Spring day.jpeg',
+                'path'=> 'storage/songs/Spring day.jpeg',
                 'title'=> 'Spring day'
             ],
             [ //20
-                'filename'=>'Boy in Luv.jpeg',
+                'path'=> 'storage/songs/Boy in Luv.jpeg',
                 'title'=> 'Boy in luv'
             ],
             [ //21
-                'filename'=>'Butter.png',
+                'path'=> 'storage/songs/Butter.png',
                 'title'=> 'Butter'
             ],
             [ //22
-                'filename'=>'Thrill ride.jpeg',
+                'path'=> 'storage/songs/Thrill ride.jpeg',
                 'title'=> 'Thrill ride'
             ],
             [ //23
-                'filename'=>'whisper.jpeg',
+                'path'=> 'storage/songs/whisper.jpeg',
                 'title'=> 'Whisper'
             ],
             [ //24
-                'filename'=>'No air.jpeg',
+                'path'=> 'storage/songs/No air.jpeg',
                 'title'=> 'No air'
             ],
             [ //25
-                'filename'=>'Newjeans.jpg',
+                'path'=> 'storage/songs/Newjeans.jpg',
                 'title'=> 'newjeans'
             ],
-
         ]);
     }
 }
