@@ -1,6 +1,6 @@
 {{--
-  - $currentImage.. $song->image->filenameを指しており、
-      曲に保存されているfilenameを取得している
+  - $currentImage.. $song->image->pathを指しており、
+      曲に保存されているpathを取得している
   - #currnetId.. 曲の画像idである
 
   --}}
@@ -28,14 +28,10 @@ $cId = $currentId ?? '' ;
                 <div class=" rounded-md p-4 cursor-pointer ">
                   <img class="image  "
                   data-id="{{ $name }}_{{ $image->id }}"
-                  data-file="{{$image->filename}}"
-                  data-path="{{ asset('storage/songs/') }}"
+                  data-file="{{$image->path}}"
+                  data-path="{{$image->path}}"
                   data-modal="modal-1"
-                    @if (empty($image->filename))
-                    src="{{ asset('images/no_image.jpg')}}"
-                    @else
-                    src="{{ asset('storage/songs/'. $image->filename)}}"
-                    @endif
+                  src="{{ asset('storage/songs/'. $image->path)}}"
                   >
                   <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
               </div>
@@ -45,14 +41,10 @@ $cId = $currentId ?? '' ;
             <div class=" rounded-md p-4 cursor-pointer">
               <img class=" image"
               data-id="{{ $name }}_{{ $image->id }}"
-              data-file="{{$image->filename}}"
-              data-path="{{ asset('storage/songs/') }}"
+              data-file="{{$image->path}}"
+              data-path="{{$image->path}}"
               data-modal="modal-1"
-                @if (empty($image->filename))
-                    src="{{ asset('images/no_image.jpg')}}"
-                    @else
-                    src="{{ asset('storage/songs/'. $image->filename)}}" >
-                    @endif
+              src="{{ asset($image->path)}}" >
 
               <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
           </div>
@@ -69,7 +61,7 @@ $cId = $currentId ?? '' ;
 </div>
 
 {{--
-  - <img id>.. Create画面とは違い、すでに格納されてある画像のfilenameをassetしている
+  - <img id>.. Create画面とは違い、すでに格納されてある画像のpathをassetしている
   --}}
 
 <div class="flex justify-around items-center mb-4">

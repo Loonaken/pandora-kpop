@@ -3,7 +3,7 @@
     <div class="container mb-4 mx-auto border-4 border-gray-100/0 hover:border-lime-300 transition delay-100 ease-in-out  ">
       <div class="lg:w-4/5 mx-auto flex flex-wrap items-center ">
         <div class="basis-1/3 ">
-          <x-thumbnail :filename="$song->image->filename"  class="mb-0  " />
+          <x-thumbnail :path="$song->image->path"  class="mb-0  " />
           </div>
           <div class="basis-2/3 pl-2">
             <div class="flex items-center">
