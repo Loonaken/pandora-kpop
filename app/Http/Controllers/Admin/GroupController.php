@@ -57,7 +57,7 @@ class GroupController extends Controller
     {
         $groups = Group::select('id', 'type', 'name')->get();
 
-        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+        $images  =Image::select('id', 'title', 'path')->orderByDesc('updated_at')->get();
 
         return view ('admin.groups.create', compact('groups', 'images' ));
     }
@@ -84,7 +84,7 @@ class GroupController extends Controller
 
         $songs = Song::where('group_id', $group->id)->get();
 
-        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+        $images  =Image::select('id', 'title', 'path')->orderByDesc('updated_at')->get();
 
         return view('admin.groups.show', compact('group', 'images', 'songs'));
 
@@ -94,7 +94,7 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($id);
 
-        $images  =Image::select('id', 'title', 'filename')->orderByDesc('updated_at')->get();
+        $images  =Image::select('id', 'title', 'path')->orderByDesc('updated_at')->get();
 
         return view('admin.groups.edit', compact('group', 'images'));
     }

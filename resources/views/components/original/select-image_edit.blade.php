@@ -23,33 +23,17 @@ $cId = $currentId ?? '' ;
       <main class="modal__content" id="modal-1-content">
         <div class="flex flex-wrap">
           @foreach ($images as $image)
-          @if (!is_null($image->title))
               <div class="w-1/2 md:w-1/3 p-4 ">
                 <div class=" rounded-md p-4 cursor-pointer ">
-                  <img class="image  "
+                  <img class="image"
                   data-id="{{ $name }}_{{ $image->id }}"
                   data-file="{{$image->path}}"
-                  data-path="{{$image->path}}"
+                  data-path=""
                   data-modal="modal-1"
-                  src="{{ asset('storage/songs/'. $image->path)}}"
-                  >
-                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
+                  src="{{ asset($image->path)}}">
+                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title ?: '' }}</div>
               </div>
               </div>
-              @elseif(is_null($image->title))
-              <div class="w-1/2 md:w-1/3 p-4 ">
-            <div class=" rounded-md p-4 cursor-pointer">
-              <img class=" image"
-              data-id="{{ $name }}_{{ $image->id }}"
-              data-file="{{$image->path}}"
-              data-path="{{$image->path}}"
-              data-modal="modal-1"
-              src="{{ asset($image->path)}}" >
-
-              <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
-          </div>
-          </div>
-          @endif
           @endforeach
     </div>
       </main>
@@ -67,10 +51,7 @@ $cId = $currentId ?? '' ;
 <div class="flex justify-around items-center mb-4">
   <a data-micromodal-trigger="modal-1" href="javascript:;" class="modal__btn">画像を選択してください</a>
   <div class="w-1/4">
-    @if(!is_null($cImage))
-  <img id="{{$name}}_thumbnail" src="{{ asset('storage/songs/' . $cImage)}}" >
-    @elseif(is_null($cImage))
-  @endif
+  <img id="{{$name}}_thumbnail" src="{{ asset($cImage)}}" >
   </div>
 </div>
 <input type="hidden" id="{{$name}}_hidden" name="{{$name}}" value="{{ $cId }}">
