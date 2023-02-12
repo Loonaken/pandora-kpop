@@ -19,41 +19,17 @@
             - data-id/file/path/.. Javascriptにデータを渡すために必要な情報である
           --}}
           @foreach ($images as $image)
-          @if (!is_null($image->title))
               <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
                 <div class=" rounded-md p-4 cursor-pointer">
                   <img class="image"
                   data-id="{{ $name }}_{{ $image->id }}"
-                  data-file="{{$image->filename}}"
-                  data-path="{{ asset('storage/songs/') }}"
+                  data-file="{{$image->path}}"
+                  data-path=""
                   data-modal="modal-1"
-                    @if (empty($image->filename))
-                    src="{{ asset('images/no_image.jpg')}}"
-                    @else
-                    src="{{ asset('storage/songs/'. $image->filename)}}"
-                    @endif
-                  >
-                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
+                  src="{{ asset($image->path)}}">
+                  <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title ?: '' }}</div>
               </div>
               </div>
-              @elseif(is_null($image->title))
-              <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4 ">
-            <div class=" rounded-md p-4 cursor-pointer">
-              <img class="image"
-              data-id="{{ $name }}_{{ $image->id }}"
-              data-file="{{$image->filename}}"
-              data-path="{{ asset('storage/songs/') }}"
-              data-modal="modal-1"
-                @if (empty($image->filename))
-                    src="{{ asset('images/no_image.jpg')}}"
-                    @else
-                    src="{{ asset('storage/songs/'. $image->filename)}}" >
-                    @endif
-
-              <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title}}</div>
-          </div>
-          </div>
-          @endif
           @endforeach
     </div>
       </main>
