@@ -18,28 +18,25 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                       <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
                         <div class="relative">
-                          <label for="name" class="leading-7 text-sm text-gray-600">グループ名 </label>
-                          <input type="text" placeholder="例: Loona" id="name" name="name" value="{{old('name')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-                        </div>
-                      </div>
+                          <div class="my-4">
+                            <label for="name" class=" leading-7 text-sm text-gray-600">グループ名 </label>
+                            <input type="text" placeholder="例: Loona" id="name" name="name" value="{{old('name')}}" required class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                          </div>
                       {{-- fin グループ名の入力 --}}
 
                       {{-- グループ情報の入力 --}}
                     <x-input-error :messages="$errors->get('information')" class="mt-2" />
-                      <div class="p-2 mb-2 w-full lg:w-2/3 mx-auto">
-                        <div class="relative">
-                          <label for="information" class="leading-7 text-sm text-gray-600">グループについて *任意</label>
+                      <div class="my-4">
+                          <label for="information" class=" leading-7 text-sm text-gray-600">グループについて *任意</label>
                           <textarea id="information" placeholder="例: このグループはエネルギッシュです。" name="information" rows="3" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-yellow-500 focus:bg-white focus:ring-2 focus:ring-yellow-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"></textarea>
                         </div>
-                      </div>
+
                       {{-- fin グループ情報の入力 --}}
 
-                      <div class="flex mx-auto w-full lg:w-2/3 mb-6 ">
                         {{-- Typeの入力 --}}
-                        <div class="p-2 mb-2  ">
                         <x-input-error :messages="$errors->get('type')" class="mt-2" />
                           <div class="relative ">
-                            <div>
+                            <div class="mt-4">
                               <label for="type" class="leading-7 text-sm text-gray-600">アーティスト属性</label>
                             </div>
                             <div>
@@ -54,8 +51,6 @@
                                   2, 女性アーティスト
                                 </option>
                               </select>
-                            </div>
-                          </div>
                         </div>
                       {{-- fin Typeの入力 --}}
 
@@ -75,12 +70,14 @@
                       </div>
 
 
+
                     {{-- 画像選択 --}}
+                    <div class="my-4">
                     <x-original.select-image_create :images="$images" name="images" />
                     <x-input-error :messages="$errors->get('images')" class="mt-2" />
                       {{-- fin 画像選択 --}}
-
                     </div>
+                  </div>
 
 
                     <div class="flex justify-around items-center p-2 w-full">

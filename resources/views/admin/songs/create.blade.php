@@ -92,6 +92,7 @@
                       <x-original.select-image_create :images="$images" name="images" />
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />
                       {{-- fin 画像選択 --}}
+                        </div>
 
 
                     <div class="flex justify-around items-center p-2 mt-12 w-full">
