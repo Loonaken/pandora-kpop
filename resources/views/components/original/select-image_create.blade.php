@@ -23,7 +23,11 @@
                 <div class=" rounded-md p-4 cursor-pointer">
                   <img class="image"
                   data-id="{{ $name }}_{{ $image->id }}"
+                  @env('local')
+                  data-file="{{Storage::disk("s3")->url($image->path)}}"
+                  @else
                   data-file="{{$image->path}}"
+                  @endenv
                   data-path=""
                   data-modal="modal-1"
                   @env('local')
