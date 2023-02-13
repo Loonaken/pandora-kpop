@@ -26,7 +26,12 @@
                   data-file="{{$image->path}}"
                   data-path=""
                   data-modal="modal-1"
-                  src="{{ asset($image->path)}}">
+                  @env('local')
+                    src="{{ asset($image->path)}}"
+                  @else
+                    src={{ Storage::disk("s3")->url($image->path) }}
+                  @endenv
+                  >
                   <div class="text-lg text-center border-x-2 border-b-2 text-gray-500">{{$image->title ?: '' }}</div>
               </div>
               </div>
