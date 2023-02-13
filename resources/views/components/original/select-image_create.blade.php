@@ -24,9 +24,9 @@
                   <img class="image"
                   data-id="{{ $name }}_{{ $image->id }}"
                   @env('local')
-                  data-file="{{Storage::disk("s3")->url($image->path)}}"
+                  data-file="{{asset($image->path)}}"
                   @else
-                  data-file="{{$image->path}}"
+                  data-file="{{Storage::disk("s3")->url($image->path)}}"
                   @endenv
                   data-path=""
                   data-modal="modal-1"
