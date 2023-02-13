@@ -6,7 +6,8 @@
   --}}
 
 @php
-$cImage = $currentImage ?? '' ;
+$cImage = $currentImage ?? '';
+// currentImage="{{$group->image->path}}"/
 $cId = $currentId ?? '' ;
 @endphp
 
@@ -60,7 +61,13 @@ $cId = $currentId ?? '' ;
 <div class="flex justify-around items-center mb-4">
   <a data-micromodal-trigger="modal-1" href="javascript:;" class="modal__btn">画像を選択してください</a>
   <div class="w-1/4">
-  <img id="{{$name}}_thumbnail" src="{{ asset($cImage)}}" >
+  <img id="{{$name}}_thumbnail"
+  @env('local')
+    src="{{ asset($cImage)}}"
+  @else
+    src="{{Storage::disk("s3")->url($cImage)}}"
+  @endenv
+  >
   </div>
 </div>
 <input type="hidden" id="{{$name}}_hidden" name="{{$name}}" value="{{ $cId }}">

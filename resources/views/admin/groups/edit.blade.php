@@ -81,7 +81,9 @@
 
 
                       {{-- 画像選択 --}}
-                      <x-original.select-image_edit :images="$images" currentId="{{$group->image_id}}" currentImage="{{$group->image->path}}" name="images" />
+                      <x-original.select-image_edit :images="$images" currentId="{{$group->image_id}}"
+
+                        currentImage="{{$group->image->path}}" name="images" />
                         {{-- currentIdの値はマイグレーションファイルのカラム名であり、
                         currentImageの値はモデルのメソッド名である --}}
                       <x-input-error :messages="$errors->get('images')" class="mt-2" />
