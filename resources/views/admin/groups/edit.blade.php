@@ -121,7 +121,7 @@
         const imagePath = e.target.dataset.path
         const modal = e.target.dataset.modal
         // サムネイルと input type=hiddenのvalueに設定
-        document.getElementById(imageName + '_thumbnail').src = imagePath + '/' + imageFile
+        document.getElementById(imageName + '_thumbnail').src = imageFile
         document.getElementById(imageName + '_hidden').value = imageId
         MicroModal.close(modal); //モーダルを閉じる
       })

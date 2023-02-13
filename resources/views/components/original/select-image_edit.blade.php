@@ -27,7 +27,11 @@ $cId = $currentId ?? '' ;
                 <div class=" rounded-md p-4 cursor-pointer ">
                   <img class="image"
                   data-id="{{ $name }}_{{ $image->id }}"
-                  data-file="{{$image->path}}"
+                  @env('local')
+                  data-file="{{asset($image->path)}}"
+                  @else
+                  data-file="{{Storage::disk("s3")->url($image->path)}}"
+                  @endenv
                   data-path=""
                   data-modal="modal-1"
                   @env('local')
