@@ -52,7 +52,7 @@ class PeriodController extends Controller
 
     }
 
-    public function term_edit($id)
+    public function termEdit($id)
     {
         $period = Period::findOrFail($id);
 
@@ -61,7 +61,7 @@ class PeriodController extends Controller
         return view ('admin.periods.term_edit', compact('period', 'songs'));
     }
 
-    public function term_update(Request $request, $id)
+    public function termUpdate(Request $request, $id)
     {
 
         $request->validate([
@@ -86,7 +86,7 @@ class PeriodController extends Controller
         - $songs..  特定の年代タグに登録されていない曲を全て取得するため、
                         whereNotIn,orWhereNullを使用して取得している
 	*/
-    public function song_add($id)
+    public function songAdd($id)
     {
         $period = Period::findOrFail($id);
 
@@ -99,7 +99,7 @@ class PeriodController extends Controller
     }
 
 
-    public function song_store(Request $request, $id)
+    public function songStore(Request $request, $id)
     {
         $request->validate([
             'song_ids'=>'required',
@@ -126,7 +126,7 @@ class PeriodController extends Controller
 	コード説明・やり方
         - L_133 $song..  年代タグのIdのみをNull化している
 	*/
-    public function song_destroy($id)
+    public function songDestroy($id)
     {
         $song = Song::findOrFail($id);
 

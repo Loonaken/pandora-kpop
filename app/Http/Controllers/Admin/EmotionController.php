@@ -72,7 +72,7 @@ class EmotionController extends Controller
 
     }
 
-    public function name_edit($id)
+    public function nameEdit($id)
     {
         $emotion = Emotion::findOrFail($id);
 
@@ -90,7 +90,7 @@ class EmotionController extends Controller
             複数のValidationのみが可能であ理、気分タグ名を編集する際である単数Validationは
             対応していないので、name_updateの際は別でルールを定義している
 	*/
-    public function name_update(Request $request, $id)
+    public function nameUpdate(Request $request, $id)
     {
 
         $request->validate([
@@ -118,7 +118,7 @@ class EmotionController extends Controller
         - $songs.. 特定の気分タグに登録されていない曲を全て取得するため、
             whereNotIn,orWhereNullを使用して取得している
 	*/
-    public function song_add($id)
+    public function songAdd($id)
     {
         $emotion = Emotion::findOrFail($id);
 
@@ -138,7 +138,7 @@ class EmotionController extends Controller
             既存の曲のemotionカラムに現在の気分タグのページId(emotion_id)を代入して保存する処理
 	*/
 
-    public function song_store(Request $request, $id)
+    public function songStore(Request $request, $id)
     {
         $request->validate([
             'song_ids' => 'required',
@@ -164,7 +164,7 @@ class EmotionController extends Controller
         - 現在の気分タグページに登録されている曲の「気分Id」をNull化している
 	*/
 
-    public function song_destroy($id)
+    public function songDestroy($id)
     {
         $song = Song::findOrFail($id);
 

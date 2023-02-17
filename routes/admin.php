@@ -61,26 +61,26 @@ Route::resource('songs', SongController::class)
 Route::middleware('auth:admin')->group(function () {
 
     Route::prefix('emotions')->controller(EmotionController::class)->name('emotions.')->group(function(){
-        Route::get('{name}/name/edit','name_edit')->name('name.edit');
-        Route::put('{name}/name','name_update')->name('name.update');
-        Route::get('{song}/song/add','song_add')->name('song.add');
-        Route::put('{song}/song','song_store')->name('song.store');
-        Route::get('{song}/song/destroy','song_destroy')->name('song.destroy');
+        Route::get('{name}/name/edit','nameEdit')->name('name.edit');
+        Route::put('{name}/name','nameUpdate')->name('name.update');
+        Route::get('{song}/song/add','songAdd')->name('song.add');
+        Route::put('{song}/song','songStore')->name('song.store');
+        Route::get('{song}/song/destroy','songDestroy')->name('song.destroy');
 
     });
 
     // Period Route
     Route::prefix('periods')->controller(PeriodController::class)->name('periods.')->group(function(){
-        Route::get('{term}/term/edit','term_edit')->name('term.edit');
-        Route::put('{term}/term','term_update')->name('term.update');
-        Route::get('{song}/song/add','song_add')->name('song.add');
-        Route::put('{song}/song','song_store')->name('song.store');
-        Route::get('{song}/song/destroy','song_destroy')->name('song.destroy');
+        Route::get('{term}/term/edit','termEdit')->name('term.edit');
+        Route::put('{term}/term','termUpdate')->name('term.update');
+        Route::get('{song}/song/add','songAdd')->name('song.add');
+        Route::put('{song}/song','songStore')->name('song.store');
+        Route::get('{song}/song/destroy','songDestroy')->name('song.destroy');
     });
 
     Route::prefix('groups')->controller(GroupController::class)->name('groups.')->group(function(){
-        Route::delete('{group}/group','group_destroy')->name('group.destroy');
-        Route::delete('{song}/song','song_destroy')->name('song.destroy');
+        Route::delete('{group}/group','groupDestroy')->name('group.destroy');
+        Route::delete('{song}/song','songDestroy')->name('song.destroy');
     });
 
     Route::prefix('profile')->controller(ProfileController::class)->name('profile.')->group(function(){
