@@ -131,7 +131,7 @@ class GroupController extends Controller
                         ($songsInGroupの中にデータが入っていない時)
 	*/
 
-    public function group_destroy($id)
+    public function groupDestroy($id)
     {
         $group = Group::findOrFail($id);
         $songsInGroup = Song::where('group_id', $group->id)->get();
@@ -161,7 +161,7 @@ class GroupController extends Controller
             そのため、Bladeにてモーダルメッセージで注意を促している
 	*/
 
-    public function song_destroy($id)
+    public function songDestroy($id)
     {
         Song::findOrFail($id)->delete();
 
