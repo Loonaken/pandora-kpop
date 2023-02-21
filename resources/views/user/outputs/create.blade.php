@@ -16,7 +16,7 @@
                     <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
                     <x-input-error :messages="$errors->get('emotion')" class="mt-2" />
                         <div class="relative">
-                          <p class="leading-7 text-base ">曲の気分を選んでください</p>
+                          <p class="leading-7 text-base ">曲の気分を選んでください(未選択OK)</p>
                           <span class="text-sm text-gray-500 pb-2">＊1つのみ</span>
                           <div class="border-2 border-gray-200 shadow-md px-2 py-4">
                             <group class="inline-radio" >
@@ -37,7 +37,7 @@
                       <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
                         <x-input-error :messages="$errors->get('period')" class="mt-2" />
                             <div class="relative">
-                              <p class="leading-7 text-base ">曲の年代を選んでください</p>
+                              <p class="leading-7 text-base ">曲の年代を選んでください(未選択OK)</p>
                               <span class="text-sm text-gray-500 pb-2">＊1つのみ</span>
                               <div class="border-2 border-gray-200 shadow-md p-2">
                                 <group class="inline-radio" >
@@ -56,7 +56,7 @@
 
                         {{-- Typeの入力 --}}
                         <div class="p-2 mb-6 w-full lg:w-2/3 mx-auto">
-                          <p class="leading-7 text-base ">アーティストを選んでください</p>
+                          <p class="leading-7 text-base ">アーティストを選んでください(未選択OK)</p>
                           <x-input-error :messages="$errors->get('type')" class="mt-2" />
                             <group class="inline-radio" >
                             <div class="flex justify-center mb-2">
