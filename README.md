@@ -5,7 +5,7 @@ git clone https://github.com/Loonaken/pandora-kpop.git
 
 cd pandora-kpop
 
-composer install
+composer update
 ```
 
 ## .envをもらう
