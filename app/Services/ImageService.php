@@ -10,7 +10,7 @@ namespace App\Services;
 
 やり方
     - ターミナルで以下を実行する
-      $ php composer.phar require intervention/image
+      $ composer require intervention/image
     - config/app > providers に パッケージのクラスを使用するため、登録する
     - config/app > Aliases に 全体でエイリアスを使用するため、登録する
       ???Intervention\Image検索->app.php->SHOW
