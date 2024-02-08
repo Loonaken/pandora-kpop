@@ -14,45 +14,6 @@ composer update
 cp .env.example .env
 ```
 
-```
-Delete
--  APP_NAME=Laravel
--  DB_HOST=127.0.0.1
--  DB_PASSWORD=
-
-Add
-+  APP_NAME="pandora_kpop"
-+  DB_HOST=mysql
-+  DB_PASSWORD=root  
-
-```
-
-## docker-compose.ymlファイルの変更
-
-```
-laravel.test:
-        build:
-            context: ./vendor/laravel/sail/runtimes/**8.2**
-            dockerfile: Dockerfile
-            args:
-                WWWGROUP: '${WWWGROUP}'
-        image: sail-**8.2**/app
-        extra_hosts:
-            - 'host.docker.internal:host-gateway'
-        ports:
-            - '${APP_PORT:-**82**}:**82**'
-            - '${VITE_PORT:-**5176**}:${VITE_PORT:-**5176**}'
-```
-
-```
- phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        links:
-            - mysql:mysql
-        ports:
-            - **8082:82**
-```
-
 ## sailのエイリアスを登録
 
 ~/.zshrcに下記を追記
@@ -95,7 +56,3 @@ http://localhost
 
 にアクセスして、表示確認してください。
 
-## phpmyadminの起動
-http://localhost:8080
-
-id, passwordは .envのDB_USERNAME, DB_PASSWORDを使ってください。
